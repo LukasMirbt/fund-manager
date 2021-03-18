@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import TimeControls from "./TimeControls/TimeControls";
 import Chart from "./Chart/Chart";
-import Title from "./Title";
 
 const Container = styled.div`
   display: flex;
@@ -11,43 +10,25 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  flex-grow: 1;
+  ${({ sc: { containerCSS } }) => containerCSS};
 `;
 
 const ChartWithTimeControls = ({
-  datasets,
-  min,
-  max,
-  mainFundName,
-  isDataDownsampled,
-  selectedButton,
-  xData,
-  yData,
-  setSelectedButton,
-  setDateParameters,
-  dateParameters,
-  title,
+  fundNames,
+  /*   min,
+  max, */
+
   containerCSS = undefined,
 }) => {
   return (
     <Container sc={{ containerCSS }}>
-      {title !== undefined && <Title title={title} />}
-
       <Chart
-        datasets={datasets}
-        min={min}
-        max={max}
-        mainFundName={mainFundName}
-        isDataDownsampled={isDataDownsampled}
+        fundNames={fundNames}
+        /* min={min} max={max} */
       />
 
       <TimeControls
-        selectedButton={selectedButton}
-        xData={xData}
-        yData={yData}
-        setSelectedButton={setSelectedButton}
-        setDateParameters={setDateParameters}
-        dateParameters={dateParameters}
+ 
       />
     </Container>
   );

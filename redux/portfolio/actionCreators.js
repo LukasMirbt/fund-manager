@@ -5,8 +5,7 @@ import {
   SELL_FUND,
   SET_EXCHANGE_RATES,
   SET_INITIAL_PORTFOLIO_STATE,
-  SET_PORTFOLIO_FUND_NAME,
-  SET_PORTFOLIO_DATE_PARAMETERS,
+  SET_PORTFOLIO_FUND_NAMES,
 } from "./actionTypes";
 
 export const setInitialPortfolioState = (update) => ({
@@ -39,12 +38,7 @@ export const setExchangeRates = (update) => ({
   payload: update,
 });
 
-export const setPortfolioDateParameters = (update) => ({
-  type: SET_PORTFOLIO_DATE_PARAMETERS,
-  payload: update,
-});
-
-export const setPortfolioFundName = (update) => ({
-  type: SET_PORTFOLIO_FUND_NAME,
+export const setPortfolioFundNames = (update) => ({
+  type: SET_PORTFOLIO_FUND_NAMES,
   payload: update,
 });

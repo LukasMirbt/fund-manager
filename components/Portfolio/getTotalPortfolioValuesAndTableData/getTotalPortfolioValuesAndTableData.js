@@ -15,7 +15,7 @@ const getTotalPortfolioValuesAndTableData = (
     "oneDC",
     /* "1 month", "6 months", */ "oneYC",
     "threeYC",
-    "fiveYC"
+    "fiveYC",
   ];
   const changes = {};
   const tableData = [];
@@ -25,17 +25,17 @@ const getTotalPortfolioValuesAndTableData = (
   const portfolioFundNames = Object.keys(portfolio);
 
   const [currentTotalValue, acquisitionTotalValue] = portfolioFundNames
-    .map(fundName => {
+    .map((fundName) => {
       const { chartData } = data[fundName];
       const { xData, yData } = chartData;
 
       const currency = getCurrencyFromFundName(fundName);
-      const exchangeRate = exchangeRates.rates[currency];
+      const exchangeRate = exchangeRates[currency];
 
       const {
         shares,
         acquisitionValue,
-        earliestBuyDate
+        earliestBuyDate,
       } = getNumberOfSharesAndAcquisitionValue(
         fundName,
         portfolio,
@@ -74,7 +74,7 @@ const getTotalPortfolioValuesAndTableData = (
         threeYC: threeYearsAgoValue,
         fiveYC: fiveYearsAgoValue,
         acqValue: acquisitionValue,
-        value: currentValue
+        value: currentValue,
       };
 
       tableData.push({
@@ -82,7 +82,7 @@ const getTotalPortfolioValuesAndTableData = (
         shares,
         value: currentValue.toFixed(2),
         acqValue: acquisitionValue.toFixed(2),
-        ...data[fundName].tableData
+        ...data[fundName].tableData,
       });
 
       return [currentValue, acquisitionValue];
@@ -97,9 +97,8 @@ const getTotalPortfolioValuesAndTableData = (
   );
 
   const [earliestFundName, earliestTotalBuyDate] = portfolioFundNames.reduce(
-    (prev, curr) => {
-      const [fundName, buyDate] = prev;
-      const nextFundName = curr;
+    (acc, nextFundName) => {
+      const [fundName, buyDate] = acc;
       const nextBuyDate = earliestDatePerFund[nextFundName];
 
       if (nextBuyDate < buyDate) {
@@ -118,9 +117,9 @@ const getTotalPortfolioValuesAndTableData = (
     xDataToSlice.length
   );
 
-  const totalYData = totalXData.map(date => {
+  const totalYData = totalXData.map((date) => {
     let totalNAV = 0;
-    portfolioFundNames.forEach(fundName => {
+    portfolioFundNames.forEach((fundName) => {
       if (earliestDatePerFund[fundName] <= date) {
         const { xData, yData } = data[fundName].chartData;
         const indexOfDate = xData.indexOf(date);
@@ -136,7 +135,7 @@ const getTotalPortfolioValuesAndTableData = (
     acquisitionTotalValue,
     totalChanges,
     totalXData,
-    totalYData
+    totalYData,
   };
 };
 

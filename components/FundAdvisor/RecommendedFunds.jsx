@@ -1,37 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import RecommendedText from "./RecommendedText";
 import RecommendedIntro from "./RecommendedIntro";
 import RecommendedChart from "./RecommendedChart";
-import { getIsRecommendedIntroShowing } from "../../redux/selectors";
+import { getIsIntroShowing } from "../../redux/selectors";
 import { recommendedFundsLabelID } from "./RecommendedText";
 
 const Container = styled.section`
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
 
-  //overflow: hidden is neccessary for chart to resize properly when the drawer is toggled
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 `;
 
 const RecommendedFunds = () => {
-  const isRecommendedIntroShowing = useSelector((state) =>
-    getIsRecommendedIntroShowing(state)
-  );
+  const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
+
+  const [fundIndex, setFundIndex] = useState(0);
 
   return (
     <>
-      {isRecommendedIntroShowing === true ? (
+      {isIntroShowing === true ? (
         <RecommendedIntro />
       ) : (
         <Container
           aria-labelledby={recommendedFundsLabelID}
-          sc={{ isRecommendedIntroShowing }}
+          sc={{ isIntroShowing }}
           data-testid="RecommendedFunds"
         >
-          <RecommendedText />
+          <RecommendedText fundIndex={fundIndex} setFundIndex={setFundIndex} />
 
           <RecommendedChart />
         </Container>

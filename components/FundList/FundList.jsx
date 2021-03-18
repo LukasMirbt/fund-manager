@@ -1,26 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import FundListChart from "./FundListChart";
-import { getIsTableHidden } from "../../redux/selectors";
-import DataGrid from "./DataGrid/DataGrid";
+import FundListDataGrid from "./FundListDataGrid/FundListDataGrid";
 
 const Container = styled.section`
   width: 100%;
   height: 100%;
 
   display: flex;
+  overflow: hidden;
 
   /* position: relative; */
 `;
 
 const FundList = () => {
-  const isTableHidden = useSelector((state) => getIsTableHidden(state));
-
   return (
-    <Container sc={{ isTableHidden }}>
+    <Container>
       <FundListChart />
-      <DataGrid />
+
+      <FundListDataGrid />
     </Container>
   );
 };

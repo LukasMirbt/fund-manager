@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../../models/User";
 import dbConnect from "../../utils/dbConnect";
+import InitialPortfolioData from "../../models/InitialPortfolioData";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -29,11 +30,11 @@ export default async function handler(req, res) {
 
     const token = jwt.sign(userForToken, process.env.SECRET);
 
-    /*  const initialData = await InitialData.findOne({}); */
+    const initialPortfolioData = await InitialPortfolioData.findOne({});
 
     res.status(200).json({
       token,
-      /*       initialData, */
+      initialPortfolioData,
     });
   }
 }

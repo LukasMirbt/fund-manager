@@ -4,13 +4,11 @@ import MainTabs from "./MainTabs";
 import RecommendedTabs from "./RecommendedTabs/RecommendedTabs";
 import FundListTabs from "./FundListTabs/FundListTabs";
 import PortfolioTabs from "./PortfolioTabs/PortfolioTabs";
-import { getIsRecommendedIntroShowing } from "../../redux/selectors";
+import { getIsIntroShowing } from "../../redux/selectors";
 import { useRouter } from "next/router";
 
 const Tabs = () => {
-  const isRecommendedIntroShowing = useSelector((state) =>
-    getIsRecommendedIntroShowing(state)
-  );
+  const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
 
   const { pathname } = useRouter();
 
@@ -20,7 +18,7 @@ const Tabs = () => {
 
       {pathname === "/" && <FundListTabs />}
 
-      {pathname === "/fund-advisor" && isRecommendedIntroShowing === false && (
+      {pathname === "/fund-advisor" && isIntroShowing === false && (
         <RecommendedTabs />
       )}
 

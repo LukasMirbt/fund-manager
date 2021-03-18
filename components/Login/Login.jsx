@@ -55,40 +55,6 @@ const StyledMUIContainer = styled(MUIContainer)`
 `;
 
 const Login = () => {
-  /*   useEffect(() => {
-    const asyncEffect = async () => {
-      const {
-        data: { token, initialData },
-      } = await axios.post("/api/", {
-        username: "test",
-        password: "test",
-      });
-
-      console.log(initialData);
-    };
-
-    asyncEffect();
-  }, []); */
-
-  /*   const logIn = async () => {
-    try {
-      const { data } = await axios.post("/api/", {
-        username: username.value,
-        password: password.value,
-      });
-
-      dispatch(initializeAppState(data));
-      router.push("/fund-list");
-    } catch (e) {
-      dispatch(
-        showNotification({
-          text: "Invalid password or username!",
-          severity: "error",
-        })
-      );
-    }
-  }; */
-
   return (
     <Background aria-labelledby={loginLabelID}>
       <Container>
@@ -97,7 +63,7 @@ const Login = () => {
         </Title>
 
         <StyledMUIContainer maxWidth="xs">
-          <StyledAvatar color="pri">
+          <StyledAvatar color="primary">
             <LockOutlinedIcon />
           </StyledAvatar>
 

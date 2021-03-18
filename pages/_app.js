@@ -6,6 +6,7 @@ import {
 import styled, { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { useStore } from "../redux/store";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import theme from "../components/theme";
 import AppBar from "../components/AppBar/AppBar";
 import Drawer from "../components/Drawer/Drawer";
@@ -18,6 +19,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import DateFnsUtils from "@date-io/date-fns";
 
 config.autoAddCss = false;
 
@@ -46,22 +48,24 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <StylesProvider injectFirst>
-        <MUIThemeProvider theme={theme}>
-          <ThemeProvider theme={theme}>
-            <>
-              <AppBar />
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <StylesProvider injectFirst>
+          <MUIThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+              <>
+                <AppBar />
 
-              <Row>
-                <Drawer />
+                <Row>
+                  <Drawer />
 
-                <Component {...pageProps} />
-                <Snackbar />
-              </Row>
-            </>
-          </ThemeProvider>
-        </MUIThemeProvider>
-      </StylesProvider>
+                  <Component {...pageProps} />
+                  <Snackbar />
+                </Row>
+              </>
+            </ThemeProvider>
+          </MUIThemeProvider>
+        </StylesProvider>
+      </MuiPickersUtilsProvider>
     </Provider>
   );
 }

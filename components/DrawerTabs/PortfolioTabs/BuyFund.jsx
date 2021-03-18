@@ -4,7 +4,6 @@ import { useSelector, useDispatch, batch } from "react-redux";
 import Button from "@material-ui/core/Button";
 import {
   setData,
-  getChartData,
   showNotification,
 } from "../../../redux/general/actionCreators";
 import { buyFund } from "../../../redux/portfolio/actionCreators";
@@ -13,6 +12,7 @@ import InsetInput from "../../common/styledComponents/InsetInput";
 import Autocomplete from "../../common/components/Autocomplete";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
+import getChartData from "../../../redux/getChartData";
 
 export const Container = styled.div`
   z-index: 1400;

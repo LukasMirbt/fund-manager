@@ -5,21 +5,10 @@ import {
   SET_BALANCE,
   SELL_FUND,
   SET_EXCHANGE_RATES,
-  SET_PORTFOLIO_FUND_NAME,
-  SET_PORTFOLIO_DATE_PARAMETERS,
+  SET_PORTFOLIO_FUND_NAMES,
 } from "./actionTypes";
 
-export const DEFAULT_STATE = {
-  exchangeRates: undefined,
-  portfolio: undefined,
-  balance: undefined,
-  initialPortfolioData: undefined,
-  initialPortfolioTableData: undefined,
-  portfolioFundName: undefined,
-  portfolioDateParameters: { start: undefined, end: undefined },
-};
-
-const portfolio = (state = DEFAULT_STATE, action) => {
+const portfolio = (state = {}, action) => {
   switch (action.type) {
     case SET_INITIAL_PORTFOLIO_STATE: {
       const newState = { ...state, ...action.payload };
@@ -35,19 +24,14 @@ const portfolio = (state = DEFAULT_STATE, action) => {
       newState.balance = action.payload;
       return newState;
     }
-    case SET_PORTFOLIO_FUND_NAME: {
+    case SET_PORTFOLIO_FUND_NAMES: {
       const newState = { ...state };
-      newState.portfolioFundName = action.payload;
+      newState.portfolioFundNames = action.payload;
       return newState;
     }
     case SET_EXCHANGE_RATES: {
       const newState = { ...state };
       newState.exchangeRates = { ...action.payload };
-      return newState;
-    }
-    case SET_PORTFOLIO_DATE_PARAMETERS: {
-      const newState = { ...state };
-      newState.portfolioDateParameters = { ...action.payload };
       return newState;
     }
     case BUY_FUND: {

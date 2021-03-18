@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
-import { setIsRecommendedIntroShowing } from "../../redux/recommendedFunds/actionCreators";
+import { setIsIntroShowing } from "../../redux/recommendedFunds/actionCreators";
 import MUIContainer from "@material-ui/core/Container";
 
 const Container = styled.section`
@@ -52,7 +52,7 @@ const RecommendedIntro = () => {
   const dispatch = useDispatch();
 
   const closeIntro = () => {
-    dispatch(setIsRecommendedIntroShowing(false));
+    dispatch(setIsIntroShowing(false));
   };
 
   return (

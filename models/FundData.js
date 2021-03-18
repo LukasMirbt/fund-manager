@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const FundDataSchema = new mongoose.Schema(
   {
-    _id: mongoose.ObjectId,
+    _id: String,
     indexFund: String,
     morningstarRating: String,
     ISIN: String,

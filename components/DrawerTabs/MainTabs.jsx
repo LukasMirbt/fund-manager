@@ -10,7 +10,6 @@ import {
   faBriefcase,
   faClipboardCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import Divider from "@material-ui/core/Divider";
 import { useRouter } from "next/router";
 
 const tabs = [
@@ -40,32 +39,33 @@ const StyledListItem = styled(ListItem)`
   padding-left: 1.5rem;
 `;
 
+const StyledList = styled(List)`
+  border-top: ${({ theme }) => `1px solid ${theme.palette.divider}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
+`;
+
 const MainTabs = () => {
   const router = useRouter();
 
   return (
-    <>
-      <List>
-        {tabs.map(({ text, icon, pathname }) => (
-          <StyledListItem
-            selected={router.pathname === pathname}
-            button
-            key={text}
-            onClick={() => {
-              router.push(pathname);
-            }}
-          >
-            <ListItemIcon>
-              <StyledIcon icon={icon} />
-            </ListItemIcon>
+    <StyledList>
+      {tabs.map(({ text, icon, pathname }) => (
+        <StyledListItem
+          selected={router.pathname === pathname}
+          button
+          key={text}
+          onClick={() => {
+            router.push(pathname);
+          }}
+        >
+          <ListItemIcon>
+            <StyledIcon icon={icon} />
+          </ListItemIcon>
 
-            <ListItemText primary={text} />
-          </StyledListItem>
-        ))}
-      </List>
-
-      <Divider />
-    </>
+          <ListItemText primary={text} />
+        </StyledListItem>
+      ))}
+    </StyledList>
   );
 };
 

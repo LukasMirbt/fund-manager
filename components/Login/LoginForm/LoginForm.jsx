@@ -1,7 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
-import { useRouter } from "next/router";
 import Inputs from "./Inputs";
 import Items from "./Items";
 
@@ -11,8 +9,6 @@ const StyledForm = styled.form`
 `;
 
 const Form = () => {
-  const usernameInputRef = useRef();
-  const passwordInputRef = useRef();
   return (
     <StyledForm
       onSubmit={(e) => {
@@ -20,14 +16,8 @@ const Form = () => {
       }}
       noValidate
     >
-      <Inputs
-        usernameInputRef={usernameInputRef}
-        passwordInputRef={passwordInputRef}
-      />
-      <Items
-        usernameInputRef={usernameInputRef}
-        passwordInputRef={passwordInputRef}
-      />
+      <Inputs />
+      <Items />
     </StyledForm>
   );
 };

@@ -1,9 +1,8 @@
 import {
   SET_INITIAL_RECOMMENDED_FUNDS_STATE,
   SET_RECOMMENDED_FUND_NAME,
-  SET_IS_RECOMMENDED_INTRO_SHOWING,
-  SET_RECOMMENDED_DATE_PARAMETERS,
-  SET_RECOMMENDED_TAB_VALUE,
+  SET_IS_INTRO_SHOWING,
+  SET_TAB_VALUE,
 } from "./actionTypes";
 
 const recommendedFunds = (state = {}, action) => {
@@ -17,19 +16,15 @@ const recommendedFunds = (state = {}, action) => {
       newState.recommendedFundName = action.payload;
       return newState;
     }
-    case SET_IS_RECOMMENDED_INTRO_SHOWING: {
+    case SET_IS_INTRO_SHOWING: {
       const newState = { ...state };
-      newState.isRecommendedIntroShowing = action.payload;
+      newState.isIntroShowing = action.payload;
       return newState;
     }
-    case SET_RECOMMENDED_DATE_PARAMETERS: {
+
+    case SET_TAB_VALUE: {
       const newState = { ...state };
-      newState.recommendedDateParameters = { ...action.payload };
-      return newState;
-    }
-    case SET_RECOMMENDED_TAB_VALUE: {
-      const newState = { ...state };
-      newState.recommendedTabValue = action.payload;
+      newState.tabValue = action.payload;
       return newState;
     }
     default:

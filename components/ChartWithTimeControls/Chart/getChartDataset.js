@@ -1,28 +1,19 @@
+import pattern from "patternomaly";
+import { primaryColor } from "../../theme";
+
 const getChartDataset = (
-  fundName,
   data,
-  mainFundName,
+  fundName,
   isDataInPercent,
   dateParameters,
-  mainDatasetColor,
-  totalXData
+  patterns,
+  index
 ) => {
   const { xData, yData } = data[fundName].chartData;
 
-  if (xData.length !== yData.length) {
-    throw new Error("xData and yData don't have the same number of datapoints");
-  }
-
-  let startDate;
-
-  if (totalXData !== undefined) {
-    startDate =
-      mainFundName === "Total"
-        ? dateParameters.start || totalXData[0]
-        : dateParameters.start || data[mainFundName].chartData.xData[0];
-  } else {
-    startDate = dateParameters.start || data[mainFundName].chartData.xData[0];
-  }
+  const startDate =
+    dateParameters.start ||
+    new Date(0); 
 
   const endDate = dateParameters.end || new Date();
 
@@ -57,19 +48,17 @@ const getChartDataset = (
     }));
   }
 
-  let backgroundColor;
-
-  if (fundName === "Total") {
-    backgroundColor = "red";
-  } else {
-    backgroundColor =
-      mainFundName === fundName ? mainDatasetColor : data[fundName].color;
-  }
+  const color =
+    index < patterns.length - 1
+      ? pattern.draw(...patterns[index])
+      : primaryColor;
 
   return {
     label: fundName,
-    backgroundColor,
-    borderColor: backgroundColor,
+    backgroundColor: color,
+    borderColor: color,
+    /*     backgroundColor,
+    borderColor: backgroundColor, */
     /*  pointBorderColor: '#4ef442', */
     /* pointBackgroundColor: '#fff', */
     pointBorderWidth: 1,

@@ -14,7 +14,6 @@ const createInitialState = async () => {
 
   const initialData = tableData.reduce((acc, data) => {
     acc[data.fundName] = {
-      checked: false,
       tableData: data,
     };
 
@@ -31,29 +30,56 @@ const createInitialState = async () => {
     general: {
       data: initialData,
       credentials: {},
-      isDrawerOpen: true,
-      isTemporaryDrawerOpen: false,
-      isSnackbarHidden: true,
-      areDatasetsShowing: true,
-    },
-    fundList: {
-      mainFundName: initialFundName,
-      tableData,
-      isChartDataLoading: false,
-      sortParameters: { direction: "asc", key: "fundName" },
-      dateParameters: {},
-      searchTerm: "",
+
+      selectedTimespan: "max",
+      dateParameters: {
+        start: null,
+        end: null,
+      },
       isDataInPercent: true,
       isDataDownsampled: true,
-      isTableHidden: false,
-      hiddenFunds: [],
+      fundNamesCurrentlyBeingLoaded: [],
+
+      isDrawerOpen: true,
+      isTemporaryDrawerOpen: false,
+      initialOpenDrawerTabIndex: null,
+      isSnackbarHidden: true,
+      areDatasetsShowing: true,
+      patterns: [
+        ["dash", "#1f77b4"],
+        ["line-vertical", "#ff7f0e"],
+        ["diagonal-right-left", "#2ca02c"],
+        ["zigzag", "#17becf"],
+        ["diagonal", "#6766ff"],
+        ["weave", "#0b3d91"],
+      ],
+      /*       colors: [
+        "#000000",
+        "#ec8381",
+        "#524259",
+        "#ff7213",
+        "#495219",
+        "#065535",
+        "#0b3d91",
+        "#c71585",
+        "#6766ff",
+        "#7f6b9e",
+        "#9e7f6b",
+        "#808000",
+        "#daa520",
+        "#cd5c5c"
+      ], */
+    },
+    fundList: {
+      fundNames: [initialFundName],
+      tableData,
+      isFundListShowing: true,
     },
     recommendedFunds: {
       recommendedFunds,
-      recommendedFundName: recommendedFunds[0][0],
-      recommendedTabValue: 0,
-      recommendedDateParameters: {},
-      isRecommendedIntroShowing: true,
+      chartFundNames: [recommendedFunds[0][0]],
+      tabValue: 0,
+      isIntroShowing: true,
     },
   };
 

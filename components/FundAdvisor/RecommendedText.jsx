@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { useSelector } from "react-redux";
-import { getData, getRecommendedFundName } from "../../redux/selectors";
+import { getRecommendedFunds } from "../../redux/selectors";
 
 const Container = styled.div`
   display: flex;
@@ -34,22 +34,12 @@ const BodyText = styled(Typography)`
   text-align: start;
 `;
 
-const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
-
 export const recommendedFundsLabelID = "recommendedFundsLabel";
 
-const RecommendedText = () => {
-  const recommendedFundName = useSelector((state) =>
-    getRecommendedFundName(state)
-  );
-  const data = useSelector((state) => getData(state));
+const RecommendedText = ({ fundIndex, setFundIndex }) => {
+  const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
 
-  const recommendation = data[
-    recommendedFundName
-  ].tableData.recommendation.toLowerCase();
+  const [recommendedFundName, recommendation] = recommendedFunds[fundIndex];
 
   return (
     <Container>
@@ -65,7 +55,10 @@ const RecommendedText = () => {
       </Recommendation> */}
 
       <BodyText variant="body1" component="p">
-        {text}
+        {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`}
       </BodyText>
     </Container>
   );
