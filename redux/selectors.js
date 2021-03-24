@@ -22,15 +22,38 @@ export const getDateParameters = (state) => state.general.dateParameters;
 export const getIsDataInPercent = (state) => state.general.isDataInPercent;
 export const getIsDataDownsampled = (state) => state.general.isDataDownsampled;
 export const getSelectedTimespan = (state) => state.general.selectedTimespan;
+export const getIsChartShowing = (state) => state.general.isChartShowing;
+export const getFundNamesCurrentlyBeingLoaded = (state) =>
+  state.general.fundNamesCurrentlyBeingLoaded;
+export const getSignInUsernameInputValue = (state) =>
+  state.general.signInUsernameInputValue;
+export const getSignInPasswordInputValue = (state) =>
+  state.general.signInPasswordInputValue;
+export const getSignUpUsernameInputValue = (state) =>
+  state.general.signUpUsernameInputValue;
+export const getSignUpPasswordInputValue = (state) =>
+  state.general.signUpPasswordInputValue;
+export const getIsSignInInvalid = (state) => state.general.isSignInInvalid;
+export const getIsSignUpInvalid = (state) => state.general.isSignUpInvalid;
+export const getIsSignUpShowing = (state) => state.general.isSignUpShowing;
 
 export const getExchangeRates = (state) => state.portfolio.exchangeRates;
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;
 export const getInitialPortfolioData = (state) =>
   state.portfolio.initialPortfolioData;
+export const getInfoFundName = (state) => state.portfolio.infoFundName;
 export const getPortfolioFundNames = (state) =>
   state.portfolio.portfolioFundNames;
 export const getPortfolioData = (state) => state.portfolio.portfolioData;
+export const getSelectedFundNameToBuy = (state) =>
+  state.portfolio.selectedFundNameToBuy;
+export const getSelectedFundNameToSell = (state) =>
+  state.portfolio.selectedFundNameToSell;
+export const getNumberOfSharesToBuy = (state) =>
+  state.portfolio.numberOfSharesToBuy;
+export const getNumberOfSharesToSell = (state) =>
+  state.portfolio.numberOfSharesToSell;
 
 export const getRecommendedFunds = (state) =>
   state.recommendedFunds.recommendedFunds;

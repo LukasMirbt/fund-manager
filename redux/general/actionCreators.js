@@ -16,6 +16,16 @@ import {
   SET_FUND_NAMES_CURRENTLY_BEING_LOADED,
   SET_SELECTED_TIMESPAN,
   SET_FUND_DATA,
+  SET_IS_CHART_SHOWING,
+  SET_FUND_NAME_LOADING,
+  SET_FUND_NAME_HAS_LOADED,
+  SET_SIGN_UP_USERNAME_INPUT_VALUE,
+  SET_SIGN_UP_PASSWORD_INPUT_VALUE,
+  SET_SIGN_IN_USERNAME_INPUT_VALUE,
+  SET_SIGN_IN_PASSWORD_INPUT_VALUE,
+  SET_IS_SIGN_IN_INVALID,
+  SET_IS_SIGN_UP_INVALID,
+  SET_IS_SIGN_UP_SHOWING,
 } from "./actionTypes";
 
 export const setData = (update) => ({
@@ -98,7 +108,57 @@ export const setFundNamesCurrentlyBeingLoaded = (update) => ({
   payload: update,
 });
 
+export const setFundNameLoading = (update) => ({
+  type: SET_FUND_NAME_LOADING,
+  payload: update,
+});
+
+export const setFundNameHasLoaded = (update) => ({
+  type: SET_FUND_NAME_HAS_LOADED,
+  payload: update,
+});
+
 export const setSelectedTimespan = (update) => ({
   type: SET_SELECTED_TIMESPAN,
+  payload: update,
+});
+
+export const setIsChartShowing = (update) => ({
+  type: SET_IS_CHART_SHOWING,
+  payload: update,
+});
+
+export const setSignInUsernameInputValue = (update) => ({
+  type: SET_SIGN_IN_USERNAME_INPUT_VALUE,
+  payload: update,
+});
+
+export const setSignInPasswordInputValue = (update) => ({
+  type: SET_SIGN_IN_PASSWORD_INPUT_VALUE,
+  payload: update,
+});
+
+export const setSignUpUsernameInputValue = (update) => ({
+  type: SET_SIGN_UP_USERNAME_INPUT_VALUE,
+  payload: update,
+});
+
+export const setSignUpPasswordInputValue = (update) => ({
+  type: SET_SIGN_UP_PASSWORD_INPUT_VALUE,
+  payload: update,
+});
+
+export const setIsSignInInvalid = (update) => ({
+  type: SET_IS_SIGN_IN_INVALID,
+  payload: update,
+});
+
+export const setIsSignUpInvalid = (update) => ({
+  type: SET_IS_SIGN_UP_INVALID,
+  payload: update,
+});
+
+export const setIsSignUpShowing = (update) => ({
+  type: SET_IS_SIGN_UP_SHOWING,
   payload: update,
 });

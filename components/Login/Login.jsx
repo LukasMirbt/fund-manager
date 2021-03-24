@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
-import useSWR from "swr";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MUIContainer from "@material-ui/core/Container";
 import Copyright from "../Login/Copyright";
-import LoginForm from "./LoginForm/LoginForm";
 import Paper from "@material-ui/core/Paper";
+import SignIn from "./SignIn/SignIn";
+import SignUp from "./SignUp/SignUp";
+import { useSelector } from "react-redux";
+import { getIsSignUpShowing } from "../../redux/selectors";
 
 const loginLabelID = "loginLabel";
 
@@ -55,11 +55,15 @@ const StyledMUIContainer = styled(MUIContainer)`
 `;
 
 const Login = () => {
+  const isSignUpShowing = useSelector((state) => getIsSignUpShowing(state));
+
   return (
     <Background aria-labelledby={loginLabelID}>
       <Container>
         <Title id={loginLabelID} variant="h3" component="h1">
-          Sign in to view your portfolio
+          {isSignUpShowing === true
+            ? "Create an account"
+            : "Sign in to view your portfolio"}
         </Title>
 
         <StyledMUIContainer maxWidth="xs">
@@ -67,7 +71,7 @@ const Login = () => {
             <LockOutlinedIcon />
           </StyledAvatar>
 
-          <LoginForm />
+          {isSignUpShowing === true ? <SignUp /> : <SignIn />}
 
           <Box mt={8}>
             <Copyright />

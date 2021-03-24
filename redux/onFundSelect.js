@@ -11,7 +11,7 @@ export const onFundSelect = (
   const state = getState();
 
   const {
-    general: { data, fundNamesCurrentlyBeingLoaded },
+    general: { data },
   } = state;
 
   const fundNames = fundNamesSelector(state);
@@ -20,32 +20,13 @@ export const onFundSelect = (
     const newFundNames = fundNames.filter((name) => name !== fundName);
     dispatch(setFundNames(newFundNames));
   } else {
+    const newFundNames = [...fundNames, fundName];
     if (data[fundName].chartData === undefined) {
-      if (fundNamesCurrentlyBeingLoaded.includes(fundName) === true) {
-        return;
-      }
-      dispatch(
-        setFundNamesCurrentlyBeingLoaded([
-          ...fundNamesCurrentlyBeingLoaded,
-          fundName,
-        ])
-      );
-      const chartData = await getChartData(fundName);
-      const newData = { ...data };
-      newData[fundName].chartData = chartData;
-      const newFundNames = [...fundNames, fundName];
-
-      batch(() => {
+      const onLoad = () => {
         dispatch(setFundNames(newFundNames));
-        dispatch(setData(newData));
-        dispatch(
-          setFundNamesCurrentlyBeingLoaded(
-            fundNamesCurrentlyBeingLoaded.filter((name) => name !== fundName)
-          )
-        );
-      });
+      };
+      dispatch(getChartData(fundName, onLoad));
     } else {
-      const newFundNames = [...fundNames, fundName];
       dispatch(setFundNames(newFundNames));
     }
   }

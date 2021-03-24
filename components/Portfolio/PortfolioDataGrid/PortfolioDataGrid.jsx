@@ -11,6 +11,8 @@ const sortingOrder = ["asc", "desc"];
 
 const dataGridCSS = css`
   border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
+  width: 100%;
+  height: 100%;
 `;
 
 const selectionModel = ["Total"];
@@ -34,8 +36,9 @@ const PortfolioDataGrid = () => {
       col2: shares,
       col3: acqValue,
       col4: value,
-      col5: oneDC,
-      col6: oneYC,
+      col5: fundName,
+      col6: oneDC,
+      col7: oneYC,
     }))
     .concat({
       id: totalFundName,
@@ -43,8 +46,9 @@ const PortfolioDataGrid = () => {
       col2: "-",
       col3: totalAcqValue,
       col4: totalValue,
-      col5: totalOneDC,
-      col6: totalOneYC,
+      col5: totalFundName,
+      col6: totalOneDC,
+      col7: totalOneYC,
     });
 
   const columns = getColumns();

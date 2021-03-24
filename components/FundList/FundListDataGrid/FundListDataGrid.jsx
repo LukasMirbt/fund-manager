@@ -1,19 +1,27 @@
 import React, { useRef } from "react";
-import { css } from "styled-components";
 import { useSelector } from "react-redux";
-import { getFundNames, getTableData } from "../../../redux/selectors";
+import {
+  getFundNames,
+  getIsChartShowing,
+  getTableData,
+} from "../../../redux/selectors";
 import DataGrid from "../../DataGrid/DataGrid";
 import { setFundNames } from "../../../redux/fundList/actionCreators";
 import getColumns from "./getColumns";
 
 const sortingOrder = ["asc", "desc"];
 
-const dataGridCSS = css`
+const dataGridCSS = `
   width: 50%;
+`;
+
+const fullscreenCSS = `
+  width: 100%;
 `;
 
 const FundListDataGrid = () => {
   const tableData = useSelector((state) => getTableData(state));
+  const isChartShowing = useSelector((state) => getIsChartShowing(state));
 
   const morningstarRatingSortOrderRef = useRef(sortingOrder[0]);
 
@@ -50,7 +58,7 @@ const FundListDataGrid = () => {
     <DataGrid
       rows={rows}
       columns={columns}
-      containerCSS={dataGridCSS}
+      containerCSS={isChartShowing === true ? dataGridCSS : fullscreenCSS}
       tableData={tableData}
       setFundNames={setFundNames}
       getFundNames={getFundNames}

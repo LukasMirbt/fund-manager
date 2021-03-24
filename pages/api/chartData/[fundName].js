@@ -10,5 +10,9 @@ export default async function Handler(req, res) {
 
   const data = await FundData.findById(replacedFundName);
 
-  res.status(200).json(data);
+  if (!data) {
+    res.status(404).end();
+  } else {
+    res.status(200).json(data);
+  }
 }

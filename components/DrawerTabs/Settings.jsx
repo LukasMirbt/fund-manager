@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import {
+  setIsChartShowing,
   setIsDataDownsampled,
   setIsDataInPercent,
 } from "../../redux/general/actionCreators";
 import { setIsFundListShowing } from "../../redux/fundList/actionCreators";
 import {
+  getIsChartShowing,
   getIsDataDownsampled,
   getIsDataInPercent,
   getIsFundListShowing,
@@ -23,16 +25,6 @@ const Settings = () => {
 
   return (
     <Container>
-      <RadioButtonToggle
-        selector={(state) => getIsFundListShowing(state)}
-        setValue={(value) => {
-          dispatch(setIsFundListShowing(value));
-        }}
-        groupLabel="Toggle fund list"
-        label1="Show"
-        label2="Hide"
-      />
-
       <RadioButtonToggle
         selector={(state) => getIsDataDownsampled(state)}
         setValue={(value) => {
@@ -51,6 +43,26 @@ const Settings = () => {
         groupLabel="Data unit"
         label1="Percent"
         label2="NAV"
+      />
+
+      <RadioButtonToggle
+        selector={(state) => getIsFundListShowing(state)}
+        setValue={(value) => {
+          dispatch(setIsFundListShowing(value));
+        }}
+        groupLabel="Toggle fund list"
+        label1="Show"
+        label2="Hide"
+      />
+
+      <RadioButtonToggle
+        selector={(state) => getIsChartShowing(state)}
+        setValue={(value) => {
+          dispatch(setIsChartShowing(value));
+        }}
+        groupLabel="Toggle chart"
+        label1="Show"
+        label2="Hide"
       />
     </Container>
   );

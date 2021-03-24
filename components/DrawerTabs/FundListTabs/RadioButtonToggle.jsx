@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const StyledFormControl = styled(FormControl)`
   margin-bottom: 0.5rem;
+  width: 100%;
 
   &:last-child {
     margin-bottom: 0;

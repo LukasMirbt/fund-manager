@@ -9,8 +9,6 @@ import { recommendedFundsLabelID } from "./RecommendedText";
 
 const Container = styled.section`
   display: flex;
-  flex-direction: column;
-
   width: 100%;
   height: 100%;
 `;
@@ -30,9 +28,8 @@ const RecommendedFunds = () => {
           sc={{ isIntroShowing }}
           data-testid="RecommendedFunds"
         >
+          <RecommendedChart fundIndex={fundIndex} />
           <RecommendedText fundIndex={fundIndex} setFundIndex={setFundIndex} />
-
-          <RecommendedChart />
         </Container>
       )}
     </>

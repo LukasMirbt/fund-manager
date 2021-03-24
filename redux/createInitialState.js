@@ -30,6 +30,13 @@ const createInitialState = async () => {
     general: {
       data: initialData,
       credentials: {},
+      signInUsernameInputValue: "",
+      signInPasswordInputValue: "",
+      isSignInInvalid: false,
+
+      signUpUsernameInputValue: "",
+      signUpPasswordInputValue: "",
+      isSignUpInvalid: false,
 
       selectedTimespan: "max",
       dateParameters: {
@@ -38,6 +45,7 @@ const createInitialState = async () => {
       },
       isDataInPercent: true,
       isDataDownsampled: true,
+      isChartShowing: true,
       fundNamesCurrentlyBeingLoaded: [],
 
       isDrawerOpen: true,
@@ -77,7 +85,6 @@ const createInitialState = async () => {
     },
     recommendedFunds: {
       recommendedFunds,
-      chartFundNames: [recommendedFunds[0][0]],
       tabValue: 0,
       isIntroShowing: true,
     },

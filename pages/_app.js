@@ -36,7 +36,7 @@ const Row = styled.div`
   }
 `;
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
@@ -70,4 +70,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default App;

@@ -9,9 +9,19 @@ import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useRouter } from "next/router";
+import AccountButton from "./AccountButton";
 
 const MenuButton = styled(IconButton)`
   margin-right: 1.25rem;
+`;
+
+const StyledToolbar = styled(Toolbar)`
+  justify-content: space-between;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const DrawerAppBar = () => {
@@ -32,19 +42,23 @@ const DrawerAppBar = () => {
 
   return (
     <AppBar color="primary" position="static">
-      <Toolbar>
-        <MenuButton
-          color="inherit"
-          aria-label={"Open navigation"}
-          onClick={toggleDrawer}
-          edge="start"
-        >
-          <MenuIcon />
-        </MenuButton>
-        <Typography variant="h6" noWrap>
-          {title[0].toUpperCase() + title.slice(1)}
-        </Typography>
-      </Toolbar>
+      <StyledToolbar>
+        <Row>
+          <MenuButton
+            color="inherit"
+            aria-label={"Open navigation"}
+            onClick={toggleDrawer}
+            edge="start"
+          >
+            <MenuIcon />
+          </MenuButton>
+          <Typography variant="h6" noWrap>
+            {title[0].toUpperCase() + title.slice(1)}
+          </Typography>
+        </Row>
+
+        {/*    <AccountButton /> */}
+      </StyledToolbar>
     </AppBar>
   );
 };

@@ -1,31 +1,9 @@
-import styled from "styled-components";
 import sortPercentStrings from "../../common/sorting/sortPercentStrings";
 import sortStrings from "../../common/sorting/sortStrings";
 import sortMorningstarRatings from "../../common/sorting/sortMorningstarRatings";
-import StarGroup from "../../common/components/StarGroup";
-
-const FundnameCell = styled.div`
-  line-height: normal;
-  white-space: normal;
-`;
-
-const ChangeCell = styled.div`
-  color: ${({ sc: { value } }) => {
-    if (value.slice(0, -2) === "0.00") {
-      return "blue";
-    } else {
-      return value[0] === "-" ? "red" : "green";
-    }
-  }};
-`;
-
-const renderFundnameCell = ({ value }) => <FundnameCell>{value}</FundnameCell>;
-
-const renderChangeCell = ({ value }) => (
-  <ChangeCell sc={{ value }}>{value}</ChangeCell>
-);
-
-const renderMorningstarRatingCell = ({ value }) => <StarGroup value={value} />;
+import renderChangeCell from "../../DataGrid/renderChangeCell";
+import renderFundnameCell from "../../DataGrid/renderFundnameCell";
+import renderMorningstarRatingCell from "../../DataGrid/renderMorningstarRatingCell";
 
 const getColumns = (morningstarRatingSortOrderRef) => {
   return [
@@ -50,6 +28,7 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       width: 150,
       sortComparator: sortPercentStrings,
       renderCell: renderChangeCell,
+      hide: true,
     },
     {
       field: "col4",
@@ -76,6 +55,7 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       field: "col7",
       headerName: "Last updated",
       width: 150,
+      hide: true,
     },
   ];
 };

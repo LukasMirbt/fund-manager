@@ -11,6 +11,7 @@ import {
   faClipboardCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const tabs = [
   {
@@ -50,20 +51,21 @@ const MainTabs = () => {
   return (
     <StyledList>
       {tabs.map(({ text, icon, pathname }) => (
-        <StyledListItem
-          selected={router.pathname === pathname}
-          button
-          key={text}
-          onClick={() => {
-            router.push(pathname);
-          }}
-        >
-          <ListItemIcon>
-            <StyledIcon icon={icon} />
-          </ListItemIcon>
+        <Link key={text} href={pathname} passHref>
+          <StyledListItem
+            component="a"
+            href={pathname}
+            selected={router.pathname === pathname}
+            button
+            key={text}
+          >
+            <ListItemIcon>
+              <StyledIcon icon={icon} />
+            </ListItemIcon>
 
-          <ListItemText primary={text} />
-        </StyledListItem>
+            <ListItemText primary={text} />
+          </StyledListItem>
+        </Link>
       ))}
     </StyledList>
   );

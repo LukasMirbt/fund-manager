@@ -16,6 +16,16 @@ import {
   SET_FUND_NAMES_CURRENTLY_BEING_LOADED,
   SET_SELECTED_TIMESPAN,
   SET_FUND_DATA,
+  SET_IS_CHART_SHOWING,
+  SET_FUND_NAME_LOADING,
+  SET_FUND_NAME_HAS_LOADED,
+  SET_SIGN_IN_PASSWORD_INPUT_VALUE,
+  SET_SIGN_IN_USERNAME_INPUT_VALUE,
+  SET_SIGN_UP_PASSWORD_INPUT_VALUE,
+  SET_SIGN_UP_USERNAME_INPUT_VALUE,
+  SET_IS_SIGN_IN_INVALID,
+  SET_IS_SIGN_UP_INVALID,
+  SET_IS_SIGN_UP_SHOWING,
 } from "./actionTypes";
 
 const general = (state = {}, action) => {
@@ -104,9 +114,65 @@ const general = (state = {}, action) => {
       newState.fundNamesCurrentlyBeingLoaded = action.payload;
       return newState;
     }
+    case SET_FUND_NAME_LOADING: {
+      const newState = { ...state };
+      newState.fundNamesCurrentlyBeingLoaded = [
+        ...state.fundNamesCurrentlyBeingLoaded,
+        action.payload,
+      ];
+      return newState;
+    }
+    case SET_FUND_NAME_HAS_LOADED: {
+      const newState = { ...state };
+      newState.fundNamesCurrentlyBeingLoaded = state.fundNamesCurrentlyBeingLoaded.filter(
+        (name) => name !== action.payload
+      );
+      return newState;
+    }
     case SET_SELECTED_TIMESPAN: {
       const newState = { ...state };
       newState.selectedTimespan = action.payload;
+      return newState;
+    }
+    case SET_IS_CHART_SHOWING: {
+      const newState = { ...state };
+      newState.isChartShowing = action.payload;
+      return newState;
+    }
+    case SET_SIGN_IN_USERNAME_INPUT_VALUE: {
+      const newState = { ...state };
+      newState.signInUsernameInputValue = action.payload;
+      return newState;
+    }
+    case SET_SIGN_IN_PASSWORD_INPUT_VALUE: {
+      const newState = { ...state };
+      newState.signInPasswordInputValue = action.payload;
+      return newState;
+    }
+
+    case SET_SIGN_UP_USERNAME_INPUT_VALUE: {
+      const newState = { ...state };
+      newState.signUpUsernameInputValue = action.payload;
+      return newState;
+    }
+    case SET_SIGN_UP_PASSWORD_INPUT_VALUE: {
+      const newState = { ...state };
+      newState.signUpPasswordInputValue = action.payload;
+      return newState;
+    }
+    case SET_IS_SIGN_IN_INVALID: {
+      const newState = { ...state };
+      newState.isSignInInvalid = action.payload;
+      return newState;
+    }
+    case SET_IS_SIGN_UP_INVALID: {
+      const newState = { ...state };
+      newState.isSignUpInvalid = action.payload;
+      return newState;
+    }
+    case SET_IS_SIGN_UP_SHOWING: {
+      const newState = { ...state };
+      newState.isSignUpShowing = action.payload;
       return newState;
     }
     default:

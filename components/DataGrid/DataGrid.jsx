@@ -6,19 +6,28 @@ import onSelectionModelChange from "./onSelectionModelChange";
 import onFundSelect from "../../redux/onFundSelect";
 import { getIsFundListShowing } from "../../redux/selectors";
 
-const Container = styled.div`
+/* const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
 
   ${({ sc: { containerCSS } }) => containerCSS};
-`;
+`; */
 
 const StyledDataGrid = styled(MUIDataGrid)`
   border: unset;
   border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`};
   border-radius: 0;
 
+  ${({ sc: { containerCSS } }) => containerCSS};
+
+  /*   .MuiDataGrid-window {
+    width: 100%;
+    height: calc(100% - 52px);
+    left: unset;
+    right: unset;
+  }
+ */
   /*   .MuiDataGrid-colCellTitle {
     text-overflow: unset;
     line-height: normal;
@@ -28,9 +37,6 @@ const StyledDataGrid = styled(MUIDataGrid)`
     height: 56px;
   }
  */
-  .MuiDataGrid-menuIcon {
-    display: none;
-  }
 `;
 
 const rowsPerPageOptions = [];
@@ -57,29 +63,29 @@ const DataGrid = ({
   const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
 
   return isFundListShowing === true ? (
-    <Container sc={{ isCheckboxHeaderDisabled: true, containerCSS }}>
-      <StyledDataGrid
-        checkboxSelection
-        onSortModelChange={onSortModelChange}
-        selectionModel={selectionModel}
-        onSelectionModelChange={({ selectionModel }) =>
-          onSelectionModelChange(
-            selectionModel,
-            isCheckboxHeaderDisabledRef,
-            dispatch,
-            setFundNames
-          )
-        }
-        onRowSelected={({ data: { id } }) => {
-          dispatch(onFundSelect(id, getFundNames, setFundNames));
-        }}
-        components={components}
-        sortingOrder={sortingOrder}
-        rowsPerPageOptions={rowsPerPageOptions}
-        rows={rows}
-        columns={columns}
-      />
-    </Container>
+    <StyledDataGrid
+      sc={{ containerCSS }}
+      disableColumnMenu
+      checkboxSelection
+      onSortModelChange={onSortModelChange}
+      selectionModel={selectionModel}
+      onSelectionModelChange={({ selectionModel }) =>
+        onSelectionModelChange(
+          selectionModel,
+          isCheckboxHeaderDisabledRef,
+          dispatch,
+          setFundNames
+        )
+      }
+      onRowSelected={({ data: { id } }) => {
+        dispatch(onFundSelect(id, getFundNames, setFundNames));
+      }}
+      components={components}
+      sortingOrder={sortingOrder}
+      rowsPerPageOptions={rowsPerPageOptions}
+      rows={rows}
+      columns={columns}
+    />
   ) : null;
 };
 

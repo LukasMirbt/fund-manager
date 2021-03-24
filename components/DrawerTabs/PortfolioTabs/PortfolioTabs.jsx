@@ -5,8 +5,10 @@ import { faCalendarAlt, faCog } from "@fortawesome/free-solid-svg-icons";
 import Settings from "../Settings";
 import DropdownTabs from "../DropdownTabs";
 import ChangeTimespan from "../ChangeTimespan";
+import BuyFundsTab from "./BuyFundsTab/BuyFundsTab";
+import SellFundsTab from "./SellFundsTab/SellFundsTab";
 
-const tabs = [
+const settingsTabs = [
   {
     icon: faCalendarAlt,
     text: "Change timespan",
@@ -21,7 +23,13 @@ const tabs = [
 
 const PortfolioTabs = () => {
   const credentials = useSelector((state) => getCredentials(state));
-  return credentials.token !== undefined ? <DropdownTabs tabs={tabs} /> : null;
+  return credentials.token !== undefined ? (
+    <>
+      <BuyFundsTab />
+      <SellFundsTab />
+      <DropdownTabs tabs={settingsTabs} />
+    </>
+  ) : null;
 };
 
 export default PortfolioTabs;

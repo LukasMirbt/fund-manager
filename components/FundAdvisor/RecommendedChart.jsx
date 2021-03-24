@@ -1,19 +1,23 @@
 import React from "react";
 import { css } from "styled-components";
 import { useSelector } from "react-redux";
-import { getChartFundNames } from "../../redux/selectors";
+import { getRecommendedFunds } from "../../redux/selectors";
 import ChartWithTimeControls from "../ChartWithTimeControls/ChartWithTimeControls";
 
 const containerCSS = css`
-  width: 100%;
+  width: 50%;
   height: 100%;
+  border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`};
 `;
 
-const RecommendedChart = () => {
-  const fundNames = useSelector((state) => getChartFundNames(state));
+const RecommendedChart = ({ fundIndex }) => {
+  const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
 
   return (
-    <ChartWithTimeControls fundNames={fundNames} containerCSS={containerCSS} />
+    <ChartWithTimeControls
+      fundNames={[recommendedFunds[fundIndex][0]]}
+      containerCSS={containerCSS}
+    />
   );
 };
 

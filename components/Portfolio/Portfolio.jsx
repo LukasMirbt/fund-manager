@@ -10,11 +10,9 @@ const Container = styled.div`
   height: 100%;
 `;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
+const GridContainer = styled.div`
+  position: relative;
   width: 50%;
-  height: 100%;
 `;
 
 const Portfolio = () => {
@@ -22,11 +20,11 @@ const Portfolio = () => {
     <Container>
       <PortfolioChart />
 
-      <Column>
+      <GridContainer>
         <PortfolioDataGrid />
 
-        <Info fundName={"SEB Strategi Balanserad C SEK - Lux"} />
-      </Column>
+        <Info />
+      </GridContainer>
     </Container>
   );
 };

@@ -8,7 +8,7 @@ import {
 import { setPortfolioDateParameters } from "../../redux/portfolio/actionCreators";
 import ChartWithTimeControls from "../ChartWithTimeControls/ChartWithTimeControls";
 
-const containerCSS = css`
+const containerCSS = `
   width: 50%;
   height: 100%;
 `;

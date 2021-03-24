@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should not render the intro page when isRecommendedIntroShowing is false 1`] = `"<div data-testid=\\"RecommendedFunds\\" class=\\"makeStyles-recommendedContainer-2\\"><div id=\\"ChartWrapper\\"></div><div id=\\"RecommendedText\\"></div><div id=\\"RecommendedNavigation\\"></div></div>"`;
-
-exports[`should render the intro page when isRecommendedIntroShowing is true 1`] = `"<div data-testid=\\"RecommendedFunds\\" class=\\"makeStyles-recommendedContainer-1\\"><div id=\\"RecommendedIntro\\"></div></div>"`;
