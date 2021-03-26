@@ -25,16 +25,18 @@ const PurchasingHistory = ({ fundName }) => {
     <Container>
       <Subtitle variant="h3">Purchasing history</Subtitle>
 
-      {portfolio[fundName].map(([numberOfShares, date]) => {
-        return (
-          <Item variant="body1" key={fundName}>
-            {`${numberOfShares} shares purchased on ${format(
-              date,
-              "MMMM d, yyyy"
-            )}`}
-          </Item>
-        );
-      })}
+      {portfolio[fundName].buyHistory.map(
+        ({ numberOfBoughtShares, buyDate }) => {
+          return (
+            <Item variant="body1" key={fundName}>
+              {`${numberOfBoughtShares} shares purchased on ${format(
+                buyDate,
+                "MMMM d, yyyy"
+              )}`}
+            </Item>
+          );
+        }
+      )}
     </Container>
   );
 };

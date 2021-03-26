@@ -5,8 +5,9 @@ import { faCalendarAlt, faCog } from "@fortawesome/free-solid-svg-icons";
 import Settings from "../Settings";
 import DropdownTabs from "../DropdownTabs";
 import ChangeTimespan from "../ChangeTimespan";
-import BuyFundsTab from "./BuyFundsTab/BuyFundsTab";
-import SellFundsTab from "./SellFundsTab/SellFundsTab";
+import BuyFundsTab from "./BuyFundTab/BuyFundTab";
+import SellFundTab from "./SellFundTab/SellFundTab";
+import Divider from "@material-ui/core/Divider";
 
 const settingsTabs = [
   {
@@ -26,7 +27,8 @@ const PortfolioTabs = () => {
   return credentials.token !== undefined ? (
     <>
       <BuyFundsTab />
-      <SellFundsTab />
+      <SellFundTab />
+      <Divider />
       <DropdownTabs tabs={settingsTabs} />
     </>
   ) : null;

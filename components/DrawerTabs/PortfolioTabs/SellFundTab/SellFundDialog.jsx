@@ -1,19 +1,12 @@
-import styled from "styled-components";
-import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import Numbers from "./Numbers";
 import FundNameAutocomplete from "./FundNameAutocomplete";
 import NumberOfSharesSelect from "./NumberOfSharesSelect";
 import Buttons from "./Buttons";
+import { Column, Title } from "../BuyFundTab/BuyFundDialog";
 
-const Column = styled(DialogContent)`
-  display: flex;
-  flex-direction: column;
-`;
-
-const BuyFundsDialog = ({ open, setOpen }) => {
+const SellFundDialog = ({ open, setOpen }) => {
   return (
     <Dialog
       disableBackdropClick
@@ -21,14 +14,13 @@ const BuyFundsDialog = ({ open, setOpen }) => {
       onClose={() => {
         setOpen(false);
       }}
-      aria-labelledby="buy-funds-dialog-title"
+      aria-labelledby="sell-fund-dialog-title"
     >
-      <DialogTitle id="buy-funds-dialog-title">Buy funds</DialogTitle>
+      <Title id="sell-fund-dialog-title">Sell fund</Title>
 
       <Column>
         <DialogContentText>
-          To subscribe to this website, please enter your email address here. We
-          will send updates occasionally.
+          Select which fund and how many shares you would like to sell
         </DialogContentText>
 
         <FundNameAutocomplete />
@@ -43,4 +35,4 @@ const BuyFundsDialog = ({ open, setOpen }) => {
   );
 };
 
-export default BuyFundsDialog;
+export default SellFundDialog;

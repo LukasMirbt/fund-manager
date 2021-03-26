@@ -10,6 +10,7 @@ const createInitialState = async () => {
     tableData,
     recommendedChartData,
     recommendedFunds,
+    exchangeRates,
   } = await InitialData.findOne({});
 
   const initialData = tableData.reduce((acc, data) => {
@@ -20,8 +21,8 @@ const createInitialState = async () => {
     return acc;
   }, {});
 
-  recommendedChartData.forEach((data) => {
-    initialData[data._id].chartData = data;
+  recommendedChartData.forEach((chartData) => {
+    initialData[chartData._id].chartData = chartData;
   });
 
   initialData[initialFundName].chartData = initialFundChartData;
@@ -47,6 +48,8 @@ const createInitialState = async () => {
       isDataDownsampled: true,
       isChartShowing: true,
       fundNamesCurrentlyBeingLoaded: [],
+
+      exchangeRates,
 
       isDrawerOpen: true,
       isTemporaryDrawerOpen: false,

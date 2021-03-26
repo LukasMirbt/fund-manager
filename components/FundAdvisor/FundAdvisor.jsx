@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import RecommendedText from "./RecommendedText";
-import RecommendedIntro from "./RecommendedIntro";
-import RecommendedChart from "./RecommendedChart";
+import RecommendedText from "./Content/Content";
+import RecommendedIntro from "./Intro";
+import RecommendedChart from "./Chart";
 import { getIsIntroShowing } from "../../redux/selectors";
-import { recommendedFundsLabelID } from "./RecommendedText";
+import { recommendedFundsLabelID } from "./Content/Heading";
 
 const Container = styled.section`
   display: flex;

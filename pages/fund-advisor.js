@@ -1,4 +1,4 @@
-import RecommendedFunds from "../components/FundAdvisor/RecommendedFunds";
+import RecommendedFunds from "../components/FundAdvisor/FundAdvisor";
 import createInitialState from "../redux/createInitialState";
 
 export default function FundRecommendations() {

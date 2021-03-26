@@ -23,11 +23,6 @@ export const setPortfolio = (update) => ({
   payload: update,
 });
 
-export const buyFund = (update) => ({
-  type: BUY_FUND,
-  payload: update,
-});
-
 export const sellFund = (update) => ({
   type: SELL_FUND,
   payload: update,

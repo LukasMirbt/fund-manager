@@ -6,7 +6,7 @@ import {
   getSignUpPasswordInputValue,
   getSignUpUsernameInputValue,
 } from "../../../redux/selectors";
-import signUp from "./signUp";
+import onSignUp from "./onSignUp";
 
 const StyledButton = styled(Button)`
   margin: 1rem 0 1rem;
@@ -25,7 +25,7 @@ const SignUpButton = () => {
   return (
     <StyledButton
       onClick={() => {
-        signUp({
+        onSignUp({
           username: signUpUsernameInputValue,
           password: signUpPasswordInputValue,
           dispatch,

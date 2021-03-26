@@ -64,26 +64,6 @@ const portfolio = (state = {}, action) => {
       newState.numberOfSharesToSell = action.payload;
       return newState;
     }
-    case BUY_FUND: {
-      const newState = { ...state };
-      const { shares, fundName, buyDate, NAV } = action.payload;
-      if (newState.portfolioFundName === "") {
-        newState.portfolioFundName = fundName;
-      }
-      if (newState.portfolio[fundName] !== undefined) {
-        newState.portfolio = {
-          ...newState.portfolio,
-          [fundName]: [...newState.portfolio[fundName], [shares, buyDate]],
-        };
-      } else {
-        newState.portfolio = {
-          ...newState.portfolio,
-          [fundName]: [[shares, buyDate]],
-        };
-      }
-      newState.balance -= shares * NAV;
-      return newState;
-    }
     case SELL_FUND: {
       const newState = { ...state, portfolio: { ...state.portfolio } };
       const { shares, availableShares, fundName, value } = action.payload;

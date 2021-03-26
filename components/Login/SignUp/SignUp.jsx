@@ -1,12 +1,15 @@
-import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import PasswordInput from "./PasswordInput";
 import UsernameInput from "./UsernameInput";
-import SignInButton from "./SignUpButton";
+import SignUpButton from "./SignUpButton";
 import Links from "./Links";
+import { useDispatch } from "react-redux";
+import {
+  setSignUpPasswordInputValue,
+  setSignUpUsernameInputValue,
+} from "../../../redux/general/actionCreators";
 
 const CheckboxElement = <Checkbox value="remember" color="primary" />;
 
@@ -16,8 +19,15 @@ const StyledForm = styled.form`
 `;
 
 const SignUp = () => {
-  const router = useRouter();
-  console.log(router.pathname);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setSignUpUsernameInputValue(""));
+      dispatch(setSignUpPasswordInputValue(""));
+    };
+  }, [dispatch]);
+
   return (
     <StyledForm
       onSubmit={(e) => {
@@ -30,7 +40,7 @@ const SignUp = () => {
 
       {/*       <FormControlLabel control={CheckboxElement} label="Remember me" /> */}
 
-      <SignInButton />
+      <SignUpButton />
 
       <Links />
     </StyledForm>

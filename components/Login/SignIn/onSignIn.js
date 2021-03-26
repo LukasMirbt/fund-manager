@@ -3,37 +3,58 @@ import createInitialPortfolioState from "../../../redux/createInitialPortfolioSt
 import { batch } from "react-redux";
 import {
   setCredentials,
+  setData,
   setFundData,
   setIsSignInInvalid,
 } from "../../../redux/general/actionCreators";
 import { setInitialPortfolioState } from "../../../redux/portfolio/actionCreators";
+import getTotalPortfolioData from "./getTotalPortfolioData";
 
-const logIn = async ({ username, password, dispatch }) => {
+const onSignIn = async ({
+  username,
+  password,
+  data,
+  exchangeRates,
+  dispatch,
+}) => {
   try {
     const {
-      data: { token, initialPortfolioData },
+      data: { userData, portfolioChartData },
     } = await axios.post("/api/", {
       username,
       password,
     });
 
-    const initialPortfolioState = createInitialPortfolioState(
-      initialPortfolioData
-    );
+    const { portfolio } = userData;
+
+    const initialPortfolioState = createInitialPortfolioState(userData);
+
+    const newData = { ...data };
+
+    portfolioChartData.forEach((chartData) => {
+      newData[chartData._id].chartData = chartData;
+    });
 
     const {
-      totalChanges,
       totalXData,
       totalYData,
-    } = initialPortfolioData.portfolioData;
+      totalAcquisitionValue,
+      totalValue,
+    } = getTotalPortfolioData({
+      portfolio,
+      portfolioChartData,
+      exchangeRates,
+    });
 
     batch(() => {
       dispatch(
         setCredentials({
           username,
-          token,
+          token: userData.token,
         })
       );
+
+      dispatch(setData(newData));
 
       dispatch(
         setFundData({
@@ -45,11 +66,13 @@ const logIn = async ({ username, password, dispatch }) => {
             },
             tableData: {
               fundName: "Total",
-              ...totalChanges,
+              acqValue: totalAcquisitionValue,
+              value: totalValue,
             },
           },
         })
       );
+
       dispatch(setInitialPortfolioState(initialPortfolioState));
     });
   } catch (e) {
@@ -57,4 +80,4 @@ const logIn = async ({ username, password, dispatch }) => {
   }
 };
 
-export default logIn;
+export default onSignIn;

@@ -1,17 +1,15 @@
-const createInitialPortfolioState = (initialData) => {
-  const { exchangeRates, portfolio, portfolioData, balance } = initialData;
+const createInitialPortfolioState = (userData) => {
+  const { portfolio, balance } = userData;
 
   return {
-    exchangeRates,
     portfolio,
-    portfolioData,
     balance,
     portfolioFundNames: ["Total"],
     infoFundName: null,
     selectedFundNameToBuy: null,
     selectedFundNameToSell: null,
-    numberOfSharesToBuy: null,
-    numberOfSharesToSell: null,
+    numberOfSharesToBuy: "",
+    numberOfSharesToSell: "",
   };
 };
 

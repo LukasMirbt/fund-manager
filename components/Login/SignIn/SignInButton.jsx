@@ -3,10 +3,12 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getData,
+  getExchangeRates,
   getSignInPasswordInputValue,
   getSignInUsernameInputValue,
 } from "../../../redux/selectors";
-import signIn from "./signIn";
+import onSignIn from "./onSignIn";
 
 const StyledButton = styled(Button)`
   margin: 1rem 0 1rem;
@@ -22,12 +24,17 @@ const SignInButton = () => {
     getSignInPasswordInputValue(state)
   );
 
+  const data = useSelector((state) => getData(state));
+  const exchangeRates = useSelector((state) => getExchangeRates(state));
+
   return (
     <StyledButton
       onClick={() => {
-        signIn({
+        onSignIn({
           username: signInUsernameInputValue,
           password: signInPasswordInputValue,
+          exchangeRates,
+          data,
           dispatch,
         });
       }}

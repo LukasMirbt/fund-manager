@@ -7,6 +7,7 @@ const InitialDataSchema = new mongoose.Schema(
     tableData: Array,
     recommendedChartData: Array,
     recommendedFunds: Array,
+    exchangeRates: Object,
   },
   { collection: "initialData" }
 );

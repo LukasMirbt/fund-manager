@@ -11,9 +11,7 @@ const getChartDataset = (
 ) => {
   const { xData, yData } = data[fundName].chartData;
 
-  const startDate =
-    dateParameters.start ||
-    new Date(0); 
+  const startDate = dateParameters.start || new Date(0);
 
   const endDate = dateParameters.end || new Date();
 
@@ -36,7 +34,7 @@ const getChartDataset = (
 
   let filteredChartData;
 
-  if (isDataInPercent === true) {
+  if (isDataInPercent === true && fundName !== "Total") {
     filteredChartData = filteredXData.map((date, index) => ({
       x: date,
       y: Math.round((filteredYData[index] / filteredYData[0]) * 10000) / 100,

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Dialog from "./Dialog";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import SellFundDialog from "./SellFundDialog";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { StyledListItem, TabIcon } from "../../DropdownTabs";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
-const BuyFundsTab = () => {
+const SellFundTab = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,15 +18,15 @@ const BuyFundsTab = () => {
         }}
       >
         <ListItemIcon>
-          <TabIcon icon={faPlus} />
+          <TabIcon icon={faMinus} />
         </ListItemIcon>
 
-        <ListItemText primary="Buy funds" />
+        <ListItemText primary="Sell fund" />
       </StyledListItem>
 
-      <Dialog open={open} setOpen={setOpen} />
+      <SellFundDialog open={open} setOpen={setOpen} />
     </>
   );
 };
 
-export default BuyFundsTab;
+export default SellFundTab;

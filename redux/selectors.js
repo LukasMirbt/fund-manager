@@ -36,8 +36,8 @@ export const getSignUpPasswordInputValue = (state) =>
 export const getIsSignInInvalid = (state) => state.general.isSignInInvalid;
 export const getIsSignUpInvalid = (state) => state.general.isSignUpInvalid;
 export const getIsSignUpShowing = (state) => state.general.isSignUpShowing;
+export const getExchangeRates = (state) => state.general.exchangeRates;
 
-export const getExchangeRates = (state) => state.portfolio.exchangeRates;
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;
 export const getInitialPortfolioData = (state) =>

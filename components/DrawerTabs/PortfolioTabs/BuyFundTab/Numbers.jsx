@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 import {
   getBalance,
   getData,
+  getExchangeRates,
   getNumberOfSharesToBuy,
   getSelectedFundNameToBuy,
 } from "../../../../redux/selectors";
 import Typography from "@material-ui/core/Typography";
+import adjustValueByCurrency from "../adjustValueByCurrency";
 const Balance = styled(Typography)``;
 
 const RemainingBalance = styled(Typography)``;
@@ -27,18 +29,30 @@ const Numbers = () => {
 
   const balance = useSelector((state) => getBalance(state));
 
+  const exchangeRates = useSelector((state) => getExchangeRates(state));
+
   let cost = "-";
   let remainingBalance = "-";
 
-  if (selectedFundNameToBuy !== null && numberOfSharesToBuy !== null) {
+  if (selectedFundNameToBuy !== null && numberOfSharesToBuy !== 0) {
     const { yData } = data[selectedFundNameToBuy].chartData;
-    cost = (yData[yData.length - 1] * numberOfSharesToBuy).toFixed(2);
-    remainingBalance = (balance - cost).toFixed(2);
+    cost = yData[yData.length - 1] * numberOfSharesToBuy;
+
+    cost = adjustValueByCurrency({
+      fundName: selectedFundNameToBuy,
+      value: cost,
+      exchangeRates,
+    });
+
+    remainingBalance = balance - cost;
+
+    cost = cost.toFixed(2);
+    remainingBalance = remainingBalance.toFixed(2);
   }
 
   return (
     <>
-      <Balance>{`Current balance: ${balance.toFixed(2)}`}</Balance>
+      <Balance>{`Current balance: ${balance}`}</Balance>
       <Cost>{`Cost: ${cost}`}</Cost>
       <RemainingBalance>{`Remaining balance: ${remainingBalance}`}</RemainingBalance>
     </>

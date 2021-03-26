@@ -30,6 +30,7 @@ const FundNameAutocomplete = () => {
 
   return (
     <StyledAutocomplete
+      disableClearable
       value={selectedFundNameToBuy}
       onChange={(event, fundName) => {
         if (data[fundName].chartData === undefined) {
