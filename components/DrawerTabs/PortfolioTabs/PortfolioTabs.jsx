@@ -1,35 +1,25 @@
 import React from "react";
+import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { getCredentials } from "../../../redux/selectors";
-import { faCalendarAlt, faCog } from "@fortawesome/free-solid-svg-icons";
-import Settings from "../Settings";
-import DropdownTabs from "../DropdownTabs";
-import ChangeTimespan from "../ChangeTimespan";
 import BuyFundsTab from "./BuyFundTab/BuyFundTab";
 import SellFundTab from "./SellFundTab/SellFundTab";
-import Divider from "@material-ui/core/Divider";
 
-const settingsTabs = [
-  {
-    icon: faCalendarAlt,
-    text: "Change timespan",
-    component: <ChangeTimespan />,
-  },
-  {
-    icon: faCog,
-    text: "Settings",
-    component: <Settings />,
-  },
-];
+const TransactionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
+  padding: 0.5rem 0;
+`;
 
 const PortfolioTabs = () => {
   const credentials = useSelector((state) => getCredentials(state));
   return credentials.token !== undefined ? (
     <>
-      <BuyFundsTab />
-      <SellFundTab />
-      <Divider />
-      <DropdownTabs tabs={settingsTabs} />
+      <TransactionContainer>
+        <BuyFundsTab />
+        <SellFundTab />
+      </TransactionContainer>
     </>
   ) : null;
 };

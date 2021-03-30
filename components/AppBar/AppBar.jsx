@@ -13,6 +13,10 @@ import AccountButton from "./AccountButton";
 
 const MenuButton = styled(IconButton)`
   margin-right: 1.25rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
 `;
 
 const StyledToolbar = styled(Toolbar)`
@@ -22,6 +26,10 @@ const StyledToolbar = styled(Toolbar)`
 const Row = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const StyledAppBar = styled(AppBar)`
+  position: relative;
 `;
 
 const DrawerAppBar = () => {
@@ -41,7 +49,7 @@ const DrawerAppBar = () => {
     pathname === "/" ? "fund list" : pathname.slice(1).replace(/-+/g, " ");
 
   return (
-    <AppBar color="primary" position="static">
+    <StyledAppBar color="primary" position="static">
       <StyledToolbar>
         <Row>
           <MenuButton
@@ -57,9 +65,9 @@ const DrawerAppBar = () => {
           </Typography>
         </Row>
 
-        {/*    <AccountButton /> */}
+        <AccountButton />
       </StyledToolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 

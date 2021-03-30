@@ -5,9 +5,11 @@ const createInitialPortfolioState = (userData) => {
     portfolio,
     balance,
     portfolioFundNames: ["Total"],
-    infoFundName: null,
+    infoFundName: Object.keys(portfolio)[0],
+
     selectedFundNameToBuy: null,
     selectedFundNameToSell: null,
+    
     numberOfSharesToBuy: "",
     numberOfSharesToSell: "",
   };

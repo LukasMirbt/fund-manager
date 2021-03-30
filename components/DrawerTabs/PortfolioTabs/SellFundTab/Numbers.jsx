@@ -30,12 +30,12 @@ const Numbers = () => {
 
   const exchangeRates = useSelector((state) => getExchangeRates(state));
 
-  let value = "-";
+  let sellValue = "-";
 
   if (selectedFundNameToSell !== null && numberOfSharesToSell !== 0) {
     const { yData } = data[selectedFundNameToSell].chartData;
 
-    value = adjustValueByCurrency({
+    sellValue = adjustValueByCurrency({
       fundName: selectedFundNameToSell,
       value: yData[yData.length - 1] * numberOfSharesToSell,
       exchangeRates,
@@ -51,7 +51,7 @@ const Numbers = () => {
   return (
     <>
       <Shares>{`Current number of shares: ${currentNumberOfShares}`}</Shares>
-      <Value>{`Value: ${value}`}</Value>
+      <Value>{`Value: ${sellValue}`}</Value>
     </>
   );
 };

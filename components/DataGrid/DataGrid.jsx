@@ -21,6 +21,11 @@ const StyledDataGrid = styled(MUIDataGrid)`
 
   ${({ sc: { containerCSS } }) => containerCSS};
 
+  &.MuiDataGrid-root .MuiDataGrid-toolbar {
+    padding: 0.5rem;
+    padding-bottom: 0;
+  }
+
   /*   .MuiDataGrid-window {
     width: 100%;
     height: calc(100% - 52px);
@@ -45,20 +50,25 @@ const components = {
   Toolbar: GridToolbar,
 };
 
+const returnTrue = () => true;
+
 const DataGrid = ({
   rows,
   columns,
-  tableData,
   setFundNames,
   getFundNames,
   containerCSS,
   onSortModelChange,
   sortingOrder,
-  selectionModel = [tableData[0].fundName],
 }) => {
   const dispatch = useDispatch();
 
   const isCheckboxHeaderDisabledRef = useRef(false);
+
+  const initialFundNames = useSelector(
+    (state) => getFundNames(state),
+    returnTrue
+  );
 
   const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
 
@@ -68,14 +78,14 @@ const DataGrid = ({
       disableColumnMenu
       checkboxSelection
       onSortModelChange={onSortModelChange}
-      selectionModel={selectionModel}
+      selectionModel={initialFundNames}
       onSelectionModelChange={({ selectionModel }) =>
-        onSelectionModelChange(
+        onSelectionModelChange({
           selectionModel,
           isCheckboxHeaderDisabledRef,
           dispatch,
-          setFundNames
-        )
+          setFundNames,
+        })
       }
       onRowSelected={({ data: { id } }) => {
         dispatch(onFundSelect(id, getFundNames, setFundNames));

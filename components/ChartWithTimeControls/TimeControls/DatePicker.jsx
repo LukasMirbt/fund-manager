@@ -1,6 +1,6 @@
 import React from "react";
 import { KeyboardDatePicker } from "@material-ui/pickers";
-import { START_DATE, END_DATE } from "../../../utils/constants";
+import { START_DATE, END_DATE } from "../../common/constants";
 
 const DatePicker = ({
   selectedDate,

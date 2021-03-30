@@ -13,7 +13,6 @@ const Container = styled.section`
   justify-content: center;
 
   flex-grow: 1;
-  margin: 1.5rem;
 
   background-size: cover;
   background-image: url("./investments.jpeg");
@@ -48,7 +47,7 @@ const recommendedIntroLabelID = "recommendedIntroLabel";
 
 const title = "View our fund recommendations";
 
-const RecommendedIntro = () => {
+const Intro = () => {
   const dispatch = useDispatch();
 
   const closeIntro = () => {
@@ -58,12 +57,7 @@ const RecommendedIntro = () => {
   return (
     <Container aria-labelledby={recommendedIntroLabelID}>
       <TextContainer component="div" maxWidth="sm">
-        <Title
-          id={recommendedIntroLabelID}
-          data-testid="RecommendedIntroTitle"
-          variant="h3"
-          component="h2"
-        >
+        <Title id={recommendedIntroLabelID} variant="h3" component="h2">
           {title}
         </Title>
 
@@ -76,12 +70,7 @@ const RecommendedIntro = () => {
           remaining essentially unchanged.`}
         </Text>
 
-        <StyledButton
-          color="secondary"
-          variant="contained"
-          data-testid="RecommendedIntroViewButton"
-          onClick={closeIntro}
-        >
+        <StyledButton color="primary" variant="contained" onClick={closeIntro}>
           View our recommendations
         </StyledButton>
       </TextContainer>
@@ -89,4 +78,4 @@ const RecommendedIntro = () => {
   );
 };
 
-export default RecommendedIntro;
+export default Intro;

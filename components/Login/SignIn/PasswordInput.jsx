@@ -2,7 +2,7 @@ import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignInPasswordInputValue } from "../../../redux/general/actionCreators";
 import {
-  getIsSignInInvalid,
+  getSignInPasswordErrorMessage,
   getSignInPasswordInputValue,
 } from "../../../redux/selectors";
 
@@ -13,14 +13,14 @@ const PasswordInput = () => {
 
   const dispatch = useDispatch();
 
-  const isSignInInvalid = useSelector((state) => getIsSignInInvalid(state));
+  const signInPasswordErrorMessage = useSelector((state) =>
+    getSignInPasswordErrorMessage(state)
+  );
 
   return (
     <TextField
-      error={isSignInInvalid}
-      helperText={
-        isSignInInvalid === true ? "Invalid password or username" : undefined
-      }
+      error={signInPasswordErrorMessage !== null}
+      helperText={signInPasswordErrorMessage}
       value={signInPasswordInputValue}
       onChange={(e) => {
         dispatch(setSignInPasswordInputValue(e.target.value));

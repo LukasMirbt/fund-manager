@@ -5,6 +5,7 @@ import User from "../../../../models/User";
 import FundData from "../../../../models/FundData";
 import ExchangeRates from "../../../../models/ExchangeRates";
 import adjustValueByCurrency from "../../../../components/DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import roundToSetPrecision from "../../../../utils/roundToSetPrecision";
 
 export default async function Handler(req, res) {
   if (req.method === "POST") {
@@ -35,37 +36,40 @@ export default async function Handler(req, res) {
         exchangeRates,
       });
 
-      if (balance >= cost) {
-        user.balance -= cost;
+      const roundedCost = roundToSetPrecision(cost);
 
+      if (balance >= cost) {
         const newPortfolio = { ...portfolio };
 
         if (portfolio[fundName] === undefined) {
           newPortfolio[fundName] = {
+            ...portfolio[fundName],
             shares: numberOfShares,
             buyHistory: [
               {
                 numberOfBoughtShares: numberOfShares,
                 buyDate: new Date(process.env.END_DATE).getTime(),
-                acquisitionValue: cost,
+                acquisitionValue: roundedCost,
               },
             ],
           };
         } else {
           newPortfolio[fundName] = {
+            ...portfolio[fundName],
             shares: portfolio[fundName].shares + numberOfShares,
             buyHistory: [
               ...portfolio[fundName].buyHistory,
               {
                 numberOfBoughtShares: numberOfShares,
                 buyDate: new Date(process.env.END_DATE).getTime(),
-                acquisitionValue: cost,
+                acquisitionValue: roundedCost,
               },
             ],
           };
         }
 
         user.portfolio = newPortfolio;
+        user.balance = balance - roundedCost;
 
         const { portfolio: updatedPortfolio } = await user.save();
 

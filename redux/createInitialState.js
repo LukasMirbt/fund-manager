@@ -33,11 +33,17 @@ const createInitialState = async () => {
       credentials: {},
       signInUsernameInputValue: "",
       signInPasswordInputValue: "",
-      isSignInInvalid: false,
+
+      signInUsernameErrorMessage: null,
+      signInPasswordErrorMessage: null,
 
       signUpUsernameInputValue: "",
       signUpPasswordInputValue: "",
-      isSignUpInvalid: false,
+
+      signUpUsernameErrorMessage: null,
+      signUpPasswordErrorMessage: null,
+
+      isUserRemembered: false,
 
       selectedTimespan: "max",
       dateParameters: {
@@ -57,29 +63,20 @@ const createInitialState = async () => {
       isSnackbarHidden: true,
       areDatasetsShowing: true,
       patterns: [
-        ["dash", "#1f77b4"],
-        ["line-vertical", "#ff7f0e"],
-        ["diagonal-right-left", "#2ca02c"],
-        ["zigzag", "#17becf"],
-        ["diagonal", "#6766ff"],
-        ["weave", "#0b3d91"],
+        ["dash", "#006400"],
+        ["line-vertical", "#8B0000"],
+        ["diagonal-right-left", "#000080"],
+        ["zigzag", "#483D8B"],
+        ["diagonal", "#4B0082"],
+        ["weave", "#8B4513"],
+        ["plus", "#524259"],
+        ["cross", "#495219"],
+        ["line", "#065535"],
+        ["diamond", "#0b3d91"],
+        ["diamond-box", "#c71585"],
+        ["triangle", "#7f6b9e"],
       ],
-      /*       colors: [
-        "#000000",
-        "#ec8381",
-        "#524259",
-        "#ff7213",
-        "#495219",
-        "#065535",
-        "#0b3d91",
-        "#c71585",
-        "#6766ff",
-        "#7f6b9e",
-        "#9e7f6b",
-        "#808000",
-        "#daa520",
-        "#cd5c5c"
-      ], */
+      arePatternsShowing: true,
     },
     fundList: {
       fundNames: [initialFundName],

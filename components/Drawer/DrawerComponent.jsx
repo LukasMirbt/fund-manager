@@ -1,4 +1,4 @@
-import Tabs from "../DrawerTabs/Tabs";
+import Tabs from "../DrawerTabs/DrawerTabs";
 import styled, { css } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import {

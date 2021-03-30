@@ -12,38 +12,51 @@ export default async function handler(req, res) {
 
     const user = await User.findOne({ username: body.username });
 
-    const isPasswordCorrect =
-      user === null
-        ? false
-        : await bcrypt.compare(body.password, user.passwordHash);
+    let isPasswordCorrect = false;
+    const doesUserExist = user !== null;
 
-    if (isPasswordCorrect === false) {
-      res.status(401).end();
-    } else {
-      const { username, _id, portfolio, balance } = user;
-
-      const userForToken = {
-        username,
-        id: _id,
-      };
-
-      const token = jwt.sign(userForToken, process.env.SECRET);
-
-      const portfolioFundNames = Object.keys(portfolio);
-
-      const portfolioChartData = await Promise.all(
-        portfolioFundNames.map((fundName) => FundData.findById(fundName))
+    if (doesUserExist === true) {
+      isPasswordCorrect = await bcrypt.compare(
+        body.password,
+        user.passwordHash
       );
 
-      res.status(200).json({
-        userData: {
-          token,
-          username,
-          portfolio,
-          balance,
-        },
-        portfolioChartData,
+      if (isPasswordCorrect === false) {
+        return res.status(401).json({
+          usernameError: null,
+          passwordError: "Incorrect password",
+        });
+      }
+    } else {
+      return res.status(401).json({
+        usernameError: "User doesn't exist",
+        passwordError: null,
       });
     }
+
+    const { username, _id, portfolio, balance } = user;
+
+    const userForToken = {
+      username,
+      id: _id,
+    };
+
+    const token = jwt.sign(userForToken, process.env.SECRET);
+
+    const portfolioFundNames = Object.keys(portfolio);
+
+    const portfolioChartData = await Promise.all(
+      portfolioFundNames.map((fundName) => FundData.findById(fundName))
+    );
+
+    res.status(200).json({
+      userData: {
+        token,
+        username,
+        portfolio,
+        balance,
+      },
+      portfolioChartData,
+    });
   }
 }

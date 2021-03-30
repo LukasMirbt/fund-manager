@@ -6,12 +6,16 @@ import { getRecommendedFunds } from "../../../redux/selectors";
 
 const Heading = styled(Typography)`
   margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
 `;
 
 const Recommendation = styled(Typography)`
+  font-size: inherit;
   color: ${({ sc: { recommendation } }) => {
     if (recommendation === "Buy") {
-      return "green";
+      return "darkgreen";
     } else if (recommendation === "Sell") {
       return "red";
     } else {

@@ -37,6 +37,17 @@ export const getIsSignInInvalid = (state) => state.general.isSignInInvalid;
 export const getIsSignUpInvalid = (state) => state.general.isSignUpInvalid;
 export const getIsSignUpShowing = (state) => state.general.isSignUpShowing;
 export const getExchangeRates = (state) => state.general.exchangeRates;
+export const getArePatternsShowing = (state) =>
+  state.general.arePatternsShowing;
+export const getSignInPasswordErrorMessage = (state) =>
+  state.general.signInPasswordErrorMessage;
+export const getSignUpPasswordErrorMessage = (state) =>
+  state.general.signUpPasswordErrorMessage;
+export const getSignInUsernameErrorMessage = (state) =>
+  state.general.signInUsernameErrorMessage;
+export const getSignUpUsernameErrorMessage = (state) =>
+  state.general.signUpUsernameErrorMessage;
+export const getIsUserRemembered = (state) => state.general.isUserRemembered;
 
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;

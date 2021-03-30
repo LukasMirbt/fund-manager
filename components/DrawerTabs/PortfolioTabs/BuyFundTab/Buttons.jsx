@@ -42,15 +42,15 @@ const Buttons = ({ setOpen }) => {
     /(^0\.5$)|(^[1-9][0-9]*(\.[0123456789])?$)/.test(numberOfSharesToBuy) &&
     numberOfSharesToBuy[0] !== "0";
 
-  let hasSufficientFunds = true;
+  let hasSufficientFunds = false;
 
   if (selectedFundNameToBuy !== null && isNumberOfSharesValid === true) {
     const { yData } = data[selectedFundNameToBuy].chartData;
     const cost = yData[yData.length - 1] * numberOfSharesToBuy;
     const remainingBalance = balance - cost;
 
-    if (remainingBalance < 0) {
-      hasSufficientFunds = false;
+    if (remainingBalance >= 0) {
+      hasSufficientFunds = true;
     }
   }
 
@@ -67,6 +67,7 @@ const Buttons = ({ setOpen }) => {
         Cancel
       </Button>
       <Button
+        variant="contained"
         disabled={
           selectedFundNameToBuy === "" ||
           isNumberOfSharesValid === false ||

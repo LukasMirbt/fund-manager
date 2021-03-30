@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
@@ -9,15 +9,16 @@ import Copyright from "../Login/Copyright";
 import Paper from "@material-ui/core/Paper";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getIsSignUpShowing } from "../../redux/selectors";
+import { setIsSignUpShowing } from "../../redux/general/actionCreators";
+import { CircularProgress } from "@material-ui/core";
+import signInWithToken from "./SignIn/signInWithToken";
 
 const loginLabelID = "loginLabel";
 
 const Background = styled.section`
-  width: calc(100% - 3rem);
-  height: calc(100% - 3rem);
-  margin: 1.5rem;
+  flex-grow: 1;
 
   display: flex;
   align-items: center;
@@ -54,8 +55,44 @@ const StyledMUIContainer = styled(MUIContainer)`
   justify-content: center;
 `;
 
+const FormContainer = styled.div`
+  visibility: ${({ sc: { isSpinnerShowing } }) =>
+    isSpinnerShowing === true ? "hidden" : "visible"};
+`;
+
+const SpinnerContainer = styled.div`
+  position: relative;
+`;
+
+const Spinner = styled(CircularProgress)`
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+`;
+
 const Login = () => {
   const isSignUpShowing = useSelector((state) => getIsSignUpShowing(state));
+
+  const dispatch = useDispatch();
+
+  const [isSpinnerShowing, setIsSpinnerShowing] = useState(true);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+
+    if (token !== null) {
+      dispatch(signInWithToken(token));
+    } else {
+      setIsSpinnerShowing(false);
+    }
+
+    return () => {
+      dispatch(setIsSignUpShowing(false));
+    };
+  }, [dispatch]);
 
   return (
     <Background aria-labelledby={loginLabelID}>
@@ -71,8 +108,13 @@ const Login = () => {
             <LockOutlinedIcon />
           </StyledAvatar>
 
-          {isSignUpShowing === true ? <SignUp /> : <SignIn />}
+          <SpinnerContainer>
+            <FormContainer sc={{ isSpinnerShowing }}>
+              {isSignUpShowing === true ? <SignUp /> : <SignIn />}
+            </FormContainer>
 
+            {isSpinnerShowing === true && <Spinner />}
+          </SpinnerContainer>
           <Box mt={8}>
             <Copyright />
           </Box>

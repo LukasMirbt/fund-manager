@@ -5,40 +5,27 @@ import {
   setCredentials,
   setData,
   setFundData,
-  setSignInPasswordErrorMessage,
-  setSignInUsernameErrorMessage,
 } from "../../../redux/general/actionCreators";
 import { setInitialPortfolioState } from "../../../redux/portfolio/actionCreators";
 import getTotalPortfolioData from "../../Portfolio/getTotalPortfolioData";
 
-const onSignIn = () => async (dispatch, getState) => {
+const signInWithToken = (token) => async (dispatch, getState) => {
   const {
-    general: {
-      data,
-      exchangeRates,
-      signInUsernameInputValue: username,
-      signInPasswordInputValue: password,
-      isUserRemembered,
-    },
+    general: { data, exchangeRates },
   } = getState();
 
   try {
     const {
       data: { userData, portfolioChartData },
-    } = await axios.post("/api/", {
-      username,
-      password,
-    });
-
-    if (isUserRemembered === true) {
-      try {
-        window.localStorage.setItem("token", userData.token);
-      } catch (e) {
-        console.log(e);
+    } = await axios.post(
+      "/api/signInWithToken",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    } else {
-      window.localStorage.removeItem("token");
-    }
+    );
 
     const { portfolio } = userData;
 
@@ -64,7 +51,7 @@ const onSignIn = () => async (dispatch, getState) => {
     batch(() => {
       dispatch(
         setCredentials({
-          username,
+          username: userData.username,
           token: userData.token,
         })
       );
@@ -90,14 +77,10 @@ const onSignIn = () => async (dispatch, getState) => {
 
       dispatch(setInitialPortfolioState(initialPortfolioState));
     });
-  } catch ({ response }) {
-    const { usernameError, passwordError } = response.data;
-
-    batch(() => {
-      dispatch(setSignInUsernameErrorMessage(usernameError));
-      dispatch(setSignInPasswordErrorMessage(passwordError));
-    });
+  } catch (e) {
+    window.localStorage.removeItem("token");
+    dispatch(setCredentials({}));
   }
 };
 
-export default onSignIn;
+export default signInWithToken;

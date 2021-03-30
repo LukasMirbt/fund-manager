@@ -7,20 +7,20 @@ import {
   getPortfolio,
 } from "../../../redux/selectors";
 import DataGrid from "../../DataGrid/DataGrid";
-import getColumns from "./getColumns";
+import columns from "./columns";
 import { setPortfolioFundNames } from "../../../redux/portfolio/actionCreators";
 import { getPortfolioFundNames } from "../../../redux/selectors";
 import adjustValueByCurrency from "../../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import getFundAcquisitionValue from "../getFundAquisitionValue";
+import round from "../../common/utils/round";
 
 const sortingOrder = ["asc", "desc"];
 
 const dataGridCSS = css`
   border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
   width: 100%;
-  height: 100%;
+  height: 66%;
 `;
-
-const selectionModel = ["Total"];
 
 const PortfolioDataGrid = () => {
   const data = useSelector((state) => getData(state));
@@ -37,14 +37,16 @@ const PortfolioDataGrid = () => {
     value: totalValue,
   } = data["Total"].tableData;
 
+  const totalChange = `${((totalValue / totalAcqValue) * 100 - 100).toFixed(
+    2
+  )} %`;
+
   const rows = portfolioTableData
     .map(({ fundName, oneDC, oneYC }) => {
-      const { buyHistory, shares } = portfolio[fundName];
+      const { shares } = portfolio[fundName];
       const { yData } = data[fundName].chartData;
 
-      const acqValue = buyHistory.reduce((acc, { acquisitionValue }) => {
-        return acc + acquisitionValue;
-      }, 0);
+      const fundAcqValue = getFundAcquisitionValue(portfolio[fundName]);
 
       const value = adjustValueByCurrency({
         value: shares * yData[yData.length - 1],
@@ -52,13 +54,17 @@ const PortfolioDataGrid = () => {
         exchangeRates,
       });
 
+      const totalFundChange = `${((value / fundAcqValue) * 100 - 100).toFixed(
+        2
+      )} %`;
+
       return {
         id: fundName,
         col1: fundName,
         col2: shares,
-        col3: acqValue,
+        col3: fundAcqValue,
         col4: value,
-        col5: fundName,
+        col5: totalFundChange,
         col6: oneDC,
         col7: oneYC,
       };
@@ -69,22 +75,19 @@ const PortfolioDataGrid = () => {
       col2: "-",
       col3: totalAcqValue,
       col4: totalValue,
-      col5: totalFundName,
+      col5: totalChange,
       col6: "-",
       col7: "-",
     });
 
-  const columns = getColumns();
   return (
     <DataGrid
       rows={rows}
       columns={columns}
       containerCSS={dataGridCSS}
-      tableData={portfolioTableData}
       setFundNames={setPortfolioFundNames}
       getFundNames={getPortfolioFundNames}
       sortingOrder={sortingOrder}
-      selectionModel={selectionModel}
     />
   );
 };

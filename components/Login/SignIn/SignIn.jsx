@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import PasswordInput from "./PasswordInput";
 import UsernameInput from "./UsernameInput";
 import SignInButton from "./SignInButton";
 import Links from "./Links";
 import { useDispatch } from "react-redux";
 import {
+  setSignInPasswordErrorMessage,
   setSignInPasswordInputValue,
+  setSignInUsernameErrorMessage,
   setSignInUsernameInputValue,
 } from "../../../redux/general/actionCreators";
-
-const CheckboxElement = <Checkbox value="remember" color="primary" />;
+import RememberUserCheckbox from "./RememberUserCheckbox";
 
 const StyledForm = styled.form`
   width: 100%;
@@ -26,6 +25,8 @@ const SignIn = () => {
     return () => {
       dispatch(setSignInUsernameInputValue(""));
       dispatch(setSignInPasswordInputValue(""));
+      dispatch(setSignInUsernameErrorMessage(null));
+      dispatch(setSignInPasswordErrorMessage(null));
     };
   }, [dispatch]);
 
@@ -39,7 +40,7 @@ const SignIn = () => {
       <UsernameInput />
       <PasswordInput />
 
-      <FormControlLabel control={CheckboxElement} label="Remember me" />
+      <RememberUserCheckbox />
 
       <SignInButton />
 

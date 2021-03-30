@@ -1,12 +1,16 @@
 import { useState } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import styled from "styled-components";
-import IconButton from "@material-ui/core/IconButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, batch } from "react-redux";
 import { getCredentials } from "../../redux/selectors";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { setCredentials } from "../../redux/general/actionCreators";
+import {
+  setCredentials,
+  setIsUserRemembered,
+} from "../../redux/general/actionCreators";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import IconButton from "@material-ui/core/IconButton";
 
 const anchorOrigin = {
   vertical: "bottom",
@@ -18,20 +22,21 @@ const transformOrigin = {
   horizontal: "center",
 };
 
-const StyledButton = styled(IconButton)`
-  padding: 0;
+const StyledIconButton = styled(IconButton)`
+  color: white;
+  padding: 0.625rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
 `;
 
-const StyledAvatar = styled(Avatar)`
-  background-color: green;
+const Icon = styled(FontAwesomeIcon)`
+  font-size: 1.75rem;
 `;
 
 const StyledMenuItem = styled(MenuItem)`
   width: 240px;
-`;
-
-const Row = styled.div`
-  display: flex;
 `;
 
 const AccountButton = () => {
@@ -51,11 +56,12 @@ const AccountButton = () => {
 
   return credentials.token !== undefined ? (
     <>
-      <StyledButton onClick={handleClick}>
-        <StyledAvatar>T</StyledAvatar>
-      </StyledButton>
+      <StyledIconButton onClick={handleClick}>
+        <Icon icon={faUserCircle} />
+      </StyledIconButton>
+
       <Menu
-        id="simple-menu"
+        id="accountMenu"
         getContentAnchorEl={null}
         anchorOrigin={anchorOrigin}
         transformOrigin={transformOrigin}
@@ -64,14 +70,18 @@ const AccountButton = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={handleClose}>My account</StyledMenuItem>
         <StyledMenuItem
           onClick={() => {
-            dispatch(setCredentials({}));
+            window.localStorage.removeItem("token");
+            batch(() => {
+              dispatch(setCredentials({}));
+              dispatch(setIsUserRemembered(false));
+            });
+
             handleClose();
           }}
         >
-          Logout
+          Sign out
         </StyledMenuItem>
       </Menu>
     </>

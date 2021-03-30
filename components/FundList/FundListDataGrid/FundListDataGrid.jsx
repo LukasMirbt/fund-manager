@@ -59,7 +59,6 @@ const FundListDataGrid = () => {
       rows={rows}
       columns={columns}
       containerCSS={isChartShowing === true ? dataGridCSS : fullscreenCSS}
-      tableData={tableData}
       setFundNames={setFundNames}
       getFundNames={getFundNames}
       sortingOrder={sortingOrder}

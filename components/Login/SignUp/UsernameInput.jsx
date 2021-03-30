@@ -2,7 +2,7 @@ import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
 import { setSignUpUsernameInputValue } from "../../../redux/general/actionCreators";
 import {
-  getIsSignUpInvalid,
+  getSignUpUsernameErrorMessage,
   getSignUpUsernameInputValue,
 } from "../../../redux/selectors";
 
@@ -13,12 +13,14 @@ const UsernameInput = () => {
 
   const dispatch = useDispatch();
 
-  const isSignUpInvalid = useSelector((state) => getIsSignUpInvalid(state));
+  const signUpUsernameErrorMessage = useSelector((state) =>
+    getSignUpUsernameErrorMessage(state)
+  );
 
   return (
     <TextField
-      error={isSignUpInvalid}
-      helperText={isSignUpInvalid === true ? "Username is taken" : undefined}
+      error={signUpUsernameErrorMessage !== null}
+      helperText={signUpUsernameErrorMessage}
       value={signUpUsernameInputValue}
       onChange={(e) => {
         dispatch(setSignUpUsernameInputValue(e.target.value));

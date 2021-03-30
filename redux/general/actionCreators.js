@@ -26,6 +26,12 @@ import {
   SET_IS_SIGN_IN_INVALID,
   SET_IS_SIGN_UP_INVALID,
   SET_IS_SIGN_UP_SHOWING,
+  SET_ARE_PATTERNS_SHOWING,
+  SET_SIGN_IN_PASSWORD_ERROR_MESSAGE,
+  SET_SIGN_UP_PASSWORD_ERROR_MESSAGE,
+  SET_SIGN_IN_USERNAME_ERROR_MESSAGE,
+  SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
+  SET_IS_USER_REMEMBERED,
 } from "./actionTypes";
 
 export const setData = (update) => ({
@@ -160,5 +166,35 @@ export const setIsSignUpInvalid = (update) => ({
 
 export const setIsSignUpShowing = (update) => ({
   type: SET_IS_SIGN_UP_SHOWING,
+  payload: update,
+});
+
+export const setArePatternsShowing = (update) => ({
+  type: SET_ARE_PATTERNS_SHOWING,
+  payload: update,
+});
+
+export const setSignInUsernameErrorMessage = (update) => ({
+  type: SET_SIGN_IN_USERNAME_ERROR_MESSAGE,
+  payload: update,
+});
+
+export const setSignUpUsernameErrorMessage = (update) => ({
+  type: SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
+  payload: update,
+});
+
+export const setSignInPasswordErrorMessage = (update) => ({
+  type: SET_SIGN_IN_PASSWORD_ERROR_MESSAGE,
+  payload: update,
+});
+
+export const setSignUpPasswordErrorMessage = (update) => ({
+  type: SET_SIGN_UP_PASSWORD_ERROR_MESSAGE,
+  payload: update,
+});
+
+export const setIsUserRemembered = (update) => ({
+  type: SET_IS_USER_REMEMBERED,
   payload: update,
 });

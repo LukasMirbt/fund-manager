@@ -1,14 +1,15 @@
 import pattern from "patternomaly";
 import { primaryColor } from "../../theme";
 
-const getChartDataset = (
+const getChartDataset = ({
   data,
   fundName,
   isDataInPercent,
   dateParameters,
   patterns,
-  index
-) => {
+  arePatternsShowing,
+  index,
+}) => {
   const { xData, yData } = data[fundName].chartData;
 
   const startDate = dateParameters.start || new Date(0);
@@ -34,7 +35,7 @@ const getChartDataset = (
 
   let filteredChartData;
 
-  if (isDataInPercent === true && fundName !== "Total") {
+  if (isDataInPercent === true) {
     filteredChartData = filteredXData.map((date, index) => ({
       x: date,
       y: Math.round((filteredYData[index] / filteredYData[0]) * 10000) / 100,
@@ -46,10 +47,16 @@ const getChartDataset = (
     }));
   }
 
-  const color =
-    index < patterns.length - 1
-      ? pattern.draw(...patterns[index])
-      : primaryColor;
+  let color;
+
+  if (arePatternsShowing === true) {
+    color =
+      index < patterns.length - 1
+        ? pattern.draw(...patterns[index])
+        : primaryColor;
+  } else {
+    color = index < patterns.length - 1 ? patterns[index][1] : primaryColor;
+  }
 
   return {
     label: fundName,

@@ -1,4 +1,7 @@
-import adjustValueByCurrency from "../../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import adjustValueByCurrency from "../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import round from "../common/utils/round";
+import { NUMBER_OF_DECIMALS } from "../common/constants";
+import getFundAcquisitionValue from "./getFundAquisitionValue";
 
 const getTotalPortfolioData = ({
   portfolio,
@@ -47,17 +50,17 @@ const getTotalPortfolioData = ({
         totalNAV += value;
       }
     });
-    return Math.round(totalNAV * 100) / 100;
+    return round({ value: totalNAV, numberOfDecimals: 2 });
   });
 
   let totalAcquisitionValue = 0;
 
   Object.keys(portfolio).forEach((fundName) => {
-    const { buyHistory } = portfolio[fundName];
+    const totalFundAcquisitionValue = getFundAcquisitionValue(
+      portfolio[fundName]
+    );
 
-    buyHistory.forEach(({ acquisitionValue }) => {
-      totalAcquisitionValue += acquisitionValue;
-    });
+    totalAcquisitionValue += totalFundAcquisitionValue;
   });
 
   let totalValue = 0;
@@ -77,8 +80,14 @@ const getTotalPortfolioData = ({
   return {
     totalXData,
     totalYData,
-    totalAcquisitionValue,
-    totalValue,
+    totalAcquisitionValue: round({
+      value: totalAcquisitionValue,
+      numberOfDecimals: NUMBER_OF_DECIMALS,
+    }),
+    totalValue: round({
+      value: totalValue,
+      numberOfDecimals: NUMBER_OF_DECIMALS,
+    }),
   };
 };
 

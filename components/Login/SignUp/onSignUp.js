@@ -1,7 +1,9 @@
 import axios from "axios";
+import { batch } from "react-redux";
 import {
-  setIsSignUpInvalid,
   setIsSignUpShowing,
+  setSignUpPasswordErrorMessage,
+  setSignUpUsernameErrorMessage,
 } from "../../../redux/general/actionCreators";
 
 const signUp = async ({ username, password, dispatch }) => {
@@ -12,8 +14,13 @@ const signUp = async ({ username, password, dispatch }) => {
     });
 
     dispatch(setIsSignUpShowing(false));
-  } catch (e) {
-    dispatch(setIsSignUpInvalid(true));
+  } catch ({ response }) {
+    const { usernameError, passwordError } = response.data;
+
+    batch(() => {
+      dispatch(setSignUpUsernameErrorMessage(usernameError));
+      dispatch(setSignUpPasswordErrorMessage(passwordError));
+    });
   }
 };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import RecommendedText from "./Content/Content";
-import RecommendedIntro from "./Intro";
+import Intro from "./Intro";
 import RecommendedChart from "./Chart";
 import { getIsIntroShowing } from "../../redux/selectors";
 import { recommendedFundsLabelID } from "./Content/Heading";
@@ -21,7 +21,7 @@ const RecommendedFunds = () => {
   return (
     <>
       {isIntroShowing === true ? (
-        <RecommendedIntro />
+        <Intro />
       ) : (
         <Container
           aria-labelledby={recommendedFundsLabelID}

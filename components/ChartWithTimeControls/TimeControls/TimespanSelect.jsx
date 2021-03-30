@@ -4,7 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { END_DATE, START_DATE } from "../../../utils/constants";
+import { END_DATE, START_DATE } from "../../common/constants";
 import { subMonths } from "date-fns";
 import { batch, useDispatch, useSelector } from "react-redux";
 import { getSelectedTimespan } from "../../../redux/selectors";

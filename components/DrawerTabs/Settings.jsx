@@ -5,15 +5,18 @@ import {
   setIsChartShowing,
   setIsDataDownsampled,
   setIsDataInPercent,
+  setArePatternsShowing,
 } from "../../redux/general/actionCreators";
 import { setIsFundListShowing } from "../../redux/fundList/actionCreators";
 import {
+  getArePatternsShowing,
   getIsChartShowing,
   getIsDataDownsampled,
   getIsDataInPercent,
   getIsFundListShowing,
 } from "../../redux/selectors";
-import RadioButtonToggle from "./FundListTabs/RadioButtonToggle";
+import RadioButtonToggle from "./RadioButtonToggle";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   margin-top: 1rem;
@@ -22,6 +25,8 @@ const Container = styled.div`
 
 const Settings = () => {
   const dispatch = useDispatch();
+
+  const { pathname } = useRouter();
 
   return (
     <Container>
@@ -46,24 +51,38 @@ const Settings = () => {
       />
 
       <RadioButtonToggle
-        selector={(state) => getIsFundListShowing(state)}
+        selector={(state) => getArePatternsShowing(state)}
         setValue={(value) => {
-          dispatch(setIsFundListShowing(value));
+          dispatch(setArePatternsShowing(value));
         }}
-        groupLabel="Toggle fund list"
-        label1="Show"
-        label2="Hide"
+        groupLabel="Chart patterns"
+        label1="Enabled"
+        label2="Disabled"
       />
 
-      <RadioButtonToggle
-        selector={(state) => getIsChartShowing(state)}
-        setValue={(value) => {
-          dispatch(setIsChartShowing(value));
-        }}
-        groupLabel="Toggle chart"
-        label1="Show"
-        label2="Hide"
-      />
+      {pathname === "/" && (
+        <>
+          <RadioButtonToggle
+            selector={(state) => getIsFundListShowing(state)}
+            setValue={(value) => {
+              dispatch(setIsFundListShowing(value));
+            }}
+            groupLabel="Fund list"
+            label1="Show"
+            label2="Hide"
+          />
+
+          <RadioButtonToggle
+            selector={(state) => getIsChartShowing(state)}
+            setValue={(value) => {
+              dispatch(setIsChartShowing(value));
+            }}
+            groupLabel="Chart"
+            label1="Show"
+            label2="Hide"
+          />
+        </>
+      )}
     </Container>
   );
 };

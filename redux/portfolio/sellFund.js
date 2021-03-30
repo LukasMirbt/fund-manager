@@ -1,14 +1,10 @@
 import axios from "axios";
 import { batch } from "react-redux";
 import getTotalPortfolioData from "../../components/Portfolio/getTotalPortfolioData";
-import {
-  setData,
-  setFundData,
-  showNotification,
-} from "../general/actionCreators";
+import { setFundData, showNotification } from "../general/actionCreators";
 import { setBalance, setPortfolio } from "./actionCreators";
 
-export const buyFund = ({ fundName, numberOfShares }) => async (
+export const sellFund = ({ fundName, numberOfShares }) => async (
   dispatch,
   getState
 ) => {
@@ -18,9 +14,9 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
 
   try {
     const {
-      data: { updatedPortfolio, fundData },
+      data: { updatedPortfolio },
     } = await axios.post(
-      "/api/portfolio/buyFund",
+      "/api/portfolio/sellFund",
       {
         fundName,
         numberOfShares,
@@ -31,9 +27,6 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
         },
       }
     );
-
-    const newData = { ...data };
-    newData[fundName].chartData = fundData;
 
     const portfolioChartData = Object.keys(updatedPortfolio).map(
       (fundName) => data[fundName].chartData
@@ -55,8 +48,6 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
 
       dispatch(setBalance(updatedPortfolio.balance));
 
-      dispatch(setData(newData));
-
       dispatch(
         setFundData({
           fundName: "Total",
@@ -76,7 +67,7 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
 
       dispatch(
         showNotification({
-          text: `Bought ${numberOfShares} ${
+          text: `Sold ${numberOfShares} ${
             numberOfShares > 1 ? "shares" : "share"
           } of ${fundName}`,
           severity: "success",
@@ -88,4 +79,4 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
   }
 };
 
-export default buyFund;
+export default sellFund;

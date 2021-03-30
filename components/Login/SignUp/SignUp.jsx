@@ -7,7 +7,9 @@ import SignUpButton from "./SignUpButton";
 import Links from "./Links";
 import { useDispatch } from "react-redux";
 import {
+  setSignUpPasswordErrorMessage,
   setSignUpPasswordInputValue,
+  setSignUpUsernameErrorMessage,
   setSignUpUsernameInputValue,
 } from "../../../redux/general/actionCreators";
 
@@ -25,6 +27,8 @@ const SignUp = () => {
     return () => {
       dispatch(setSignUpUsernameInputValue(""));
       dispatch(setSignUpPasswordInputValue(""));
+      dispatch(setSignUpUsernameErrorMessage(null));
+      dispatch(setSignUpPasswordErrorMessage(null));
     };
   }, [dispatch]);
 

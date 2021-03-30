@@ -26,6 +26,12 @@ import {
   SET_IS_SIGN_IN_INVALID,
   SET_IS_SIGN_UP_INVALID,
   SET_IS_SIGN_UP_SHOWING,
+  SET_ARE_PATTERNS_SHOWING,
+  SET_SIGN_IN_PASSWORD_ERROR_MESSAGE,
+  SET_SIGN_UP_PASSWORD_ERROR_MESSAGE,
+  SET_SIGN_IN_USERNAME_ERROR_MESSAGE,
+  SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
+  SET_IS_USER_REMEMBERED,
 } from "./actionTypes";
 
 const general = (state = {}, action) => {
@@ -173,6 +179,36 @@ const general = (state = {}, action) => {
     case SET_IS_SIGN_UP_SHOWING: {
       const newState = { ...state };
       newState.isSignUpShowing = action.payload;
+      return newState;
+    }
+    case SET_ARE_PATTERNS_SHOWING: {
+      const newState = { ...state };
+      newState.arePatternsShowing = action.payload;
+      return newState;
+    }
+    case SET_SIGN_IN_PASSWORD_ERROR_MESSAGE: {
+      const newState = { ...state };
+      newState.signInPasswordErrorMessage = action.payload;
+      return newState;
+    }
+    case SET_SIGN_UP_PASSWORD_ERROR_MESSAGE: {
+      const newState = { ...state };
+      newState.signUpPasswordErrorMessage = action.payload;
+      return newState;
+    }
+    case SET_SIGN_IN_USERNAME_ERROR_MESSAGE: {
+      const newState = { ...state };
+      newState.signInUsernameErrorMessage = action.payload;
+      return newState;
+    }
+    case SET_SIGN_UP_USERNAME_ERROR_MESSAGE: {
+      const newState = { ...state };
+      newState.signUpUsernameErrorMessage = action.payload;
+      return newState;
+    }
+    case SET_IS_USER_REMEMBERED: {
+      const newState = { ...state };
+      newState.isUserRemembered = action.payload;
       return newState;
     }
     default:

@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
+import { useDispatch } from "react-redux";
 
 const tabs = [
   {
@@ -32,12 +34,13 @@ const tabs = [
   },
 ];
 
-const StyledIcon = styled(FontAwesomeIcon)`
+export const TabIcon = styled(FontAwesomeIcon)`
   font-size: 1.5rem;
 `;
 
-const StyledListItem = styled(ListItem)`
+export const StyledListItem = styled(ListItem)`
   padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `;
 
 const StyledList = styled(List)`
@@ -48,11 +51,16 @@ const StyledList = styled(List)`
 const MainTabs = () => {
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
   return (
     <StyledList>
       {tabs.map(({ text, icon, pathname }) => (
         <Link key={text} href={pathname} passHref>
           <StyledListItem
+            onClick={() => {
+              dispatch(setIsTemporaryDrawerOpen(false));
+            }}
             component="a"
             href={pathname}
             selected={router.pathname === pathname}
@@ -60,7 +68,7 @@ const MainTabs = () => {
             key={text}
           >
             <ListItemIcon>
-              <StyledIcon icon={icon} />
+              <TabIcon icon={icon} />
             </ListItemIcon>
 
             <ListItemText primary={text} />

@@ -6,6 +6,7 @@ import getChartConfig from "./getChartConfig";
 import getChartDataset from "./getChartDataset";
 import { useSelector } from "react-redux";
 import {
+  getArePatternsShowing,
   getData,
   getDateParameters,
   getIsDataDownsampled,
@@ -30,19 +31,23 @@ const Chart = ({ fundNames /* max, min */ }) => {
   const isDataInPercent = useSelector((state) => getIsDataInPercent(state));
   const patterns = useSelector((state) => getPatterns(state));
   const dateParameters = useSelector((state) => getDateParameters(state));
+  const arePatternsShowing = useSelector((state) =>
+    getArePatternsShowing(state)
+  );
 
   const chartRef = useRef();
 
   useEffect(() => {
     const datasets = fundNames.map((name, index) =>
-      getChartDataset(
+      getChartDataset({
         data,
-        name,
+        fundName: name,
         isDataInPercent,
         dateParameters,
         patterns,
-        index
-      )
+        arePatternsShowing,
+        index,
+      })
     );
 
     if (chartRef.current !== undefined && chartRef.current !== null) {
@@ -60,6 +65,7 @@ const Chart = ({ fundNames /* max, min */ }) => {
     isDataDownsampled,
     isDataInPercent,
     patterns,
+    arePatternsShowing,
   ]);
 
   return (

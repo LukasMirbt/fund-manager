@@ -1,9 +1,9 @@
-const onSelectionModelChange = (
+const onSelectionModelChange = ({
   selectionModel,
   isCheckboxHeaderDisabledRef,
   dispatch,
-  setFundNames
-) => {
+  setFundNames,
+}) => {
   if (selectionModel.length === 0) {
     dispatch(setFundNames([]));
 

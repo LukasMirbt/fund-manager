@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SellFundDialog from "./SellFundDialog";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import { StyledListItem, TabIcon } from "../../DropdownTabs";
+import { StyledListItem, TabIcon } from "../../MainTabs";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 

@@ -5,14 +5,27 @@ import { useSelector } from "react-redux";
 import { getData, getRecommendedFunds } from "../../../redux/selectors";
 import StarGroup from "../../common/components/StarGroup";
 import { Subheading } from "./Description";
+import ChangeTable from "./ChangeTable";
 
-const Info = styled(Typography)``;
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+`;
 
 const Row = styled.div`
   display: flex;
+  align-items: center;
 `;
 
-const RecommendedText = ({ fundIndex }) => {
+const Rating = styled(Typography)`
+  margin-right: 0.5rem;
+`;
+
+const IndexFund = styled(Typography)``;
+const Identifier = styled(Typography)``;
+
+const AdditionalInfo = ({ fundIndex }) => {
   const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
 
   const [recommendedFundName, recommendation] = recommendedFunds[fundIndex];
@@ -22,21 +35,47 @@ const RecommendedText = ({ fundIndex }) => {
   const { ISIN, indexFund, morningstarRating } = data[
     recommendedFundName
   ].chartData;
+
+  const { oneDC, oneYC, threeYC, fiveYC } = data[recommendedFundName].tableData;
+
+  const row = [
+    {
+      headerData: "1-day change",
+      cellData: oneDC,
+    },
+    {
+      headerData: "1-year change",
+      cellData: oneYC,
+    },
+    {
+      headerData: "3-year change",
+      cellData: threeYC,
+    },
+    {
+      headerData: "5-year change",
+      cellData: fiveYC,
+    },
+  ];
+
   return (
     <>
-      <Subheading variant="h6" component="h3">
-        Additional information
-      </Subheading>
+      <ChangeTable fundName={recommendedFundName} row={row} />
+      <Column>
+        <Subheading variant="h6" component="h3">
+          Additional information
+        </Subheading>
 
-      <Info>
-        {`Index fund: ${indexFund}`}
+        <IndexFund variant="subtitle1">{`Index fund: ${indexFund}`}</IndexFund>
+
         <Row>
-          {`Morningstar rating: `} <StarGroup value={morningstarRating} />
+          <Rating variant="subtitle1"> {`Morningstar rating: `}</Rating>
+          <StarGroup value={morningstarRating} />
         </Row>
-        {`ISIN: ${ISIN}`}
-      </Info>
+
+        <Identifier> {`ISIN: ${ISIN}`}</Identifier>
+      </Column>
     </>
   );
 };
 
-export default RecommendedText;
+export default AdditionalInfo;
