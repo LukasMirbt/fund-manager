@@ -46,13 +46,13 @@ const Numbers = () => {
 
     remainingBalance = balance - cost;
 
-    cost = cost.toFixed(2);
-    remainingBalance = remainingBalance.toFixed(2);
+    cost = `${cost.toFixed(2)} SEK`;
+    remainingBalance = `${remainingBalance.toFixed(2)} SEK`;
   }
 
   return (
     <>
-      <Balance>{`Current balance: ${balance}`}</Balance>
+      <Balance>{`Current balance: ${balance} SEK`}</Balance>
       <Cost>{`Cost: ${cost}`}</Cost>
       <RemainingBalance>{`Remaining balance: ${remainingBalance}`}</RemainingBalance>
     </>

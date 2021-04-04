@@ -4,12 +4,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { getIsTemporaryDrawerOpen } from "../../redux/selectors";
+import {
+  getCredentials,
+  getIsTemporaryDrawerOpen,
+} from "../../redux/selectors";
 import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useRouter } from "next/router";
-import AccountButton from "./AccountButton";
+import AccountButton from "./AccountButton/AccountButton";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ToggleChartButton from "./ToggleChartButton";
 
 const MenuButton = styled(IconButton)`
   margin-right: 1.25rem;
@@ -48,6 +53,10 @@ const DrawerAppBar = () => {
   const title =
     pathname === "/" ? "fund list" : pathname.slice(1).replace(/-+/g, " ");
 
+  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
+  const credentials = useSelector((state) => getCredentials(state));
+
   return (
     <StyledAppBar color="primary" position="static">
       <StyledToolbar>
@@ -65,7 +74,13 @@ const DrawerAppBar = () => {
           </Typography>
         </Row>
 
-        <AccountButton />
+        <Row>
+          {isLargeScreen === false &&
+            pathname.includes("fund-advisor") === false &&
+            (pathname.includes("portfolio") === false ||
+              credentials.token !== undefined) && <ToggleChartButton />}
+          <AccountButton />
+        </Row>
       </StyledToolbar>
     </StyledAppBar>
   );

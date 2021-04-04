@@ -37,9 +37,9 @@ const TransactionHistory = ({ fundName }) => {
       </Title>
       <List>
         {portfolio[fundName].buyHistory.map(
-          ({ numberOfBoughtShares, buyDate }) => {
+          ({ numberOfBoughtShares, buyDate }, index) => {
             return (
-              <Item variant="body1" component="li" key={fundName}>
+              <Item variant="body1" component="li" key={index}>
                 {`${numberOfBoughtShares} shares bought on ${format(
                   buyDate,
                   "MMMM d, yyyy"
@@ -51,9 +51,9 @@ const TransactionHistory = ({ fundName }) => {
 
         {portfolio[fundName].sellHistory !== undefined &&
           portfolio[fundName].sellHistory.map(
-            ({ numberOfSoldShares, sellDate }) => {
+            ({ numberOfSoldShares, sellDate }, index) => {
               return (
-                <Item variant="body1" component="li" key={fundName}>
+                <Item variant="body1" component="li" key={index}>
                   {`${numberOfSoldShares} shares sold on ${format(
                     sellDate,
                     "MMMM d, yyyy"

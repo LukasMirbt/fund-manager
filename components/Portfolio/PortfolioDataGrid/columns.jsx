@@ -15,22 +15,27 @@ const columns = [
     field: "col2",
     headerName: "Shares",
     width: 150,
+    type: "number",
   },
   {
     field: "col3",
-    headerName: "Acquisition value",
+    headerName: "Acquisition value (SEK)",
     width: 150,
+    type: "number",
   },
   {
     field: "col4",
-    headerName: "Current value",
+    headerName: "Current value (SEK)",
     width: 150,
+    type: "number",
   },
   {
     field: "col5",
     headerName: "Total change",
     width: 150,
+    sortComparator: sortPercentStrings,
     renderCell: renderChangeCell,
+    type: "number",
   },
   {
     field: "col6",
@@ -39,6 +44,7 @@ const columns = [
     sortComparator: sortPercentStrings,
     renderCell: renderChangeCell,
     hide: true,
+    type: "number",
   },
   {
     field: "col7",
@@ -47,6 +53,7 @@ const columns = [
     sortComparator: sortPercentStrings,
     renderCell: renderChangeCell,
     hide: true,
+    type: "number",
   },
 ];
 

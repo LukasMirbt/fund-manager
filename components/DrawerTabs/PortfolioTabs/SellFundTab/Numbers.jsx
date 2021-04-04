@@ -35,11 +35,11 @@ const Numbers = () => {
   if (selectedFundNameToSell !== null && numberOfSharesToSell !== 0) {
     const { yData } = data[selectedFundNameToSell].chartData;
 
-    sellValue = adjustValueByCurrency({
+    sellValue = `${adjustValueByCurrency({
       fundName: selectedFundNameToSell,
       value: yData[yData.length - 1] * numberOfSharesToSell,
       exchangeRates,
-    }).toFixed(2);
+    }).toFixed(2)} SEK`;
   }
 
   let currentNumberOfShares = "-";

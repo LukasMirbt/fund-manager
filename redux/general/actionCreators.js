@@ -32,6 +32,7 @@ import {
   SET_SIGN_IN_USERNAME_ERROR_MESSAGE,
   SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
   SET_IS_USER_REMEMBERED,
+  SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
 } from "./actionTypes";
 
 export const setData = (update) => ({
@@ -196,5 +197,10 @@ export const setSignUpPasswordErrorMessage = (update) => ({
 
 export const setIsUserRemembered = (update) => ({
   type: SET_IS_USER_REMEMBERED,
+  payload: update,
+});
+
+export const setIsChartShowingForSmallScreens = (update) => ({
+  type: SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
   payload: update,
 });

@@ -53,6 +53,7 @@ const createInitialState = async () => {
       isDataInPercent: true,
       isDataDownsampled: true,
       isChartShowing: true,
+      isChartShowingForSmallScreens: false,
       fundNamesCurrentlyBeingLoaded: [],
 
       exchangeRates,

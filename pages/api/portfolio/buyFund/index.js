@@ -68,12 +68,14 @@ export default async function Handler(req, res) {
           };
         }
 
+        const updatedBalance = balance - roundedCost;
+
         user.portfolio = newPortfolio;
-        user.balance = balance - roundedCost;
+        user.balance = updatedBalance;
 
         const { portfolio: updatedPortfolio } = await user.save();
 
-        res.status(200).json({ updatedPortfolio, fundData });
+        res.status(200).json({ updatedPortfolio, updatedBalance, fundData });
       } else {
         return res.status(403).end();
       }

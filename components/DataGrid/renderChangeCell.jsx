@@ -10,6 +10,9 @@ export const getChangeCellColor = (value) => {
 
 const ChangeCell = styled.div`
   color: ${({ sc: { value } }) => getChangeCellColor(value)};
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
 const renderChangeCell = ({ value }) => (

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import RecommendedText from "./Content/Content";
+import Content from "./Content/Content";
 import Intro from "./Intro";
-import RecommendedChart from "./Chart";
+import FundAdvisorChart from "./FundAdvisorChart";
 import { getIsIntroShowing } from "../../redux/selectors";
 import { recommendedFundsLabelID } from "./Content/Heading";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const Container = styled.section`
   display: flex;
@@ -18,6 +19,8 @@ const RecommendedFunds = () => {
 
   const [fundIndex, setFundIndex] = useState(0);
 
+  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
   return (
     <>
       {isIntroShowing === true ? (
@@ -28,8 +31,8 @@ const RecommendedFunds = () => {
           sc={{ isIntroShowing }}
           data-testid="RecommendedFunds"
         >
-          <RecommendedChart fundIndex={fundIndex} />
-          <RecommendedText fundIndex={fundIndex} setFundIndex={setFundIndex} />
+          {isLargeScreen === true && <FundAdvisorChart fundIndex={fundIndex} />}
+          <Content fundIndex={fundIndex} setFundIndex={setFundIndex} />
         </Container>
       )}
     </>

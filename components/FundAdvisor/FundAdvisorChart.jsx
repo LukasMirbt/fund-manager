@@ -10,7 +10,7 @@ const containerCSS = css`
   border-right: ${({ theme }) => `1px solid ${theme.palette.divider}`};
 `;
 
-const RecommendedChart = ({ fundIndex }) => {
+const FundAdvisorChart = ({ fundIndex }) => {
   const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
 
   return (
@@ -21,4 +21,4 @@ const RecommendedChart = ({ fundIndex }) => {
   );
 };
 
-export default RecommendedChart;
+export default FundAdvisorChart;

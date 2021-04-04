@@ -22,6 +22,7 @@ const RadioButtonToggle = ({
   label1,
   label2,
   groupLabel,
+  className,
 }) => {
   const value = useSelector(selector);
 
@@ -33,7 +34,7 @@ const RadioButtonToggle = ({
   };
 
   return (
-    <StyledFormControl component="fieldset">
+    <StyledFormControl className={className} component="fieldset">
       <FormLabel component="legend">{groupLabel}</FormLabel>
       <RadioGroup
         aria-label={groupLabel}

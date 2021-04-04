@@ -48,6 +48,8 @@ export const getSignInUsernameErrorMessage = (state) =>
 export const getSignUpUsernameErrorMessage = (state) =>
   state.general.signUpUsernameErrorMessage;
 export const getIsUserRemembered = (state) => state.general.isUserRemembered;
+export const getIsChartShowingForSmallScreens = (state) =>
+  state.general.isChartShowingForSmallScreens;
 
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;

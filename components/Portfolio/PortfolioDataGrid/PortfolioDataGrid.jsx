@@ -12,14 +12,29 @@ import { setPortfolioFundNames } from "../../../redux/portfolio/actionCreators";
 import { getPortfolioFundNames } from "../../../redux/selectors";
 import adjustValueByCurrency from "../../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
 import getFundAcquisitionValue from "../getFundAquisitionValue";
-import round from "../../common/utils/round";
 
 const sortingOrder = ["asc", "desc"];
 
 const dataGridCSS = css`
   border-bottom: ${({ theme }) => `1px solid ${theme.palette.divider}`};
-  width: 100%;
-  height: 66%;
+
+  & {
+    width: 100%;
+    height: 66%;
+  }
+
+  .MuiDataGrid-colCellTitle {
+    text-overflow: unset;
+    line-height: normal;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    height: 56px;
+  }
+
+  .MuiDataGrid-colCellNumeric {
+    text-align: right;
+  }
 `;
 
 const PortfolioDataGrid = () => {
@@ -46,13 +61,15 @@ const PortfolioDataGrid = () => {
       const { shares } = portfolio[fundName];
       const { yData } = data[fundName].chartData;
 
-      const fundAcqValue = getFundAcquisitionValue(portfolio[fundName]);
+      const fundAcqValue = getFundAcquisitionValue(portfolio[fundName]).toFixed(
+        2
+      );
 
       const value = adjustValueByCurrency({
         value: shares * yData[yData.length - 1],
         fundName,
         exchangeRates,
-      });
+      }).toFixed(2);
 
       const totalFundChange = `${((value / fundAcqValue) * 100 - 100).toFixed(
         2
@@ -73,8 +90,8 @@ const PortfolioDataGrid = () => {
       id: totalFundName,
       col1: totalFundName,
       col2: "-",
-      col3: totalAcqValue,
-      col4: totalValue,
+      col3: totalAcqValue.toFixed(2),
+      col4: totalValue.toFixed(2),
       col5: totalChange,
       col6: "-",
       col7: "-",

@@ -75,12 +75,14 @@ export default async function Handler(req, res) {
           }
         }
 
+        const updatedBalance = balance + roundedSellValue;
+
         user.portfolio = newPortfolio;
-        user.balance = balance + roundedSellValue;
+        user.balance = updatedBalance;
 
         const { portfolio: updatedPortfolio } = await user.save();
 
-        res.status(200).json({ updatedPortfolio });
+        res.status(200).json({ updatedPortfolio, updatedBalance });
       } else {
         return res.status(403).end();
       }

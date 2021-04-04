@@ -6,8 +6,10 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 const StyledStepper = styled(MobileStepper)`
-  background-color: rgba(0, 0, 0, 0.09);
+  border-top: ${({ theme }) => `1px solid ${theme.palette.divider}`};
   width: 100%;
+  position: sticky;
+  bottom: 0;
 `;
 
 const Stepper = ({ fundIndex, setFundIndex, recommendedFunds }) => {
@@ -29,6 +31,8 @@ const Stepper = ({ fundIndex, setFundIndex, recommendedFunds }) => {
       activeStep={fundIndex}
       nextButton={
         <Button
+          variant="contained"
+          color="primary"
           size="medium"
           onClick={handleNext}
           disabled={fundIndex === maxSteps - 1}

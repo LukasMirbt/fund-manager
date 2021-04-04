@@ -9,7 +9,7 @@ const Links = () => {
   return (
     <Grid container>
       <Grid item xs>
-        <Link href="#" variant="body2">
+        <Link style={{ visibility: "hidden" }} href="#" variant="body2">
           Forgot password?
         </Link>
       </Grid>

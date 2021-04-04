@@ -1,10 +1,15 @@
 import React, { useRef } from "react";
+import styled, { css } from "styled-components";
 import { DataGrid as MUIDataGrid, GridToolbar } from "@material-ui/data-grid";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import onSelectionModelChange from "./onSelectionModelChange";
 import onFundSelect from "../../redux/onFundSelect";
-import { getIsFundListShowing } from "../../redux/selectors";
+import {
+  getIsChartShowing,
+  getIsChartShowingForSmallScreens,
+  getIsFundListShowing,
+} from "../../redux/selectors";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 /* const Container = styled.div`
   display: flex;
@@ -18,6 +23,13 @@ const StyledDataGrid = styled(MUIDataGrid)`
   border: unset;
   border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`};
   border-radius: 0;
+  width: 100%;
+
+  ${({ sc: { isFundListShowing }, theme }) => css`
+    @media screen and (min-width: ${`${theme.breakpoints.values["lg"]}px`}) {
+      width: ${isFundListShowing === true ? "50%" : "100%"};
+    }
+  `}
 
   ${({ sc: { containerCSS } }) => containerCSS};
 
@@ -61,6 +73,8 @@ const DataGrid = ({
   onSortModelChange,
   sortingOrder,
 }) => {
+  const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
+
   const dispatch = useDispatch();
 
   const isCheckboxHeaderDisabledRef = useRef(false);
@@ -70,11 +84,18 @@ const DataGrid = ({
     returnTrue
   );
 
-  const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
+  const isChartShowing = useSelector((state) => getIsChartShowing(state));
 
-  return isFundListShowing === true ? (
+  const isChartShowingForSmallScreens = useSelector((state) =>
+    getIsChartShowingForSmallScreens(state)
+  );
+
+  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
+  return isFundListShowing === true &&
+    (isLargeScreen === true || isChartShowingForSmallScreens === false) ? (
     <StyledDataGrid
-      sc={{ containerCSS }}
+      sc={{ isFundListShowing, isChartShowing, containerCSS }}
       disableColumnMenu
       checkboxSelection
       onSortModelChange={onSortModelChange}

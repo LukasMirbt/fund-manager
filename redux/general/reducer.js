@@ -32,6 +32,7 @@ import {
   SET_SIGN_IN_USERNAME_ERROR_MESSAGE,
   SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
   SET_IS_USER_REMEMBERED,
+  SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
 } from "./actionTypes";
 
 const general = (state = {}, action) => {
@@ -209,6 +210,11 @@ const general = (state = {}, action) => {
     case SET_IS_USER_REMEMBERED: {
       const newState = { ...state };
       newState.isUserRemembered = action.payload;
+      return newState;
+    }
+    case SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS: {
+      const newState = { ...state };
+      newState.isChartShowingForSmallScreens = action.payload;
       return newState;
     }
     default:

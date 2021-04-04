@@ -17,7 +17,7 @@ const Tabs = () => {
     <>
       <MainTabs />
 
-      {pathname.includes("/portfolio") === true && <PortfolioTabs />}
+      {pathname === "/portfolio" && <PortfolioTabs />}
 
       {(pathname !== "/fund-advisor" || isIntroShowing === false) &&
         (pathname !== "/portfolio" || credentials.token !== undefined) && (

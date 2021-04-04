@@ -14,7 +14,7 @@ export const sellFund = ({ fundName, numberOfShares }) => async (
 
   try {
     const {
-      data: { updatedPortfolio },
+      data: { updatedPortfolio, updatedBalance },
     } = await axios.post(
       "/api/portfolio/sellFund",
       {
@@ -46,7 +46,7 @@ export const sellFund = ({ fundName, numberOfShares }) => async (
     batch(() => {
       dispatch(setPortfolio(updatedPortfolio));
 
-      dispatch(setBalance(updatedPortfolio.balance));
+      dispatch(setBalance(updatedBalance));
 
       dispatch(
         setFundData({

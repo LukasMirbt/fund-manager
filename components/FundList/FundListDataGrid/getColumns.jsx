@@ -29,6 +29,7 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       sortComparator: sortPercentStrings,
       renderCell: renderChangeCell,
       hide: true,
+      type: "number",
     },
     {
       field: "col4",
@@ -36,6 +37,7 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       width: 150,
       sortComparator: sortPercentStrings,
       renderCell: renderChangeCell,
+      type: "number",
     },
     {
       field: "col5",
@@ -43,6 +45,7 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       width: 150,
       sortComparator: sortPercentStrings,
       renderCell: renderChangeCell,
+      type: "number",
     },
     {
       field: "col6",
@@ -50,12 +53,14 @@ const getColumns = (morningstarRatingSortOrderRef) => {
       width: 150,
       sortComparator: sortPercentStrings,
       renderCell: renderChangeCell,
+      type: "number",
     },
     {
       field: "col7",
       headerName: "Last updated",
       width: 150,
       hide: true,
+      type: "date",
     },
   ];
 };
