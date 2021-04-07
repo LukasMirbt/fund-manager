@@ -1,8 +1,17 @@
 import axios from "axios";
 import { batch } from "react-redux";
 import getTotalPortfolioData from "../../components/Portfolio/getTotalPortfolioData";
-import { setFundData, showNotification } from "../general/actionCreators";
-import { setBalance, setPortfolio } from "./actionCreators";
+import {
+  setData,
+  setFundData,
+  showNotification,
+} from "../general/actionCreators";
+import {
+  setBalance,
+  setInfoFundName,
+  setPortfolio,
+  setPortfolioFundNames,
+} from "./actionCreators";
 
 export const sellFund = ({ fundName, numberOfShares }) => async (
   dispatch,
@@ -10,6 +19,7 @@ export const sellFund = ({ fundName, numberOfShares }) => async (
 ) => {
   const {
     general: { data, exchangeRates, credentials },
+    portfolio: { infoFundName },
   } = getState();
 
   try {
@@ -32,38 +42,57 @@ export const sellFund = ({ fundName, numberOfShares }) => async (
       (fundName) => data[fundName].chartData
     );
 
-    const {
-      totalXData,
-      totalYData,
-      totalAcquisitionValue,
-      totalValue,
-    } = getTotalPortfolioData({
+    const totalPortfolioData = getTotalPortfolioData({
       portfolio: updatedPortfolio,
       portfolioChartData,
       exchangeRates,
     });
 
+    const fundNames = Object.keys(updatedPortfolio);
+
+    const isPortfolioEmpty = fundNames.length === 0;
+
     batch(() => {
+      if (
+        fundName === infoFundName &&
+        updatedPortfolio[fundName] === undefined
+      ) {
+        if (isPortfolioEmpty === false) {
+          dispatch(setInfoFundName(fundNames[0]));
+        } else {
+          dispatch(setInfoFundName(null));
+        }
+      }
+
+      if (isPortfolioEmpty === true) {
+        const newData = { ...data };
+        delete newData["Total"];
+        dispatch(setData(newData));
+        dispatch(setPortfolioFundNames([]));
+      }
+
       dispatch(setPortfolio(updatedPortfolio));
 
       dispatch(setBalance(updatedBalance));
 
-      dispatch(
-        setFundData({
-          fundName: "Total",
-          fundData: {
-            chartData: {
-              xData: totalXData,
-              yData: totalYData,
+      if (totalPortfolioData !== null) {
+        dispatch(
+          setFundData({
+            fundName: "Total",
+            fundData: {
+              chartData: {
+                xData: totalPortfolioData.totalXData,
+                yData: totalPortfolioData.totalYData,
+              },
+              tableData: {
+                fundName: "Total",
+                acqValue: totalPortfolioData.totalAcquisitionValue,
+                value: totalPortfolioData.totalValue,
+              },
             },
-            tableData: {
-              fundName: "Total",
-              acqValue: totalAcquisitionValue,
-              value: totalValue,
-            },
-          },
-        })
-      );
+          })
+        );
+      }
 
       dispatch(
         showNotification({

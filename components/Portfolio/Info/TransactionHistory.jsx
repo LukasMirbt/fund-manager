@@ -8,13 +8,14 @@ import Typography from "@material-ui/core/Typography";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
+  width: 33%;
+  padding-right: 1rem;
 `;
 
 const List = styled.ul`
   margin: 0;
   padding: 0;
-  margin-left: 1.25rem;
+  list-style: none;
 `;
 
 const Item = styled(Typography)`
@@ -22,7 +23,7 @@ const Item = styled(Typography)`
 `;
 
 const Title = styled(Typography)`
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
 `;
@@ -32,7 +33,7 @@ const TransactionHistory = ({ fundName }) => {
 
   return (
     <Container>
-      <Title variant="h4" component="h2">
+      <Title variant="h6" component="h3">
         Transaction history
       </Title>
       <List>
@@ -40,7 +41,7 @@ const TransactionHistory = ({ fundName }) => {
           ({ numberOfBoughtShares, buyDate }, index) => {
             return (
               <Item variant="body1" component="li" key={index}>
-                {`${numberOfBoughtShares} shares bought on ${format(
+                {`You bought ${numberOfBoughtShares} shares on ${format(
                   buyDate,
                   "MMMM d, yyyy"
                 )}`}

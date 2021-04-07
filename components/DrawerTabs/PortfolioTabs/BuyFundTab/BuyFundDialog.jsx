@@ -7,6 +7,9 @@ import Numbers from "./Numbers";
 import FundNameAutocomplete from "./FundNameAutocomplete";
 import NumberOfSharesSelect from "./NumberOfSharesSelect";
 import Buttons from "./Buttons";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsBuyFundDialogOpen } from "../../../../redux/selectors";
+import { setIsBuyFundDialogOpen } from "../../../../redux/portfolio/actionCreators";
 
 export const Column = styled(DialogContent)`
   display: flex;
@@ -17,13 +20,19 @@ export const Title = styled(DialogTitle)`
   padding-bottom: 0;
 `;
 
-const BuyFundDialog = ({ open, setOpen }) => {
+const BuyFundDialog = () => {
+  const isBuyFundDialogOpen = useSelector((state) =>
+    getIsBuyFundDialogOpen(state)
+  );
+
+  const dispatch = useDispatch();
+
   return (
     <Dialog
       disableBackdropClick
-      open={open}
+      open={isBuyFundDialogOpen}
       onClose={() => {
-        setOpen(false);
+        dispatch(setIsBuyFundDialogOpen(false));
       }}
       aria-labelledby="buy-fund-dialog-title"
     >
@@ -41,7 +50,11 @@ const BuyFundDialog = ({ open, setOpen }) => {
         <Numbers />
       </Column>
 
-      <Buttons setOpen={setOpen} />
+      <Buttons
+        setOpen={(isOpen) => {
+          dispatch(setIsBuyFundDialogOpen(isOpen));
+        }}
+      />
     </Dialog>
   );
 };

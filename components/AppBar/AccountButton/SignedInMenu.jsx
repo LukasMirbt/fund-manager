@@ -44,6 +44,7 @@ const Balance = styled(Typography)`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1rem;
 `;
 
 const SignedInMenu = ({ onClose, shouldSignOutRef }) => {
@@ -56,7 +57,9 @@ const SignedInMenu = ({ onClose, shouldSignOutRef }) => {
         <StyledAvatar>{credentials.username[0]}</StyledAvatar>
         <Column>
           <Username variant="subtitle1">{credentials.username}</Username>
-          <Balance variant="subtitle1">{`Balance: ${balance} SEK`}</Balance>
+          <Balance variant="subtitle1">{`Balance: ${balance.toFixed(
+            2
+          )} SEK`}</Balance>
         </Column>
       </Row>
 

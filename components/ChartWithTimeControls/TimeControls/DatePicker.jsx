@@ -25,6 +25,7 @@ const DatePicker = ({
       KeyboardButtonProps={{
         "aria-label": ariaLabel,
       }}
+      maxDateMessage="No fund data available after 13/05/2019"
     />
   );
 };

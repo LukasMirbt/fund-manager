@@ -1,0 +1,46 @@
+import React from "react";
+import styled from "styled-components";
+import Typography from "@material-ui/core/Typography";
+
+const Rating = styled.div`
+  padding-right: 1rem;
+`;
+
+const RatingTitle = styled(Typography)`
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+`;
+
+const Paragraph = styled(Typography)``;
+
+const Summary = ({ portfolioTableDataByFundName, fundName }) => {
+  const { acqValue, value, totalChange, shares } = portfolioTableDataByFundName[
+    fundName
+  ];
+
+  return (
+    <Container>
+      <Rating>
+        <RatingTitle variant="h6" component="h3">
+          Summary
+        </RatingTitle>
+
+        <Paragraph variant="body1">{`You own a total of ${shares} shares of ${fundName} which you acquired at a cost of ${acqValue} SEK.`}</Paragraph>
+
+        <Paragraph variant="body1">
+          {`It is currently worth ${value} SEK, which is a${
+            totalChange[0] === "-" ? " decrease" : "n increase"
+          } in value of ${totalChange}.`}
+        </Paragraph>
+      </Rating>
+    </Container>
+  );
+};
+
+export default Summary;

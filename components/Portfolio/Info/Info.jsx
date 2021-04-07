@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import TransactionHistory from "./TransactionHistory";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { getInfoFundName, getPortfolio } from "../../../redux/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { setInfoFundName } from "../../../redux/portfolio/actionCreators";
+import { getInfoFundName } from "../../../redux/selectors";
+import { useSelector } from "react-redux";
+import Summary from "./Summary";
+import TitleRow from "./TitleRow";
+import Rating from "./Rating";
 
 const Container = styled.div`
   padding: 1.5rem;
@@ -13,35 +13,34 @@ const Container = styled.div`
 
   height: 34%;
   width: 100%;
+
+  overflow: auto;
 `;
 
-const StyledAutocomplete = styled(Autocomplete)`
-  width: 400px;
-  margin-bottom: 1rem;
+const InfoRow = styled.div`
+  display: flex;
 `;
 
-const Info = () => {
+const Info = ({ portfolioTableDataByFundName }) => {
   const infoFundName = useSelector((state) => getInfoFundName(state));
-  const portfolio = useSelector((state) => getPortfolio(state));
-
-  const dispatch = useDispatch();
 
   return infoFundName !== null ? (
     <Container>
-      <StyledAutocomplete
-        disableClearable
-        value={infoFundName}
-        onChange={(event, newValue) => {
-          dispatch(setInfoFundName(newValue));
-        }}
-        id="fundInfoAutocomplete"
-        options={Object.keys(portfolio)}
-        renderInput={(params) => (
-          <TextField {...params} label="Select fund" variant="filled" />
-        )}
-      />
+      <TitleRow />
 
-      <TransactionHistory fundName={infoFundName} />
+      <InfoRow>
+        <Summary
+          portfolioTableDataByFundName={portfolioTableDataByFundName}
+          fundName={infoFundName}
+        />
+
+        <TransactionHistory fundName={infoFundName} />
+
+        <Rating
+          portfolioTableDataByFundName={portfolioTableDataByFundName}
+          fundName={infoFundName}
+        />
+      </InfoRow>
     </Container>
   ) : null;
 };

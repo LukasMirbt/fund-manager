@@ -67,6 +67,10 @@ export const getNumberOfSharesToBuy = (state) =>
   state.portfolio.numberOfSharesToBuy;
 export const getNumberOfSharesToSell = (state) =>
   state.portfolio.numberOfSharesToSell;
+export const getIsBuyFundDialogOpen = (state) =>
+  state.portfolio.isBuyFundDialogOpen;
+export const getIsSellFundDialogOpen = (state) =>
+  state.portfolio.isSellFundDialogOpen;
 
 export const getRecommendedFunds = (state) =>
   state.recommendedFunds.recommendedFunds;

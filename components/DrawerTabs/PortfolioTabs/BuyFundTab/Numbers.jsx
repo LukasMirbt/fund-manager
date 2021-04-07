@@ -52,7 +52,7 @@ const Numbers = () => {
 
   return (
     <>
-      <Balance>{`Current balance: ${balance} SEK`}</Balance>
+      <Balance>{`Current balance: ${balance.toFixed(2)} SEK`}</Balance>
       <Cost>{`Cost: ${cost}`}</Cost>
       <RemainingBalance>{`Remaining balance: ${remainingBalance}`}</RemainingBalance>
     </>

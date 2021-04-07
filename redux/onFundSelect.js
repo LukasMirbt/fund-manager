@@ -1,7 +1,4 @@
-import { batch } from "react-redux";
 import getChartData from "./getChartData";
-import { setData } from "./general/actionCreators";
-import { setFundNamesCurrentlyBeingLoaded } from "./general/actionCreators";
 
 export const onFundSelect = (
   fundName,

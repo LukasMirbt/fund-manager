@@ -21,8 +21,8 @@ const NumberOfSharesSelect = () => {
       onChange={(event) => {
         dispatch(setNumberOfSharesToBuy(event.target.value));
       }}
-      inputProps={{
-        maxLength: 12,
+      InputLabelProps={{
+        shrink: true,
       }}
       id="numberOfSharesInput"
       label="Number of shares"

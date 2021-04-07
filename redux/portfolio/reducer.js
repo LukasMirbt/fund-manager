@@ -9,6 +9,8 @@ import {
   SET_SELECTED_FUND_NAME_TO_SELL,
   SET_NUMBER_OF_SHARES_TO_BUY,
   SET_NUMBER_OF_SHARES_TO_SELL,
+  SET_IS_BUY_FUND_DIALOG_OPEN,
+  SET_IS_SELL_FUND_DIALOG_OPEN,
 } from "./actionTypes";
 
 const portfolio = (state = {}, action) => {
@@ -60,6 +62,16 @@ const portfolio = (state = {}, action) => {
     case SET_NUMBER_OF_SHARES_TO_SELL: {
       const newState = { ...state };
       newState.numberOfSharesToSell = action.payload;
+      return newState;
+    }
+    case SET_IS_BUY_FUND_DIALOG_OPEN: {
+      const newState = { ...state };
+      newState.isBuyFundDialogOpen = action.payload;
+      return newState;
+    }
+    case SET_IS_SELL_FUND_DIALOG_OPEN: {
+      const newState = { ...state };
+      newState.isSellFundDialogOpen = action.payload;
       return newState;
     }
     default:

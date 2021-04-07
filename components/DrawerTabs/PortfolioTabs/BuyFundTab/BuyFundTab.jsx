@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import BuyFundDialog from "./BuyFundDialog";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { StyledListItem, TabIcon } from "../../MainTabs";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsBuyFundDialogOpen } from "../../../../redux/selectors";
+import { setIsBuyFundDialogOpen } from "../../../../redux/portfolio/actionCreators";
 
 const BuyFundsTab = () => {
-  const [open, setOpen] = useState(false);
+  const isBuyFundDialogOpen = useSelector((state) =>
+    getIsBuyFundDialogOpen(state)
+  );
+
+  const dispatch = useDispatch();
 
   return (
     <>
       <StyledListItem
         button
-        selected={open}
+        selected={isBuyFundDialogOpen}
         onClick={() => {
-          setOpen(true);
+          dispatch(setIsBuyFundDialogOpen(true));
         }}
       >
         <ListItemIcon>
@@ -24,7 +31,7 @@ const BuyFundsTab = () => {
         <ListItemText primary="Buy fund" />
       </StyledListItem>
 
-      <BuyFundDialog open={open} setOpen={setOpen} />
+      <BuyFundDialog />
     </>
   );
 };

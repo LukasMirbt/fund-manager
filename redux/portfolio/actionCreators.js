@@ -9,6 +9,8 @@ import {
   SET_SELECTED_FUND_NAME_TO_SELL,
   SET_NUMBER_OF_SHARES_TO_BUY,
   SET_NUMBER_OF_SHARES_TO_SELL,
+  SET_IS_BUY_FUND_DIALOG_OPEN,
+  SET_IS_SELL_FUND_DIALOG_OPEN,
 } from "./actionTypes";
 
 export const setInitialPortfolioState = (update) => ({
@@ -58,5 +60,15 @@ export const setNumberOfSharesToBuy = (update) => ({
 
 export const setNumberOfSharesToSell = (update) => ({
   type: SET_NUMBER_OF_SHARES_TO_SELL,
+  payload: update,
+});
+
+export const setIsBuyFundDialogOpen = (update) => ({
+  type: SET_IS_BUY_FUND_DIALOG_OPEN,
+  payload: update,
+});
+
+export const setIsSellFundDialogOpen = (update) => ({
+  type: SET_IS_SELL_FUND_DIALOG_OPEN,
   payload: update,
 });

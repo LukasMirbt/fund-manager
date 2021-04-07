@@ -6,7 +6,12 @@ import {
   setFundData,
   showNotification,
 } from "../general/actionCreators";
-import { setBalance, setPortfolio } from "./actionCreators";
+import {
+  setBalance,
+  setInfoFundName,
+  setPortfolio,
+  setPortfolioFundNames,
+} from "./actionCreators";
 
 export const buyFund = ({ fundName, numberOfShares }) => async (
   dispatch,
@@ -14,6 +19,7 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
 ) => {
   const {
     general: { data, exchangeRates, credentials },
+    portfolio: { portfolioFundNames },
   } = getState();
 
   try {
@@ -56,6 +62,12 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
       dispatch(setBalance(updatedBalance));
 
       dispatch(setData(newData));
+
+      dispatch(setInfoFundName(fundName));
+
+      if (portfolioFundNames.length === 0) {
+        dispatch(setPortfolioFundNames(["Total"]));
+      }
 
       dispatch(
         setFundData({

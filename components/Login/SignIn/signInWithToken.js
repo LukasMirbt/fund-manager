@@ -37,12 +37,7 @@ const signInWithToken = (token) => async (dispatch, getState) => {
       newData[chartData._id].chartData = chartData;
     });
 
-    const {
-      totalXData,
-      totalYData,
-      totalAcquisitionValue,
-      totalValue,
-    } = getTotalPortfolioData({
+    const totalPortfolioData = getTotalPortfolioData({
       portfolio,
       portfolioChartData,
       exchangeRates,
@@ -58,22 +53,24 @@ const signInWithToken = (token) => async (dispatch, getState) => {
 
       dispatch(setData(newData));
 
-      dispatch(
-        setFundData({
-          fundName: "Total",
-          fundData: {
-            chartData: {
-              xData: totalXData,
-              yData: totalYData,
+      if (totalPortfolioData !== null) {
+        dispatch(
+          setFundData({
+            fundName: "Total",
+            fundData: {
+              chartData: {
+                xData: totalPortfolioData.totalXData,
+                yData: totalPortfolioData.totalYData,
+              },
+              tableData: {
+                fundName: "Total",
+                acqValue: totalPortfolioData.totalAcquisitionValue,
+                value: totalPortfolioData.totalValue,
+              },
             },
-            tableData: {
-              fundName: "Total",
-              acqValue: totalAcquisitionValue,
-              value: totalValue,
-            },
-          },
-        })
-      );
+          })
+        );
+      }
 
       dispatch(setInitialPortfolioState(initialPortfolioState));
     });

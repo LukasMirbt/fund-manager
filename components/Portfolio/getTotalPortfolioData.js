@@ -8,6 +8,10 @@ const getTotalPortfolioData = ({
   portfolioChartData,
   exchangeRates,
 }) => {
+  if (Object.keys(portfolio).length === 0) {
+    return null;
+  }
+
   let totalXData;
   const earliestDateByFundName = {};
 
