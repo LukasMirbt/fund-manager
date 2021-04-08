@@ -1,11 +1,7 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector, batch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCredentials } from "../../../redux/selectors";
-import {
-  setCredentials,
-  setIsUserRemembered,
-} from "../../../redux/general/actionCreators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,6 +9,7 @@ import SignedInMenu from "./SignedInMenu";
 import SignedOutMenu from "./SignedOutMenu";
 import Popover from "@material-ui/core/Popover";
 import { useRouter } from "next/router";
+import onMenuExit from "./onMenuExit";
 
 const anchorOrigin = {
   vertical: "bottom",
@@ -55,6 +52,9 @@ const AccountButton = () => {
   return (
     <>
       <StyledIconButton
+        aria-label="Open account menu"
+        aria-controls="menuPopover"
+        aria-haspopup="true"
         onClick={(event) => {
           setAnchorElement(event.currentTarget);
         }}
@@ -70,20 +70,11 @@ const AccountButton = () => {
         anchorEl={anchorElement}
         onClose={onClose}
         onExited={() => {
-          if (shouldSignOutRef.current === true) {
-            window.localStorage.removeItem("token");
-
-            batch(() => {
-              dispatch(setCredentials({}));
-              dispatch(setIsUserRemembered(false));
-            });
-
-            if (router.pathname.includes("portfolio") === false) {
-              router.push("/portfolio");
-            }
-
-            shouldSignOutRef.current = false;
-          }
+          onMenuExit({
+            shouldSignOutRef,
+            dispatch,
+            router,
+          });
         }}
       >
         {credentials.token !== undefined ? (

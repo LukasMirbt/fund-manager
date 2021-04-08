@@ -20,7 +20,8 @@ const dataGridCSS = css`
 
   & {
     width: 100%;
-    height: 66%;
+    height: 60%;
+    min-height: 500px;
   }
 
   .MuiDataGrid-colCellTitle {

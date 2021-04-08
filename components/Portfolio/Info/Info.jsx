@@ -11,10 +11,9 @@ const Container = styled.div`
   padding: 1.5rem;
   border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`};
 
-  height: 34%;
+  height: 40%;
+  min-height: 300px;
   width: 100%;
-
-  overflow: auto;
 `;
 
 const InfoRow = styled.div`

@@ -28,7 +28,7 @@ const ChangeTimespan = () => {
     <Container>
       <StyledDatePicker
         label="Start date"
-        ariaLabel="Change start date"
+        ariaLabel="Open start date dialog"
         selectedDate={dateParameters.start}
         onSelect={(date) => {
           batch(() => {
@@ -45,7 +45,7 @@ const ChangeTimespan = () => {
       />
       <StyledDatePicker
         label="End date"
-        ariaLabel="Change end date"
+        dialogButtonAriaLabel="Open end date dialog"
         selectedDate={dateParameters.end}
         onSelect={(date) => {
           batch(() => {

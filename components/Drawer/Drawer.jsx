@@ -1,14 +1,54 @@
 import React from "react";
-import TemporaryDrawer from "./TemporaryDrawer";
-import { useMediaQuery } from "@material-ui/core";
-import DrawerComponent from "./DrawerComponent";
+import styled from "styled-components";
+import MUITemporaryDrawer from "@material-ui/core/Drawer";
+import { useDispatch, useSelector } from "react-redux";
+import { getIsTemporaryDrawerOpen } from "../../redux/selectors";
+import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
+import Toolbar from "@material-ui/core/Toolbar";
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from "@material-ui/core/IconButton";
+import Tabs from "../DrawerTabs/DrawerTabs";
+
+const StyledDrawer = styled.nav`
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  width: ${({ theme }) => `${theme.drawerWidth}px`};
+`;
 
 const Drawer = () => {
-  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const dispatch = useDispatch();
+
+  const isTemporaryDrawerOpen = useSelector((state) =>
+    getIsTemporaryDrawerOpen(state)
+  );
 
   return (
-    /*  isSmallScreen === true ? */ <TemporaryDrawer />
-  ); /* : <DrawerComponent />; */
+    <MUITemporaryDrawer
+      anchor="left"
+      open={isTemporaryDrawerOpen}
+      onClose={() => {
+        dispatch(setIsTemporaryDrawerOpen(false));
+      }}
+    >
+      <StyledDrawer>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label={"Close navigation"}
+            onClick={() => {
+              dispatch(setIsTemporaryDrawerOpen(!isTemporaryDrawerOpen));
+            }}
+            edge="start"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+
+        <Tabs />
+      </StyledDrawer>
+    </MUITemporaryDrawer>
+  );
 };
 
 export default Drawer;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
@@ -19,6 +19,7 @@ const loginLabelID = "loginLabel";
 
 const Background = styled.section`
   flex-grow: 1;
+  min-height: 600px;
 
   display: flex;
   align-items: center;
@@ -32,10 +33,16 @@ const Background = styled.section`
 `;
 
 const Title = styled(Typography)`
-  font-size: 2rem;
+  font-size: 1.875rem;
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: center;
+
+  ${({ theme }) => css`
+    @media screen and (min-width: ${`${theme.breakpoints.values["md"]}px`}) {
+      font-size: 2rem;
+    }
+  `}
 `;
 
 const StyledAvatar = styled(Avatar)`
@@ -46,6 +53,7 @@ const StyledAvatar = styled(Avatar)`
 const Container = styled(Paper)`
   flex-direction: column;
   padding: 1.5rem;
+  margin: 1.5rem;
 `;
 
 const StyledMUIContainer = styled(MUIContainer)`

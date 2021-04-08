@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import FundListChart from "./FundListChart";
 import FundListDataGrid from "./FundListDataGrid/FundListDataGrid";
 
@@ -9,14 +9,6 @@ const Container = styled.section`
 
   display: flex;
   overflow: hidden;
-
-  /* position: relative; */
-
-  /*   ${({ theme }) => css`
-    @media screen and (min-width: ${`${theme.breakpoints.values["xl"]}px`}) {
-      border-right: ${`1px solid ${theme.palette.divider}`};
-    }
-  `} */
 `;
 
 const FundList = () => {

@@ -16,7 +16,7 @@ const onSelectionModelChange = ({
 
     container.style.pointerEvents = "none";
     checkbox.style.color = "rgba(0,0,0,0.26)";
-    checkbox.setAttribute("aria-disabled", true);
+    input.setAttribute("disabled", true);
     input.setAttribute("tabIndex", -1);
 
     isCheckboxHeaderDisabledRef.current = true;
@@ -29,7 +29,7 @@ const onSelectionModelChange = ({
 
     container.style.pointerEvents = "";
     checkbox.style.color = "";
-    checkbox.setAttribute("aria-disabled", false);
+    input.removeAttribute("disabled");
     input.setAttribute("tabIndex", 0);
 
     isCheckboxHeaderDisabledRef.current = false;

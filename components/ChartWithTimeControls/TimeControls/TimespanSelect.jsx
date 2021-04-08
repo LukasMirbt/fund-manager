@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { END_DATE, START_DATE } from "../../common/constants";
 import { subMonths } from "date-fns";
 import { batch, useDispatch, useSelector } from "react-redux";
@@ -12,6 +9,7 @@ import {
   setDateParameters,
   setSelectedTimespan,
 } from "../../../redux/general/actionCreators";
+import TextField from "@material-ui/core/TextField";
 
 const timespans = [
   { value: "max", label: "Max" },
@@ -23,7 +21,7 @@ const timespans = [
 
 const labelID = "timespanSelectLabel";
 
-const StyledSelect = styled(Select)`
+const StyledTextField = styled(TextField)`
   width: 300px;
 `;
 
@@ -63,25 +61,24 @@ const TimeControls = () => {
   };
 
   return (
-    <FormControl variant="filled">
-      <InputLabel id={labelID}>Select timespan</InputLabel>
-      <StyledSelect
-        labelId={labelID}
-        id="timespanSelect"
-        value={selectedTimespan}
-        onChange={onChange}
-        label="Select timespan"
-      >
-        <MenuItem value="">
-          <em>None</em>
+    <StyledTextField
+      variant="filled"
+      value={selectedTimespan}
+      onChange={onChange}
+      id={labelID}
+      label="Select timespan"
+      select
+    >
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
+
+      {timespans.map(({ value, label }) => (
+        <MenuItem key={value} value={value}>
+          {label}
         </MenuItem>
-        {timespans.map(({ value, label }) => (
-          <MenuItem key={value} value={value}>
-            {label}
-          </MenuItem>
-        ))}
-      </StyledSelect>
-    </FormControl>
+      ))}
+    </StyledTextField>
   );
 };
 

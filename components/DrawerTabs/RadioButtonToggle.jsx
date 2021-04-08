@@ -33,11 +33,15 @@ const RadioButtonToggle = ({
     setValue(value);
   };
 
+  const groupLabelID = `${groupLabel}-label`;
+
   return (
     <StyledFormControl className={className} component="fieldset">
-      <FormLabel component="legend">{groupLabel}</FormLabel>
+      <FormLabel id={groupLabelID} component="legend">
+        {groupLabel}
+      </FormLabel>
       <RadioGroup
-        aria-label={groupLabel}
+        aria-labelledby={groupLabel}
         name={groupLabel}
         value={value}
         onChange={onChange}

@@ -26,6 +26,7 @@ config.autoAddCss = false;
 const Row = styled.div`
   display: flex;
   height: calc(100% - 56px);
+  overflow: auto;
 
   @media (min-width: 0px) and (orientation: landscape) {
     height: calc(100% - 48px);

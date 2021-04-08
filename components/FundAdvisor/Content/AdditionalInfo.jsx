@@ -64,12 +64,23 @@ const AdditionalInfo = ({ fundIndex }) => {
         <Subheading variant="h6" component="h3">
           Additional information
         </Subheading>
-        <IndexFund variant="subtitle1">{`Index fund: ${indexFund}`}</IndexFund>
+
+        <IndexFund
+          variant="subtitle1"
+          component="p"
+        >{`Index fund: ${indexFund}`}</IndexFund>
+
         <Row>
-          <Rating variant="subtitle1"> {`Morningstar rating: `}</Rating>
+          <Rating variant="subtitle1" component="p">
+            {`Morningstar rating: `}
+          </Rating>
+
           <StarGroup value={morningstarRating} />
         </Row>
-        <Identifier> {`ISIN: ${ISIN}`}</Identifier>{" "}
+
+        <Identifier variant="subtitle1" component="p">
+          {`ISIN: ${ISIN}`}
+        </Identifier>
       </Column>
     </>
   );

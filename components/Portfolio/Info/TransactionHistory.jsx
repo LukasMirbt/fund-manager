@@ -9,7 +9,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 33%;
-  padding-right: 1rem;
+  padding-right: 0.5rem;
 `;
 
 const List = styled.ul`

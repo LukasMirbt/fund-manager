@@ -4,8 +4,11 @@ import styled from "styled-components";
 import Content from "./Content/Content";
 import Intro from "./Intro";
 import FundAdvisorChart from "./FundAdvisorChart";
-import { getIsIntroShowing } from "../../redux/selectors";
-import { recommendedFundsLabelID } from "./Content/Heading";
+import {
+  getIsChartShowingForSmallScreens,
+  getIsIntroShowing,
+} from "../../redux/selectors";
+import { fundAdvisorLabelID } from "./Content/Heading";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const Container = styled.section`
@@ -14,29 +17,33 @@ const Container = styled.section`
   height: 100%;
 `;
 
-const RecommendedFunds = () => {
+const FundAdvisor = () => {
   const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
 
   const [fundIndex, setFundIndex] = useState(0);
 
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
+  const isChartShowingForSmallScreens = useSelector((state) =>
+    getIsChartShowingForSmallScreens(state)
+  );
+
   return (
     <>
       {isIntroShowing === true ? (
         <Intro />
       ) : (
-        <Container
-          aria-labelledby={recommendedFundsLabelID}
-          sc={{ isIntroShowing }}
-          data-testid="RecommendedFunds"
-        >
-          {isLargeScreen === true && <FundAdvisorChart fundIndex={fundIndex} />}
-          <Content fundIndex={fundIndex} setFundIndex={setFundIndex} />
+        <Container aria-labelledby={fundAdvisorLabelID} sc={{ isIntroShowing }}>
+          <FundAdvisorChart fundIndex={fundIndex} />
+
+          {(isLargeScreen === true ||
+            isChartShowingForSmallScreens === false) && (
+            <Content fundIndex={fundIndex} setFundIndex={setFundIndex} />
+          )}
         </Container>
       )}
     </>
   );
 };
 
-export default RecommendedFunds;
+export default FundAdvisor;

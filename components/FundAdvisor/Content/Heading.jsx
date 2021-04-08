@@ -24,7 +24,7 @@ const Recommendation = styled(Typography)`
   }};
 `;
 
-export const recommendedFundsLabelID = "recommendedFundsLabel";
+export const fundAdvisorLabelID = "fundAdvisorLabel";
 
 const RecommendedText = ({ fundIndex }) => {
   const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
@@ -32,7 +32,7 @@ const RecommendedText = ({ fundIndex }) => {
   const [recommendedFundName, recommendation] = recommendedFunds[fundIndex];
 
   return (
-    <Heading id={recommendedFundsLabelID} variant="h3" component="h2">
+    <Heading id={fundAdvisorLabelID} variant="h3" component="h2">
       <Recommendation
         variant="h3"
         component="span"

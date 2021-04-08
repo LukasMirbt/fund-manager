@@ -4,16 +4,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getCredentials,
-  getIsTemporaryDrawerOpen,
-} from "../../redux/selectors";
+import { getIsTemporaryDrawerOpen } from "../../redux/selectors";
 import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { useRouter } from "next/router";
 import AccountButton from "./AccountButton/AccountButton";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ToggleChartButton from "./ToggleChartButton";
 
 const MenuButton = styled(IconButton)`
@@ -44,18 +40,10 @@ const DrawerAppBar = () => {
 
   const dispatch = useDispatch();
 
-  const toggleDrawer = () => {
-    dispatch(setIsTemporaryDrawerOpen(!isTemporaryDrawerOpen));
-  };
-
   const { pathname } = useRouter();
 
   const title =
     pathname === "/" ? "fund list" : pathname.slice(1).replace(/-+/g, " ");
-
-  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-
-  const credentials = useSelector((state) => getCredentials(state));
 
   return (
     <StyledAppBar color="primary" position="static">
@@ -63,22 +51,22 @@ const DrawerAppBar = () => {
         <Row>
           <MenuButton
             color="inherit"
-            aria-label={"Open navigation"}
-            onClick={toggleDrawer}
+            aria-label="Open navigation"
+            onClick={() => {
+              dispatch(setIsTemporaryDrawerOpen(!isTemporaryDrawerOpen));
+            }}
             edge="start"
           >
             <MenuIcon />
           </MenuButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" component="h1" noWrap>
             {title[0].toUpperCase() + title.slice(1)}
           </Typography>
         </Row>
 
         <Row>
-          {isLargeScreen === false &&
-            pathname.includes("fund-advisor") === false &&
-            (pathname.includes("portfolio") === false ||
-              credentials.token !== undefined) && <ToggleChartButton />}
+          <ToggleChartButton />
+
           <AccountButton />
         </Row>
       </StyledToolbar>

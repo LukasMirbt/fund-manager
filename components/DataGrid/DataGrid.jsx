@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { DataGrid as MUIDataGrid, GridToolbar } from "@material-ui/data-grid";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +10,6 @@ import {
   getIsFundListShowing,
 } from "../../redux/selectors";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-/* const Container = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-
-  ${({ sc: { containerCSS } }) => containerCSS};
-`; */
 
 const StyledDataGrid = styled(MUIDataGrid)`
   border: unset;
@@ -31,29 +23,12 @@ const StyledDataGrid = styled(MUIDataGrid)`
     }
   `}
 
-  ${({ sc: { containerCSS } }) => containerCSS};
-
   &.MuiDataGrid-root .MuiDataGrid-toolbar {
     padding: 0.5rem;
     padding-bottom: 0;
   }
 
-  /*   .MuiDataGrid-window {
-    width: 100%;
-    height: calc(100% - 52px);
-    left: unset;
-    right: unset;
-  }
- */
-  /*   .MuiDataGrid-colCellTitle {
-    text-overflow: unset;
-    line-height: normal;
-    white-space: normal;
-    display: flex;
-    align-items: center;
-    height: 56px;
-  }
- */
+  ${({ sc: { containerCSS } }) => containerCSS};
 `;
 
 const rowsPerPageOptions = [];
@@ -91,6 +66,19 @@ const DataGrid = ({
   );
 
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
+  useEffect(() => {
+    //container doesn't exist if this isn't executed at the end of the event queue for some reason
+    setTimeout(() => {
+      const container = document.getElementsByClassName(
+        "MuiDataGrid-colCellCheckbox"
+      )[0];
+
+      const input = container.getElementsByTagName("input")[0];
+
+      input.setAttribute("aria-label", "Unselect all rows checkbox");
+    });
+  }, []);
 
   return isFundListShowing === true &&
     (isLargeScreen === true || isChartShowingForSmallScreens === false) ? (

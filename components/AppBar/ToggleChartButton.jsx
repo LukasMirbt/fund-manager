@@ -7,8 +7,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "@material-ui/core/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { getIsChartShowingForSmallScreens } from "../../redux/selectors";
+import {
+  getCredentials,
+  getIsChartShowingForSmallScreens,
+  getIsIntroShowing,
+} from "../../redux/selectors";
 import { setIsChartShowingForSmallScreens } from "../../redux/general/actionCreators";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useRouter } from "next/router";
 
 const Icon = styled(FontAwesomeIcon)`
   && {
@@ -38,7 +44,22 @@ const ToggleChartButton = () => {
     setIsInitialRender(false);
   }, []);
 
-  return isInitialRender === false ? (
+  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
+  const credentials = useSelector((state) => getCredentials(state));
+
+  const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
+
+  const { pathname } = useRouter();
+
+  const isShowing =
+    isInitialRender === false &&
+    isLargeScreen === false &&
+    (pathname.includes("portfolio") === false ||
+      credentials.token !== undefined) &&
+    (pathname.includes("fund-advisor") === false || isIntroShowing === false);
+
+  return isShowing === true ? (
     <StyledIconButton
       onClick={() => {
         dispatch(

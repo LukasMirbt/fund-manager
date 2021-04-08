@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ const Container = styled.section`
   justify-content: center;
 
   flex-grow: 1;
+  min-height: 500px;
 
   background-size: cover;
   background-image: url("./investments.jpeg");
@@ -26,11 +27,18 @@ const TextContainer = styled(MUIContainer)`
   flex-direction: column;
   background-color: white;
   padding: 1.5rem;
+  margin: 1.5rem;
 `;
 
 const Title = styled(Typography)`
   padding-bottom: 0.5rem;
-  font-size: 2.5rem;
+  font-size: 1.875rem;
+
+  ${({ theme }) => css`
+    @media screen and (min-width: ${`${theme.breakpoints.values["md"]}px`}) {
+      font-size: 2rem;
+    }
+  `}
 `;
 
 const Text = styled(Typography)`
@@ -43,10 +51,6 @@ const StyledButton = styled(Button)`
   display: flex;
 `;
 
-const recommendedIntroLabelID = "recommendedIntroLabel";
-
-const title = "View our fund recommendations";
-
 const Intro = () => {
   const dispatch = useDispatch();
 
@@ -55,10 +59,10 @@ const Intro = () => {
   };
 
   return (
-    <Container aria-labelledby={recommendedIntroLabelID}>
+    <Container aria-labelledby="introLabel">
       <TextContainer component="div" maxWidth="sm">
-        <Title id={recommendedIntroLabelID} variant="h3" component="h2">
-          {title}
+        <Title id="introLabel" variant="h3" component="h2">
+          View our fund recommendations
         </Title>
 
         <Text variant="body1" component="p">
