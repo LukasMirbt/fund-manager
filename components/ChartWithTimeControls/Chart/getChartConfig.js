@@ -1,25 +1,21 @@
-const getChartConfig = (
-  datasets,
-  isDataDownsampled
-  /*   min,
-  max */
-) => ({
+const padding = 24;
+
+const getChartConfig = (datasets, isDataDownsampled) => ({
   type: "line",
   data: {
     datasets,
   },
   options: {
-    /*     responsive: false, */
     maintainAspectRatio: false,
     tooltips: {
       displayColors: false,
     },
     layout: {
       padding: {
-        left: 24,
-        right: 24,
-        top: 24,
-        bottom: 24,
+        left: padding,
+        right: padding,
+        top: padding,
+        bottom: padding,
       },
     },
     elements: {
@@ -37,18 +33,11 @@ const getChartConfig = (
       threshold: isDataDownsampled === true ? 100 : "",
     },
     legend: {
-      /*       display: false, */
       position: "top",
-      /*       labels: {
-        boxWidth: 0,
-      }, */
     },
     scales: {
       xAxes: [
         {
-          ticks: {
-            /* fontSize: 0.75 * REMInPXNumber */
-          },
           time: {
             tooltipFormat: "ll",
           },
@@ -56,15 +45,6 @@ const getChartConfig = (
             display: false,
           },
           type: "time",
-        },
-      ],
-      yAxes: [
-        {
-          ticks: {
-            /* fontSize: 0.75 * REMInPXNumber, */
-            /*          min,
-            max, */
-          },
         },
       ],
     },

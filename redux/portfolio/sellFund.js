@@ -2,15 +2,17 @@ import axios from "axios";
 import { batch } from "react-redux";
 import getTotalPortfolioData from "../../components/Portfolio/getTotalPortfolioData";
 import {
+  setAlertSettings,
   setData,
   setFundData,
-  showNotification,
 } from "../general/actionCreators";
 import {
   setBalance,
   setInfoFundName,
+  setNumberOfSharesToSell,
   setPortfolio,
   setPortfolioFundNames,
+  setSelectedFundNameToSell,
 } from "./actionCreators";
 
 export const sellFund = ({ fundName, numberOfShares }) => async (
@@ -94,8 +96,12 @@ export const sellFund = ({ fundName, numberOfShares }) => async (
         );
       }
 
+      dispatch(setSelectedFundNameToSell(null));
+      dispatch(setNumberOfSharesToSell(""));
+
       dispatch(
-        showNotification({
+        setAlertSettings({
+          isOpen: true,
           text: `Sold ${numberOfShares} ${
             numberOfShares > 1 ? "shares" : "share"
           } of ${fundName}`,

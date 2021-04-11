@@ -2,24 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { getNumberOfSharesToSell } from "../../../../redux/selectors";
-import { setNumberOfSharesToSell } from "../../../../redux/portfolio/actionCreators";
+import { getNumberOfSharesToBuy } from "../../../../../redux/selectors";
+import { setNumberOfSharesToBuy } from "../../../../../redux/portfolio/actionCreators";
 
 const StyledTextField = styled(TextField)`
   margin-bottom: 1rem;
 `;
 
 const NumberOfSharesSelect = () => {
-  const numberOfSharesToSell = useSelector((state) =>
-    getNumberOfSharesToSell(state)
+  const numberOfSharesToBuy = useSelector((state) =>
+    getNumberOfSharesToBuy(state)
   );
   const dispatch = useDispatch();
 
   return (
     <StyledTextField
-      value={numberOfSharesToSell}
+      value={numberOfSharesToBuy}
       onChange={(event) => {
-        dispatch(setNumberOfSharesToSell(event.target.value));
+        dispatch(setNumberOfSharesToBuy(event.target.value));
       }}
       InputLabelProps={{
         shrink: true,

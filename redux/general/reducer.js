@@ -5,10 +5,6 @@ import {
   SET_IS_TEMPORARY_DRAWER_OPEN,
   SET_IS_DRAWER_OPEN,
   SET_ARE_DATASETS_SHOWING,
-  SET_IS_SNACKBAR_HIDDEN,
-  SET_SNACKBAR_TEXT,
-  SHOW_NOTIFICATION,
-  SET_SNACKBAR_SEVERITY,
   SET_INITIAL_OPEN_DRAWER_TAB_INDEX,
   SET_DATE_PARAMETERS,
   SET_IS_DATA_DOWNSAMPLED,
@@ -33,6 +29,9 @@ import {
   SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
   SET_IS_USER_REMEMBERED,
   SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
+  SET_ALERT_SETTINGS,
+  RESET_SIGN_IN_STATE,
+  RESET_SIGN_UP_STATE,
 } from "./actionTypes";
 
 const general = (state = {}, action) => {
@@ -71,29 +70,6 @@ const general = (state = {}, action) => {
     case SET_ARE_DATASETS_SHOWING: {
       const newState = { ...state };
       newState.areDatasetsShowing = action.payload;
-      return newState;
-    }
-    case SET_IS_SNACKBAR_HIDDEN: {
-      const newState = { ...state };
-      newState.isSnackbarHidden = action.payload;
-      return newState;
-    }
-    case SET_SNACKBAR_TEXT: {
-      const newState = { ...state };
-      newState.snackbarText = action.payload;
-      return newState;
-    }
-    case SET_SNACKBAR_SEVERITY: {
-      const newState = { ...state };
-      newState.snackbarSeverity = action.payload;
-      return newState;
-    }
-    case SHOW_NOTIFICATION: {
-      const { text, severity } = action.payload;
-      const newState = { ...state };
-      newState.snackbarText = text;
-      newState.snackbarSeverity = severity;
-      newState.isSnackbarHidden = false;
       return newState;
     }
     case SET_INITIAL_OPEN_DRAWER_TAB_INDEX: {
@@ -156,7 +132,6 @@ const general = (state = {}, action) => {
       newState.signInPasswordInputValue = action.payload;
       return newState;
     }
-
     case SET_SIGN_UP_USERNAME_INPUT_VALUE: {
       const newState = { ...state };
       newState.signUpUsernameInputValue = action.payload;
@@ -215,6 +190,27 @@ const general = (state = {}, action) => {
     case SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS: {
       const newState = { ...state };
       newState.isChartShowingForSmallScreens = action.payload;
+      return newState;
+    }
+    case SET_ALERT_SETTINGS: {
+      const newState = { ...state };
+      newState.alertSettings = { ...state.alertSettings, ...action.payload };
+      return newState;
+    }
+    case RESET_SIGN_IN_STATE: {
+      const newState = { ...state };
+      newState.signInUsernameInputValue = "";
+      newState.signInPasswordInputValue = "";
+      newState.signInUsernameErrorMessage = null;
+      newState.signInPasswordErrorMessage = null;
+      return newState;
+    }
+    case RESET_SIGN_UP_STATE: {
+      const newState = { ...state };
+      newState.signUpUsernameInputValue = "";
+      newState.signUpPasswordInputValue = "";
+      newState.signUpUsernameErrorMessage = null;
+      newState.signUpPasswordErrorMessage = null;
       return newState;
     }
     default:

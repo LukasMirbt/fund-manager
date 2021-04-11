@@ -1,16 +1,15 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { getIsTemporaryDrawerOpen } from "../../redux/selectors";
 import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
-import AppBar from "@material-ui/core/AppBar";
+import MUIAppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import { useRouter } from "next/router";
 import AccountButton from "./AccountButton/AccountButton";
 import ToggleChartButton from "./ToggleChartButton";
+import AppBarTitle from "./AppBarTitle";
 
 const MenuButton = styled(IconButton)`
   margin-right: 1.25rem;
@@ -29,21 +28,16 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const StyledAppBar = styled(AppBar)`
+const StyledAppBar = styled(MUIAppBar)`
   position: relative;
 `;
 
-const DrawerAppBar = () => {
+const AppBar = () => {
   const isTemporaryDrawerOpen = useSelector((state) =>
     getIsTemporaryDrawerOpen(state)
   );
 
   const dispatch = useDispatch();
-
-  const { pathname } = useRouter();
-
-  const title =
-    pathname === "/" ? "fund list" : pathname.slice(1).replace(/-+/g, " ");
 
   return (
     <StyledAppBar color="primary" position="static">
@@ -59,9 +53,8 @@ const DrawerAppBar = () => {
           >
             <MenuIcon />
           </MenuButton>
-          <Typography variant="h6" component="h1" noWrap>
-            {title[0].toUpperCase() + title.slice(1)}
-          </Typography>
+
+          <AppBarTitle />
         </Row>
 
         <Row>
@@ -74,4 +67,4 @@ const DrawerAppBar = () => {
   );
 };
 
-export default DrawerAppBar;
+export default AppBar;

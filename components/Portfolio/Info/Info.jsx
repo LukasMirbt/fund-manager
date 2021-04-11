@@ -7,7 +7,7 @@ import Summary from "./Summary";
 import TitleRow from "./TitleRow";
 import Rating from "./Rating";
 
-const Container = styled.div`
+const Container = styled.section`
   padding: 1.5rem;
   border-left: ${({ theme }) => `1px solid ${theme.palette.divider}`};
 
@@ -24,7 +24,7 @@ const Info = ({ portfolioTableDataByFundName }) => {
   const infoFundName = useSelector((state) => getInfoFundName(state));
 
   return infoFundName !== null ? (
-    <Container>
+    <Container aria-label={`Fund information about ${infoFundName}`}>
       <TitleRow />
 
       <InfoRow>

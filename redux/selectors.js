@@ -12,9 +12,6 @@ export const getIsTemporaryDrawerOpen = (state) =>
 export const getIsDrawerOpen = (state) => state.general.isDrawerOpen;
 export const getAreDatasetsShowing = (state) =>
   state.general.areDatasetsShowing;
-export const getIsSnackbarHidden = (state) => state.general.isSnackbarHidden;
-export const getSnackbarText = (state) => state.general.snackbarText;
-export const getSnackbarSeverity = (state) => state.general.snackbarSeverity;
 export const getPatterns = (state) => state.general.patterns;
 export const getInitialOpenDrawerTabIndex = (state) =>
   state.general.initialOpenDrawerTabIndex;
@@ -50,6 +47,7 @@ export const getSignUpUsernameErrorMessage = (state) =>
 export const getIsUserRemembered = (state) => state.general.isUserRemembered;
 export const getIsChartShowingForSmallScreens = (state) =>
   state.general.isChartShowingForSmallScreens;
+export const getAlertSettings = (state) => state.general.alertSettings;
 
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;

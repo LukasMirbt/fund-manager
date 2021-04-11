@@ -56,12 +56,18 @@ const createInitialState = async () => {
       isChartShowingForSmallScreens: false,
       fundNamesCurrentlyBeingLoaded: [],
 
+      alertSettings: {
+        isOpen: false,
+        text: "",
+        severity: "success",
+      },
+
       exchangeRates,
 
       isDrawerOpen: true,
       isTemporaryDrawerOpen: false,
       initialOpenDrawerTabIndex: null,
-      isSnackbarHidden: true,
+
       areDatasetsShowing: true,
       patterns: [
         ["dash", "#006400"],

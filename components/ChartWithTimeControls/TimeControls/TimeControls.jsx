@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import ChangeTimespanButton from "./ChangeTimespanButton";
-import SettingsButton from "./SettingsButton";
+import OpenTimespanSettingsButton from "./OpenTimespanSettingsButton";
+import OpenSettingsButton from "./OpenSettingsButton";
 import TimespanSelect from "./TimespanSelect";
 
 export const TIME_CONTROLS_HEIGHT = 72;
@@ -18,9 +18,9 @@ const Container = styled.div`
 const TimeControls = () => {
   return (
     <Container>
-      <ChangeTimespanButton />
+      <OpenTimespanSettingsButton />
       <TimespanSelect />
-      <SettingsButton />
+      <OpenSettingsButton />
     </Container>
   );
 };

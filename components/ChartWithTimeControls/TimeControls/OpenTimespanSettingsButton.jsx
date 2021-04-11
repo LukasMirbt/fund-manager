@@ -13,7 +13,7 @@ const StyledButton = styled(IconButton)`
   margin-right: 0.5rem;
 `;
 
-const ChangeTimespanButton = () => {
+const OpenTimespanSettingsButton = () => {
   const dispatch = useDispatch();
 
   return (
@@ -32,4 +32,4 @@ const ChangeTimespanButton = () => {
   );
 };
 
-export default ChangeTimespanButton;
+export default OpenTimespanSettingsButton;

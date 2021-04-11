@@ -1,19 +1,29 @@
 import axios from "axios";
 import { batch } from "react-redux";
 import {
+  setAlertSettings,
   setIsSignUpShowing,
   setSignUpPasswordErrorMessage,
   setSignUpUsernameErrorMessage,
 } from "../../../redux/general/actionCreators";
 
-const signUp = async ({ username, password, dispatch }) => {
+const onSignUp = async ({ username, password, dispatch }) => {
   try {
     await axios.post("/api/createAccount", {
       username,
       password,
     });
 
-    dispatch(setIsSignUpShowing(false));
+    batch(() => {
+      dispatch(setIsSignUpShowing(false));
+      dispatch(
+        setAlertSettings({
+          isOpen: true,
+          text: `User ${username} created successfully`,
+          severity: "success",
+        })
+      );
+    });
   } catch ({ response }) {
     const { usernameError, passwordError } = response.data;
 
@@ -24,4 +34,4 @@ const signUp = async ({ username, password, dispatch }) => {
   }
 };
 
-export default signUp;
+export default onSignUp;

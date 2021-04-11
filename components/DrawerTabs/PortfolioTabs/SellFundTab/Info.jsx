@@ -11,11 +11,13 @@ import {
 import Typography from "@material-ui/core/Typography";
 import adjustValueByCurrency from "../adjustValueByCurrency";
 
-const Value = styled(Typography)``;
+const Value = styled(Typography)`
+  font-weight: bold;
+`;
 
 const Shares = styled(Typography)``;
 
-const Numbers = () => {
+const Info = () => {
   const selectedFundNameToSell = useSelector((state) =>
     getSelectedFundNameToSell(state)
   );
@@ -30,9 +32,9 @@ const Numbers = () => {
 
   const exchangeRates = useSelector((state) => getExchangeRates(state));
 
-  let sellValue = "-";
+  let sellValue = " - ";
 
-  if (selectedFundNameToSell !== null && numberOfSharesToSell !== 0) {
+  if (selectedFundNameToSell !== null && numberOfSharesToSell !== "") {
     const { yData } = data[selectedFundNameToSell].chartData;
 
     sellValue = `${adjustValueByCurrency({
@@ -42,7 +44,7 @@ const Numbers = () => {
     }).toFixed(2)} SEK`;
   }
 
-  let currentNumberOfShares = "-";
+  let currentNumberOfShares = " - ";
 
   if (selectedFundNameToSell !== null) {
     currentNumberOfShares = portfolio[selectedFundNameToSell].shares;
@@ -50,10 +52,13 @@ const Numbers = () => {
 
   return (
     <>
-      <Shares>{`Current number of shares: ${currentNumberOfShares}`}</Shares>
-      <Value>{`Value: ${sellValue}`}</Value>
+      <Shares
+        variant="subtitle1"
+        component="p"
+      >{`Current number of shares: ${currentNumberOfShares}`}</Shares>
+      <Value variant="subtitle1" component="p">{`Value: ${sellValue}`}</Value>
     </>
   );
 };
 
-export default Numbers;
+export default Info;

@@ -1,5 +1,6 @@
 import pattern from "patternomaly";
 import { primaryColor } from "../../theme";
+import { START_DATE, END_DATE } from "../../common/constants";
 
 const getChartDataset = ({
   data,
@@ -12,38 +13,42 @@ const getChartDataset = ({
 }) => {
   const { xData, yData } = data[fundName].chartData;
 
-  const startDate = dateParameters.start || new Date(0);
+  const startDate = dateParameters.start || START_DATE;
+  const endDate = dateParameters.end || END_DATE;
 
-  const endDate = dateParameters.end || new Date();
+  let firstXDataIndex;
 
-  const xDataFilteredByStartDate = xData.filter((date) => date >= startDate);
+  for (let index = 0; index < xData.length; index += 1) {
+    if (xData[index] >= startDate) {
+      firstXDataIndex = index;
+      break;
+    }
+  }
 
-  const filteredXData = xDataFilteredByStartDate.filter(
-    (date) => date <= endDate
-  );
+  let lastXDataIndex;
 
-  const numberToRemoveFromStartOfYData =
-    xData.length - xDataFilteredByStartDate.length;
+  for (let index = xData.length; index >= 0; index -= 1) {
+    if (xData[index] <= endDate) {
+      lastXDataIndex = index;
+      break;
+    }
+  }
 
-  const numberToRemoveFromEndOfYData =
-    xDataFilteredByStartDate.length - filteredXData.length;
+  const xDataInTimespan = xData.slice(firstXDataIndex, lastXDataIndex + 1);
+  const yDataInTimespan = yData.slice(firstXDataIndex, lastXDataIndex + 1);
 
-  const filteredYData = yData.slice(
-    numberToRemoveFromStartOfYData,
-    yData.length - numberToRemoveFromEndOfYData
-  );
-
-  let filteredChartData;
+  let chartData;
 
   if (isDataInPercent === true) {
-    filteredChartData = filteredXData.map((date, index) => ({
+    chartData = xDataInTimespan.map((date, index) => ({
       x: date,
-      y: Math.round((filteredYData[index] / filteredYData[0]) * 10000) / 100,
+      y:
+        Math.round((yDataInTimespan[index] / yDataInTimespan[0]) * 10000) / 100,
     }));
   } else {
-    filteredChartData = filteredXData.map((date, index) => ({
+    chartData = xDataInTimespan.map((date, index) => ({
       x: date,
-      y: filteredYData[index],
+      y: yDataInTimespan[index],
     }));
   }
 
@@ -62,10 +67,6 @@ const getChartDataset = ({
     label: fundName,
     backgroundColor: color,
     borderColor: color,
-    /*     backgroundColor,
-    borderColor: backgroundColor, */
-    /*  pointBorderColor: '#4ef442', */
-    /* pointBackgroundColor: '#fff', */
     pointBorderWidth: 1,
     pointHoverRadius: 0,
     pointHoverBackgroundColor: "black",
@@ -73,7 +74,7 @@ const getChartDataset = ({
     pointHoverBorderWidth: 2,
     pointRadius: 0.1,
     pointHitRadius: 10,
-    data: filteredChartData,
+    data: chartData,
   };
 };
 export default getChartDataset;

@@ -17,15 +17,13 @@ import { TIME_CONTROLS_HEIGHT } from "../TimeControls/TimeControls";
 
 const ChartContainer = styled.div`
   width: 100%;
-  /*   height: 100%; */
   height: ${`calc(100% - ${TIME_CONTROLS_HEIGHT}px)`};
   position: relative;
 `;
 
-export const CHART_ID = "chartID";
-const CANVAS_ID = "chartCanvas";
+const canvasID = "chartCanvas";
 
-const Chart = ({ fundNames /* max, min */ }) => {
+const Chart = ({ fundNames }) => {
   const isDataDownsampled = useSelector((state) => getIsDataDownsampled(state));
   const data = useSelector((state) => getData(state));
   const isDataInPercent = useSelector((state) => getIsDataInPercent(state));
@@ -50,12 +48,13 @@ const Chart = ({ fundNames /* max, min */ }) => {
       })
     );
 
+    //Chart will move when moused over along with other buggy behavior if the previous chart instance is not destroyed
     if (chartRef.current !== undefined && chartRef.current !== null) {
       chartRef.current.destroy();
     }
 
     chartRef.current = new ChartJSChart(
-      CANVAS_ID,
+      canvasID,
       getChartConfig(datasets, isDataDownsampled)
     );
   }, [
@@ -69,12 +68,11 @@ const Chart = ({ fundNames /* max, min */ }) => {
   ]);
 
   return (
-    <ChartContainer id="chartContainer">
+    <ChartContainer>
       <canvas
         role="img"
         aria-label="A chart displaying selected fund courses over time"
-        data-testid="Chart"
-        id={CANVAS_ID}
+        id={canvasID}
       />
     </ChartContainer>
   );

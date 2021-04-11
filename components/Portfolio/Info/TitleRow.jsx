@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 300px;
-  /*   margin-bottom: 1rem; */
 `;
 
 const Container = styled.div`

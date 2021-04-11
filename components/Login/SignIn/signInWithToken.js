@@ -43,6 +43,8 @@ const signInWithToken = (token) => async (dispatch, getState) => {
       exchangeRates,
     });
 
+    const isPortfolioEmpty = totalPortfolioData === null;
+
     batch(() => {
       dispatch(
         setCredentials({
@@ -53,7 +55,7 @@ const signInWithToken = (token) => async (dispatch, getState) => {
 
       dispatch(setData(newData));
 
-      if (totalPortfolioData !== null) {
+      if (isPortfolioEmpty === false) {
         dispatch(
           setFundData({
             fundName: "Total",

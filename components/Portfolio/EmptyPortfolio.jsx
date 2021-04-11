@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { useRouter } from "next/router";
 import { batch, useDispatch } from "react-redux";
 import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
 import { setIsBuyFundDialogOpen } from "../../redux/portfolio/actionCreators";

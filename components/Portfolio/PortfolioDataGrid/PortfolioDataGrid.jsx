@@ -1,17 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { css } from "styled-components";
-import {
-  getData,
-  getExchangeRates,
-  getPortfolio,
-} from "../../../redux/selectors";
 import DataGrid from "../../DataGrid/DataGrid";
 import columns from "./columns";
 import { setPortfolioFundNames } from "../../../redux/portfolio/actionCreators";
 import { getPortfolioFundNames } from "../../../redux/selectors";
-import adjustValueByCurrency from "../../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
-import getFundAcquisitionValue from "../getFundAquisitionValue";
 
 const sortingOrder = ["asc", "desc"];
 

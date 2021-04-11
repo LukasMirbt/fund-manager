@@ -14,7 +14,7 @@ const StyledButton = styled(IconButton)`
   margin-left: 0.5rem;
 `;
 
-const SettingsButton = () => {
+const OpenSettingsButton = () => {
   const dispatch = useDispatch();
 
   return (
@@ -33,4 +33,4 @@ const SettingsButton = () => {
   );
 };
 
-export default SettingsButton;
+export default OpenSettingsButton;

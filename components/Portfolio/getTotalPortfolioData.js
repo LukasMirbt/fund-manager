@@ -14,28 +14,23 @@ const getTotalPortfolioData = ({
 
   let totalXData;
   const earliestDateByFundName = {};
+  const exchangeRateByFundName = {};
 
-  portfolioChartData.forEach(({ _id, xData }) => {
+  portfolioChartData.forEach(({ _id: fundName, xData }) => {
     const earliestDate = xData[0];
-    earliestDateByFundName[_id] = earliestDate;
+    earliestDateByFundName[fundName] = earliestDate;
 
     if (totalXData === undefined) {
       totalXData = xData;
     } else if (earliestDate < totalXData[0]) {
       totalXData = xData;
     }
-  });
 
-  const exchangeRateByFundName = {};
-
-  portfolioChartData.forEach(({ _id }) => {
-    if (_id.includes("USD") === true) {
-      exchangeRateByFundName[_id] = exchangeRates["USD"];
-    } else if (_id.includes("EUR") === true) {
-      exchangeRateByFundName[_id] = exchangeRates["EUR"];
-    } else {
-      exchangeRateByFundName[_id] = 1;
-    }
+    exchangeRateByFundName[fundName] = adjustValueByCurrency({
+      value: 1,
+      fundName,
+      exchangeRates,
+    });
   });
 
   const startIndexByFundName = {};
@@ -43,14 +38,14 @@ const getTotalPortfolioData = ({
   const totalYData = totalXData.map((date, index) => {
     let totalNAV = 0;
 
-    portfolioChartData.forEach(({ _id, yData }) => {
-      if (earliestDateByFundName[_id] <= date) {
-        if (startIndexByFundName[_id] === undefined) {
-          startIndexByFundName[_id] = index;
+    portfolioChartData.forEach(({ _id: fundName, yData }) => {
+      if (earliestDateByFundName[fundName] <= date) {
+        if (startIndexByFundName[fundName] === undefined) {
+          startIndexByFundName[fundName] = index;
         }
 
-        let value = yData[index - startIndexByFundName[_id]];
-        value *= exchangeRateByFundName[_id];
+        let value = yData[index - startIndexByFundName[fundName]];
+        value *= exchangeRateByFundName[fundName];
         totalNAV += value;
       }
     });
@@ -69,12 +64,12 @@ const getTotalPortfolioData = ({
 
   let totalValue = 0;
 
-  portfolioChartData.forEach(({ _id, yData }) => {
-    const { shares } = portfolio[_id];
+  portfolioChartData.forEach(({ _id: fundName, yData }) => {
+    const { shares } = portfolio[fundName];
 
     const value = adjustValueByCurrency({
-      fundName: _id,
       value: shares * yData[yData.length - 1],
+      fundName,
       exchangeRates,
     });
 

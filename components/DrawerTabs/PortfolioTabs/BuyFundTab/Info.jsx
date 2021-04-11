@@ -14,9 +14,11 @@ const Balance = styled(Typography)``;
 
 const RemainingBalance = styled(Typography)``;
 
-const Cost = styled(Typography)``;
+const Cost = styled(Typography)`
+  font-weight: bold;
+`;
 
-const Numbers = () => {
+const Info = () => {
   const selectedFundNameToBuy = useSelector((state) =>
     getSelectedFundNameToBuy(state)
   );
@@ -31,8 +33,8 @@ const Numbers = () => {
 
   const exchangeRates = useSelector((state) => getExchangeRates(state));
 
-  let cost = "-";
-  let remainingBalance = "-";
+  let cost = " - ";
+  let remainingBalance = " - ";
 
   if (selectedFundNameToBuy !== null && numberOfSharesToBuy !== 0) {
     const { yData } = data[selectedFundNameToBuy].chartData;
@@ -52,11 +54,19 @@ const Numbers = () => {
 
   return (
     <>
-      <Balance>{`Current balance: ${balance.toFixed(2)} SEK`}</Balance>
-      <Cost>{`Cost: ${cost}`}</Cost>
-      <RemainingBalance>{`Remaining balance: ${remainingBalance}`}</RemainingBalance>
+      <Balance
+        variant="subtitle1"
+        component="p"
+      >{`Current balance: ${balance.toFixed(2)} SEK`}</Balance>
+
+      <Cost variant="subtitle1" component="p">{`Cost: ${cost}`}</Cost>
+
+      <RemainingBalance
+        variant="subtitle1"
+        component="p"
+      >{`Remaining balance: ${remainingBalance}`}</RemainingBalance>
     </>
   );
 };
 
-export default Numbers;
+export default Info;

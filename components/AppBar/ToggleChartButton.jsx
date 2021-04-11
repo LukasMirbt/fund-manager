@@ -61,6 +61,9 @@ const ToggleChartButton = () => {
 
   return isShowing === true ? (
     <StyledIconButton
+      aria-label={
+        isChartShowingForSmallScreens === true ? "Hide chart" : "Show chart"
+      }
       onClick={() => {
         dispatch(
           setIsChartShowingForSmallScreens(!isChartShowingForSmallScreens)

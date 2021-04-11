@@ -19,13 +19,11 @@ const timespans = [
   { value: 0.5, label: "6 months" },
 ];
 
-const labelID = "timespanSelectLabel";
-
 const StyledTextField = styled(TextField)`
   width: 300px;
 `;
 
-const TimeControls = () => {
+const TimespanSelect = () => {
   const dispatch = useDispatch();
   const selectedTimespan = useSelector((state) => getSelectedTimespan(state));
 
@@ -65,7 +63,7 @@ const TimeControls = () => {
       variant="filled"
       value={selectedTimespan}
       onChange={onChange}
-      id={labelID}
+      id="timespanSelect"
       label="Select timespan"
       select
     >
@@ -82,4 +80,4 @@ const TimeControls = () => {
   );
 };
 
-export default TimeControls;
+export default TimespanSelect;

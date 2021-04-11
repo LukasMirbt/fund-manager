@@ -49,7 +49,7 @@ const Rating = ({ portfolioTableDataByFundName, fundName }) => {
         <Title variant="h6" component="h3">
           Recommendation
         </Title>
-        <Recommendation variant="subtitle1">
+        <Recommendation variant="subtitle1" component="p">
           {recommendation ?? "No recommendation available"}
         </Recommendation>
       </Column>

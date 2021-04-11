@@ -5,10 +5,6 @@ import {
   SET_IS_TEMPORARY_DRAWER_OPEN,
   SET_IS_DRAWER_OPEN,
   SET_ARE_DATASETS_SHOWING,
-  SET_IS_SNACKBAR_HIDDEN,
-  SET_SNACKBAR_TEXT,
-  SHOW_NOTIFICATION,
-  SET_SNACKBAR_SEVERITY,
   SET_INITIAL_OPEN_DRAWER_TAB_INDEX,
   SET_DATE_PARAMETERS,
   SET_IS_DATA_DOWNSAMPLED,
@@ -33,6 +29,9 @@ import {
   SET_SIGN_UP_USERNAME_ERROR_MESSAGE,
   SET_IS_USER_REMEMBERED,
   SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
+  SET_ALERT_SETTINGS,
+  RESET_SIGN_IN_STATE,
+  RESET_SIGN_UP_STATE,
 } from "./actionTypes";
 
 export const setData = (update) => ({
@@ -67,26 +66,6 @@ export const setIsDrawerOpen = (update) => ({
 
 export const setAreDatasetsShowing = (update) => ({
   type: SET_ARE_DATASETS_SHOWING,
-  payload: update,
-});
-
-export const setIsSnackbarHidden = (update) => ({
-  type: SET_IS_SNACKBAR_HIDDEN,
-  payload: update,
-});
-
-export const setSnackbarText = (update) => ({
-  type: SET_SNACKBAR_TEXT,
-  payload: update,
-});
-
-export const setSnackbarSeverity = (update) => ({
-  type: SET_SNACKBAR_SEVERITY,
-  payload: update,
-});
-
-export const showNotification = (update) => ({
-  type: SHOW_NOTIFICATION,
   payload: update,
 });
 
@@ -203,4 +182,17 @@ export const setIsUserRemembered = (update) => ({
 export const setIsChartShowingForSmallScreens = (update) => ({
   type: SET_IS_CHART_SHOWING_FOR_SMALL_SCREENS,
   payload: update,
+});
+
+export const setAlertSettings = (update) => ({
+  type: SET_ALERT_SETTINGS,
+  payload: update,
+});
+
+export const resetSignInState = () => ({
+  type: RESET_SIGN_IN_STATE,
+});
+
+export const resetSignUpState = () => ({
+  type: RESET_SIGN_UP_STATE,
 });

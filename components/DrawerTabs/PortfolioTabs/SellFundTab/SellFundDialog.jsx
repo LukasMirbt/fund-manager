@@ -1,13 +1,17 @@
 import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import Numbers from "./Numbers";
-import FundNameAutocomplete from "./FundNameAutocomplete";
-import NumberOfSharesSelect from "./NumberOfSharesSelect";
-import Buttons from "./Buttons";
+import Info from "./Info";
+import FundNameAutocomplete from "./Inputs/FundNameAutocomplete";
+import NumberOfSharesSelect from "./Inputs/NumberOfSharesSelect";
+import Buttons from "./Buttons/Buttons";
 import { Column, Title } from "../BuyFundTab/BuyFundDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsSellFundDialogOpen } from "../../../../redux/selectors";
-import { setIsSellFundDialogOpen } from "../../../../redux/portfolio/actionCreators";
+import {
+  setIsSellFundDialogOpen,
+  setNumberOfSharesToSell,
+  setSelectedFundNameToSell,
+} from "../../../../redux/portfolio/actionCreators";
 
 const SellFundDialog = () => {
   const isSellFundDialogOpen = useSelector((state) =>
@@ -23,6 +27,10 @@ const SellFundDialog = () => {
       onClose={() => {
         dispatch(setIsSellFundDialogOpen(false));
       }}
+      onExited={() => {
+        dispatch(setSelectedFundNameToSell(null));
+        dispatch(setNumberOfSharesToSell(""));
+      }}
       aria-labelledby="sell-fund-dialog-title"
     >
       <Title id="sell-fund-dialog-title">Sell fund</Title>
@@ -36,14 +44,10 @@ const SellFundDialog = () => {
 
         <NumberOfSharesSelect />
 
-        <Numbers />
+        <Info />
       </Column>
 
-      <Buttons
-        setOpen={(isOpen) => {
-          dispatch(setIsSellFundDialogOpen(isOpen));
-        }}
-      />
+      <Buttons />
     </Dialog>
   );
 };

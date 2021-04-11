@@ -4,7 +4,7 @@ import getTotalPortfolioData from "../../components/Portfolio/getTotalPortfolioD
 import {
   setData,
   setFundData,
-  showNotification,
+  setAlertSettings,
 } from "../general/actionCreators";
 import {
   setBalance,
@@ -87,7 +87,8 @@ export const buyFund = ({ fundName, numberOfShares }) => async (
       );
 
       dispatch(
-        showNotification({
+        setAlertSettings({
+          isOpen: true,
           text: `Bought ${numberOfShares} ${
             numberOfShares > 1 ? "shares" : "share"
           } of ${fundName}`,

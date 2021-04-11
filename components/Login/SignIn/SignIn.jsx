@@ -3,17 +3,12 @@ import styled from "styled-components";
 import PasswordInput from "./PasswordInput";
 import UsernameInput from "./UsernameInput";
 import SignInButton from "./SignInButton";
-import Links from "./Links";
+import SignUpLink from "./SignUpLink";
 import { useDispatch } from "react-redux";
-import {
-  setSignInPasswordErrorMessage,
-  setSignInPasswordInputValue,
-  setSignInUsernameErrorMessage,
-  setSignInUsernameInputValue,
-} from "../../../redux/general/actionCreators";
+import { resetSignInState } from "../../../redux/general/actionCreators";
 import RememberUserCheckbox from "./RememberUserCheckbox";
 
-const StyledForm = styled.form`
+const Container = styled.div`
   width: 100%;
   margin-top: 0.5rem;
 `;
@@ -23,20 +18,12 @@ const SignIn = () => {
 
   useEffect(() => {
     return () => {
-      dispatch(setSignInUsernameInputValue(""));
-      dispatch(setSignInPasswordInputValue(""));
-      dispatch(setSignInUsernameErrorMessage(null));
-      dispatch(setSignInPasswordErrorMessage(null));
+      dispatch(resetSignInState());
     };
   }, [dispatch]);
 
   return (
-    <StyledForm
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-      noValidate
-    >
+    <Container>
       <UsernameInput />
       <PasswordInput />
 
@@ -44,8 +31,8 @@ const SignIn = () => {
 
       <SignInButton />
 
-      <Links />
-    </StyledForm>
+      <SignUpLink />
+    </Container>
   );
 };
 

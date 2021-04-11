@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import Typography from "@material-ui/core/Typography";
-import Avatar from "@material-ui/core/Avatar";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import MUIContainer from "@material-ui/core/Container";
-import Copyright from "../Login/Copyright";
+import React from "react";
+import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
-import SignIn from "./SignIn/SignIn";
-import SignUp from "./SignUp/SignUp";
-import { useSelector, useDispatch } from "react-redux";
-import { getIsSignUpShowing } from "../../redux/selectors";
-import { setIsSignUpShowing } from "../../redux/general/actionCreators";
-import { CircularProgress } from "@material-ui/core";
-import signInWithToken from "./SignIn/signInWithToken";
-
-const loginLabelID = "loginLabel";
+import LoginTitle, { loginLabelID } from "./LoginTitle";
+import LoginForm from "./LoginForm";
 
 const Background = styled.section`
   flex-grow: 1;
@@ -32,101 +19,19 @@ const Background = styled.section`
   background-size: cover;
 `;
 
-const Title = styled(Typography)`
-  font-size: 1.875rem;
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: center;
-
-  ${({ theme }) => css`
-    @media screen and (min-width: ${`${theme.breakpoints.values["md"]}px`}) {
-      font-size: 2rem;
-    }
-  `}
-`;
-
-const StyledAvatar = styled(Avatar)`
-  margin: 0.5rem;
-  background-color: ${({ theme }) => theme.palette.primary.main};
-`;
-
 const Container = styled(Paper)`
   flex-direction: column;
   padding: 1.5rem;
   margin: 1.5rem;
 `;
 
-const StyledMUIContainer = styled(MUIContainer)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const FormContainer = styled.div`
-  visibility: ${({ sc: { isSpinnerShowing } }) =>
-    isSpinnerShowing === true ? "hidden" : "visible"};
-`;
-
-const SpinnerContainer = styled.div`
-  position: relative;
-`;
-
-const Spinner = styled(CircularProgress)`
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-`;
-
 const Login = () => {
-  const isSignUpShowing = useSelector((state) => getIsSignUpShowing(state));
-
-  const dispatch = useDispatch();
-
-  const [isSpinnerShowing, setIsSpinnerShowing] = useState(true);
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
-
-    if (token !== null) {
-      dispatch(signInWithToken(token));
-    } else {
-      setIsSpinnerShowing(false);
-    }
-
-    return () => {
-      dispatch(setIsSignUpShowing(false));
-    };
-  }, [dispatch]);
-
   return (
     <Background aria-labelledby={loginLabelID}>
       <Container>
-        <Title id={loginLabelID} variant="h3" component="h1">
-          {isSignUpShowing === true
-            ? "Create an account"
-            : "Sign in to view your portfolio"}
-        </Title>
+        <LoginTitle />
 
-        <StyledMUIContainer maxWidth="xs">
-          <StyledAvatar color="primary">
-            <LockOutlinedIcon />
-          </StyledAvatar>
-
-          <SpinnerContainer>
-            <FormContainer sc={{ isSpinnerShowing }}>
-              {isSignUpShowing === true ? <SignUp /> : <SignIn />}
-            </FormContainer>
-
-            {isSpinnerShowing === true && <Spinner />}
-          </SpinnerContainer>
-          <Box mt={8}>
-            <Copyright />
-          </Box>
-        </StyledMUIContainer>
+        <LoginForm />
       </Container>
     </Background>
   );

@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import MuiSnackbar from "@material-ui/core/Snackbar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import MuiAlert from "@material-ui/lab/Alert";
+import React from "react";
+import styled from "styled-components";
+import MUISnackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getIsSnackbarHidden,
-  getSnackbarText,
-  getSnackbarSeverity,
-} from "../../../redux/selectors";
-import { setIsSnackbarHidden } from "../../../redux/general/actionCreators";
+import { getAlertSettings } from "../../../redux/selectors";
+import { setAlertSettings } from "../../../redux/general/actionCreators";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+const StyledAlert = styled(Alert)`
+  background-color: ${({ sc: { severity } }) =>
+    severity === "success" ? "#218821" : null};
+`;
+
+const anchorOrigin = {
+  vertical: "bottom",
+  horizontal: "left",
+};
 
 const Snackbar = () => {
-  const isSnackbarHidden = useSelector((state) => getIsSnackbarHidden(state));
-  const snackbarText = useSelector((state) => getSnackbarText(state));
-  const snackbarSeverity = useSelector((state) => getSnackbarSeverity(state));
+  const { isOpen, severity, text } = useSelector((state) =>
+    getAlertSettings(state)
+  );
 
   const dispatch = useDispatch();
 
@@ -28,25 +28,30 @@ const Snackbar = () => {
       return;
     }
 
-    dispatch(setIsSnackbarHidden(true));
+    dispatch(
+      setAlertSettings({
+        isOpen: false,
+      })
+    );
   };
 
   return (
-    <div>
-      <MuiSnackbar
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        open={!isSnackbarHidden}
-        autoHideDuration={5000}
+    <MUISnackbar
+      autoHideDuration={6000}
+      anchorOrigin={anchorOrigin}
+      open={isOpen}
+      onClose={handleClose}
+    >
+      <StyledAlert
+        sc={{ severity }}
+        elevation={6}
+        variant="filled"
         onClose={handleClose}
+        severity={severity}
       >
-        <Alert onClose={handleClose} severity={snackbarSeverity}>
-          {snackbarText}
-        </Alert>
-      </MuiSnackbar>
-    </div>
+        {text}
+      </StyledAlert>
+    </MUISnackbar>
   );
 };
 

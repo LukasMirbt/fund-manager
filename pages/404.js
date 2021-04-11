@@ -25,7 +25,9 @@ const Paragraph = styled(Typography)`
 const PageNotFound = () => {
   return (
     <Container>
-      <Title variant="h1">Page not found</Title>
+      <Title variant="h1" component="h2">
+        Page not found
+      </Title>
       <Paragraph variant="body1">
         {"We couldn't find the page you're looking for!"}
       </Paragraph>

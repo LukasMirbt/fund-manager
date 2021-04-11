@@ -42,10 +42,13 @@ const UserInfoRow = () => {
     <Row>
       <StyledAvatar aria-hidden>{credentials.username[0]}</StyledAvatar>
       <Column>
-        <Username variant="subtitle1">{credentials.username}</Username>
-        <Balance variant="subtitle1">{`Balance: ${balance.toFixed(
-          2
-        )} SEK`}</Balance>
+        <Username variant="subtitle1" component="h2">
+          {credentials.username}
+        </Username>
+        <Balance
+          variant="subtitle1"
+          component="h2"
+        >{`Balance: ${balance.toFixed(2)} SEK`}</Balance>
       </Column>
     </Row>
   );

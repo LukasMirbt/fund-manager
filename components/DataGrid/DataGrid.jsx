@@ -68,17 +68,21 @@ const DataGrid = ({
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
   useEffect(() => {
-    //container doesn't exist if this isn't executed at the end of the event queue for some reason
+    //container doesn't exist if this isn't executed at the end of the event queue
     setTimeout(() => {
       const container = document.getElementsByClassName(
         "MuiDataGrid-colCellCheckbox"
       )[0];
+
+      container.setAttribute("aria-label", "Checkbox selection");
 
       const input = container.getElementsByTagName("input")[0];
 
       input.setAttribute("aria-label", "Unselect all rows checkbox");
     });
   }, []);
+
+  const wasSelectionCancelledBeforeDataLoadedRef = useRef(false);
 
   return isFundListShowing === true &&
     (isLargeScreen === true || isChartShowingForSmallScreens === false) ? (
@@ -97,7 +101,14 @@ const DataGrid = ({
         })
       }
       onRowSelected={({ data: { id } }) => {
-        dispatch(onFundSelect(id, getFundNames, setFundNames));
+        dispatch(
+          onFundSelect({
+            fundName: id,
+            fundNamesSelector: getFundNames,
+            setFundNames,
+            wasSelectionCancelledBeforeDataLoadedRef,
+          })
+        );
       }}
       components={components}
       sortingOrder={sortingOrder}

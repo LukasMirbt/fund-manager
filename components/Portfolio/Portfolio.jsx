@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { getData, getExchangeRates, getPortfolio } from "../../redux/selectors";
 import getPortfolioTableDataByFundName from "./getPortfolioTableDataByFundName";
 import EmptyPortfolio from "./EmptyPortfolio";
+import BuyFundFab from "./BuyFundFab";
 
 const Container = styled.div`
   display: flex;
@@ -65,6 +66,8 @@ const Portfolio = () => {
           />
 
           <Info portfolioTableDataByFundName={portfolioTableDataByFundName} />
+
+          <BuyFundFab />
         </GridContainer>
       )}
     </Container>

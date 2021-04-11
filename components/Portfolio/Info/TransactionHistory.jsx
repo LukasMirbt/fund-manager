@@ -12,12 +12,6 @@ const Container = styled.div`
   padding-right: 0.5rem;
 `;
 
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`;
-
 const Item = styled(Typography)`
   padding-bottom: 0.5rem;
 `;
@@ -36,34 +30,31 @@ const TransactionHistory = ({ fundName }) => {
       <Title variant="h6" component="h3">
         Transaction history
       </Title>
-      <List>
-        {portfolio[fundName].buyHistory.map(
-          ({ numberOfBoughtShares, buyDate }, index) => {
+
+      {portfolio[fundName].buyHistory.map(
+        ({ numberOfBoughtShares, buyDate }, index) => {
+          return (
+            <Item variant="body1" component="p" key={index}>
+              {`You bought ${numberOfBoughtShares} ${
+                numberOfBoughtShares === 1 ? "share" : "shares"
+              } on ${format(buyDate, "MMMM d, yyyy")}`}
+            </Item>
+          );
+        }
+      )}
+
+      {portfolio[fundName].sellHistory !== undefined &&
+        portfolio[fundName].sellHistory.map(
+          ({ numberOfSoldShares, sellDate }, index) => {
             return (
-              <Item variant="body1" component="li" key={index}>
-                {`You bought ${numberOfBoughtShares} shares on ${format(
-                  buyDate,
-                  "MMMM d, yyyy"
-                )}`}
+              <Item variant="body1" component="p" key={index}>
+                {`You sold ${numberOfSoldShares} ${
+                  numberOfSoldShares === 1 ? "share" : "shares"
+                } on ${format(sellDate, "MMMM d, yyyy")}`}
               </Item>
             );
           }
         )}
-
-        {portfolio[fundName].sellHistory !== undefined &&
-          portfolio[fundName].sellHistory.map(
-            ({ numberOfSoldShares, sellDate }, index) => {
-              return (
-                <Item variant="body1" component="li" key={index}>
-                  {`${numberOfSoldShares} shares sold on ${format(
-                    sellDate,
-                    "MMMM d, yyyy"
-                  )}`}
-                </Item>
-              );
-            }
-          )}
-      </List>
     </Container>
   );
 };

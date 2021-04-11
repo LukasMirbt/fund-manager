@@ -10,7 +10,7 @@ import {
 } from "../../redux/selectors";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const Container = styled.div`
+const Container = styled.section`
   ${({ sc: { isFundListShowing }, theme }) => css`
     @media screen and (min-width: ${`${theme.breakpoints.values["lg"]}px`}) {
       width: ${isFundListShowing === true ? "50%" : "100%"};
@@ -40,7 +40,10 @@ const ChartWithTimeControls = ({ fundNames, containerCSS }) => {
 
   return isChartShowing === true &&
     (isLargeScreen === true || isChartShowingForSmallScreens === true) ? (
-    <Container sc={{ containerCSS, isChartShowing, isFundListShowing }}>
+    <Container
+      aria-label="Chart"
+      sc={{ containerCSS, isChartShowing, isFundListShowing }}
+    >
       <Chart fundNames={fundNames} />
 
       <TimeControls />
