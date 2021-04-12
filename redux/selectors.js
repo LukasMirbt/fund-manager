@@ -3,15 +3,9 @@ export const getFundNames = (state) => state.fundList.fundNames;
 export const getIsFundListShowing = (state) => state.fundList.isFundListShowing;
 
 export const getCredentials = (state) => state.general.credentials;
-export const getIsStateInitialized = (state) =>
-  state.general.isStateInitialized;
 export const getData = (state) => state.general.data;
-export const getTabValue = (state) => state.general.tabValue;
 export const getIsTemporaryDrawerOpen = (state) =>
   state.general.isTemporaryDrawerOpen;
-export const getIsDrawerOpen = (state) => state.general.isDrawerOpen;
-export const getAreDatasetsShowing = (state) =>
-  state.general.areDatasetsShowing;
 export const getPatterns = (state) => state.general.patterns;
 export const getInitialOpenDrawerTabIndex = (state) =>
   state.general.initialOpenDrawerTabIndex;
@@ -51,8 +45,6 @@ export const getAlertSettings = (state) => state.general.alertSettings;
 
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;
-export const getInitialPortfolioData = (state) =>
-  state.portfolio.initialPortfolioData;
 export const getInfoFundName = (state) => state.portfolio.infoFundName;
 export const getPortfolioFundNames = (state) =>
   state.portfolio.portfolioFundNames;
@@ -71,9 +63,6 @@ export const getIsSellFundDialogOpen = (state) =>
   state.portfolio.isSellFundDialogOpen;
 
 export const getRecommendedFunds = (state) =>
-  state.recommendedFunds.recommendedFunds;
-export const getChartFundNames = (state) =>
-  state.recommendedFunds.chartFundNames;
-export const getIsIntroShowing = (state) =>
-  state.recommendedFunds.isIntroShowing;
-export const geTabValue = (state) => state.recommendedFunds.tabValue;
+  state.fundAdvisor.recommendedFunds;
+export const getChartFundNames = (state) => state.fundAdvisor.chartFundNames;
+export const getIsIntroShowing = (state) => state.fundAdvisor.isIntroShowing;

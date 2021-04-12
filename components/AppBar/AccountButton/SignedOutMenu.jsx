@@ -33,6 +33,7 @@ const SignedOutMenu = ({ onClose }) => {
 
       {router.pathname !== "/portfolio" && (
         <StyledButton
+          data-cy="goToSignInButton"
           color="primary"
           variant="contained"
           onClick={() => {

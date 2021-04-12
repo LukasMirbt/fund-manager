@@ -90,9 +90,8 @@ const createInitialState = async () => {
       tableData,
       isFundListShowing: true,
     },
-    recommendedFunds: {
+    fundAdvisor: {
       recommendedFunds,
-      tabValue: 0,
       isIntroShowing: true,
     },
   };

@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
-import { setIsIntroShowing } from "../../redux/recommendedFunds/actionCreators";
+import { setIsIntroShowing } from "../../redux/fundAdvisor/actionCreators";
 import MUIContainer from "@material-ui/core/Container";
 
 const Container = styled.section`

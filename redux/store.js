@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import fundList from "./fundList/reducer";
 import portfolio from "./portfolio/reducer";
 import general from "./general/reducer";
-import recommendedFunds from "./recommendedFunds/reducer";
+import fundAdvisor from "./fundAdvisor/reducer";
 
 let store;
 
@@ -14,7 +14,7 @@ const reducer = combineReducers({
   general,
   fundList,
   portfolio,
-  recommendedFunds,
+  fundAdvisor,
 });
 
 function initStore(preloadedState) {

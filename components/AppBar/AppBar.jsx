@@ -44,6 +44,7 @@ const AppBar = () => {
       <StyledToolbar>
         <Row>
           <MenuButton
+            data-cy="menuButton"
             color="inherit"
             aria-label="Open navigation"
             onClick={() => {

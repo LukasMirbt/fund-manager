@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FundListChart from "./FundListChart";
 import FundListDataGrid from "./FundListDataGrid/FundListDataGrid";
 
-const Container = styled.section`
+const Container = styled.div`
   width: 100%;
   height: 100%;
 

@@ -52,6 +52,7 @@ const AccountButton = () => {
   return (
     <>
       <StyledIconButton
+        data-cy="accountButton"
         aria-label="Open account menu"
         aria-controls="menuPopover"
         aria-haspopup="true"

@@ -28,7 +28,7 @@ const Identifier = styled(Typography)``;
 const AdditionalInfo = ({ fundIndex }) => {
   const recommendedFunds = useSelector((state) => getRecommendedFunds(state));
 
-  const [recommendedFundName, recommendation] = recommendedFunds[fundIndex];
+  const [recommendedFundName] = recommendedFunds[fundIndex];
 
   const data = useSelector((state) => getData(state));
 
