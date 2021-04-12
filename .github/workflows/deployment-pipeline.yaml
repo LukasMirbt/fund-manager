@@ -20,6 +20,12 @@ jobs:
       - name: test
         run: npm run test
       - name: build
+        env: 
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          SECRET: ${{ secrets.SECRET }}
+          START_DATE: ${{ secrets.START_DATE }}
+          END_DATE: ${{ secrets.END_DATE }}
+          NUMBER_OF_DECIMALS: ${{ secrets.NUMBER_OF_DECIMALS }}
         run: npm run build
       - name: e2e tests
         uses: cypress-io/github-action@v2
