@@ -8,7 +8,8 @@
     "start": "next start",
     "test": "jest --ci",
     "test:watch": "jest --watch",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "eslint": "eslint"
   },
   "dependencies": {
     "@date-io/date-fns": "^1.3.13",
