@@ -1,0 +1,36 @@
+
+name: Deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  CI-CD:
+    runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      SECRET: ${{ secrets.SECRET }}
+      START_DATE: ${{ secrets.START_DATE }}
+      END_DATE: ${{ secrets.END_DATE }}
+      NUMBER_OF_DECIMALS: ${{ secrets.NUMBER_OF_DECIMALS }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run eslint
+      - name: test
+        run: npm run test
+      - name: build
+        run: npm run build
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run cypress
+          start: npm run start:ci
+          wait-on: http://localhost:3000
