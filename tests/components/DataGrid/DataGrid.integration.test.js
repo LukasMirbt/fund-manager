@@ -5,7 +5,9 @@ import DataGrid from "../../../components/DataGrid/DataGrid";
 import columns from "../../../components/Portfolio/PortfolioDataGrid/columns";
 
 describe("DataGrid", () => {
-  expect(true).toBe(true);
+  test("test", () => {
+    expect(true).toBe(true);
+  });
   /*   let component;
 
   beforeEach(() => {
