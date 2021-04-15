@@ -58,6 +58,7 @@ const MainTabs = () => {
       {tabs.map(({ text, icon, pathname }) => (
         <Link key={text} href={pathname} passHref>
           <StyledListItem
+            data-cy={`${text} link`}
             onClick={() => {
               dispatch(setIsTemporaryDrawerOpen(false));
             }}

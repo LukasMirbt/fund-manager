@@ -19,6 +19,7 @@ const UsernameInput = () => {
 
   return (
     <TextField
+      data-cy="signInUsernameInput"
       error={signInUsernameErrorMessage !== null}
       helperText={signInUsernameErrorMessage}
       value={signInUsernameInputValue}

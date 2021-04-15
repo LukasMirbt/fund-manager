@@ -37,6 +37,7 @@ const Snackbar = () => {
 
   return (
     <MUISnackbar
+      data-cy="snackbar"
       autoHideDuration={6000}
       anchorOrigin={anchorOrigin}
       open={isOpen}

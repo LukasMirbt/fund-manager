@@ -4,7 +4,12 @@ import PortfolioChart from "./PortfolioChart";
 import Info from "./Info/Info";
 import PortfolioDataGrid from "./PortfolioDataGrid/PortfolioDataGrid";
 import { useSelector } from "react-redux";
-import { getData, getExchangeRates, getPortfolio } from "../../redux/selectors";
+import {
+  getData,
+  getExchangeRates,
+  getIsChartShowing,
+  getPortfolio,
+} from "../../redux/selectors";
 import getPortfolioTableDataByFundName from "./getPortfolioTableDataByFundName";
 import EmptyPortfolio from "./EmptyPortfolio";
 import BuyFundFab from "./BuyFundFab";
@@ -29,10 +34,12 @@ const GridContainer = styled.div`
   flex-direction: column;
   position: relative;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  ${({ theme }) => css`
+  ${({ theme, sc: { isChartShowing } }) => css`
     @media screen and (min-width: ${`${theme.breakpoints.values["lg"]}px`}) {
-      width: 50%;
+      width: ${isChartShowing === true ? "50%" : "100%"};
     }
   `}
 `;
@@ -54,13 +61,15 @@ const Portfolio = () => {
     });
   }
 
+  const isChartShowing = useSelector((state) => getIsChartShowing(state));
+
   return (
     <Container>
       <PortfolioChart />
       {isPortfolioEmpty === true ? (
         <EmptyPortfolio />
       ) : (
-        <GridContainer>
+        <GridContainer sc={{ isChartShowing }}>
           <PortfolioDataGrid
             portfolioTableDataByFundName={portfolioTableDataByFundName}
           />

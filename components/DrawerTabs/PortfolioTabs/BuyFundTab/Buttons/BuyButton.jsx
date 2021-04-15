@@ -45,6 +45,7 @@ const BuyButton = () => {
 
   return (
     <Button
+      data-cy="buyFundButton"
       variant="contained"
       disabled={
         selectedFundNameToBuy === "" ||

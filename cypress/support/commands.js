@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,9 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("login", () => {
+  cy.get("[data-cy=signInUsernameInput]").type("test");
+  cy.get("[data-cy=signInPasswordInput]").type("test");
+  cy.get("[data-cy=signInButton]").click();
+});

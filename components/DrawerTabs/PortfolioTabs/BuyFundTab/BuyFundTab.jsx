@@ -18,6 +18,7 @@ const BuyFundsTab = () => {
   return (
     <>
       <StyledListItem
+        data-cy="openBuyFundDialogButton"
         button
         selected={isBuyFundDialogOpen}
         onClick={() => {

@@ -19,6 +19,7 @@ const PasswordInput = () => {
 
   return (
     <TextField
+      data-cy="signInPasswordInput"
       error={signInPasswordErrorMessage !== null}
       helperText={signInPasswordErrorMessage}
       value={signInPasswordInputValue}

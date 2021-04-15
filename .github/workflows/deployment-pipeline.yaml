@@ -20,7 +20,7 @@ jobs:
       - name: test
         run: npm run test
       - name: build
-        env: 
+        env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           SECRET: ${{ secrets.SECRET }}
           START_DATE: ${{ secrets.START_DATE }}
@@ -30,6 +30,6 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
-          command: npm run cypress:open
+          command: npm run cypress
           start: npm run start
           wait-on: http://localhost:3000

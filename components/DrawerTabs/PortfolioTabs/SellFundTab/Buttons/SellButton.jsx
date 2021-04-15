@@ -36,6 +36,7 @@ const SellButton = () => {
 
   return (
     <Button
+      data-cy="sellFundButton"
       variant="contained"
       disabled={isNumberOfSharesValid === false || hasEnoughShares === false}
       onClick={() => {

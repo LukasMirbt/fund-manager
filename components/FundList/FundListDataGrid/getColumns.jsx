@@ -4,9 +4,15 @@ import sortMorningstarRatings from "../../common/sorting/sortMorningstarRatings"
 import renderChangeCell from "../../DataGrid/renderChangeCell";
 import renderFundnameCell from "../../DataGrid/renderFundnameCell";
 import renderMorningstarRatingCell from "../../DataGrid/renderMorningstarRatingCell";
+import getCheckboxColumn from "../../DataGrid/getCheckboxColumn";
 
-const getColumns = (morningstarRatingSortOrderRef) => {
+const getColumns = ({
+  morningstarRatingSortOrderRef,
+  getFundNames,
+  setFundNames,
+}) => {
   return [
+    getCheckboxColumn({ getFundNames, setFundNames }),
     {
       field: "col1",
       headerName: "Fundname",

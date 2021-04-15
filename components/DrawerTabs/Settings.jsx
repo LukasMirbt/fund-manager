@@ -83,17 +83,15 @@ const Settings = () => {
       )}
 
       {pathname === "/" && (
-        <>
-          <ShowForLargeScreenToggle
-            selector={(state) => getIsFundListShowing(state)}
-            setValue={(value) => {
-              dispatch(setIsFundListShowing(value));
-            }}
-            groupLabel="Fund list"
-            label1="Show"
-            label2="Hide"
-          />
-        </>
+        <ShowForLargeScreenToggle
+          selector={(state) => getIsFundListShowing(state)}
+          setValue={(value) => {
+            dispatch(setIsFundListShowing(value));
+          }}
+          groupLabel="Fund list"
+          label1="Show"
+          label2="Hide"
+        />
       )}
     </Container>
   );

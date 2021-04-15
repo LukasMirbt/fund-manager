@@ -17,6 +17,7 @@ const NumberOfSharesSelect = () => {
 
   return (
     <StyledTextField
+      data-cy="sellFundNumberOfSharesInput"
       value={numberOfSharesToSell}
       onChange={(event) => {
         dispatch(setNumberOfSharesToSell(event.target.value));

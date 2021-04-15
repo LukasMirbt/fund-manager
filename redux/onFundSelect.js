@@ -2,22 +2,16 @@ import getChartData from "./getChartData";
 
 export const onFundSelect = ({
   fundName,
-  fundNamesSelector,
+  getFundNames,
   setFundNames,
-  wasSelectionCancelledBeforeDataLoadedRef,
 }) => async (dispatch, getState) => {
   const state = getState();
 
   const {
-    general: { data, fundNamesCurrentlyBeingLoaded },
+    general: { data },
   } = state;
 
-  const fundNames = fundNamesSelector(state);
-
-  if (fundNamesCurrentlyBeingLoaded.includes(fundName) === true) {
-    wasSelectionCancelledBeforeDataLoadedRef.current = true;
-    return;
-  }
+  const fundNames = getFundNames(state);
 
   if (fundNames.includes(fundName) === true) {
     const newFundNames = fundNames.filter((name) => name !== fundName);
@@ -27,11 +21,7 @@ export const onFundSelect = ({
 
     if (data[fundName].chartData === undefined) {
       const onLoad = () => {
-        if (wasSelectionCancelledBeforeDataLoadedRef.current === false) {
-          dispatch(setFundNames(newFundNames));
-        } else {
-          wasSelectionCancelledBeforeDataLoadedRef.current = false;
-        }
+        dispatch(setFundNames(newFundNames));
       };
       dispatch(getChartData(fundName, onLoad));
     } else {

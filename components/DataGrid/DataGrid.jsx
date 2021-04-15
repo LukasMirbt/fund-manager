@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { DataGrid as MUIDataGrid, GridToolbar } from "@material-ui/data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import onSelectionModelChange from "./onSelectionModelChange";
 import onFundSelect from "../../redux/onFundSelect";
 import {
   getIsChartShowing,
@@ -28,6 +27,23 @@ const StyledDataGrid = styled(MUIDataGrid)`
     padding-bottom: 0;
   }
 
+  & .MuiDataGrid-cell {
+    &:first-child {
+      padding: 0;
+      justify-content: center;
+    }
+  }
+
+  & .MuiDataGrid-colCell {
+    &:first-child {
+      padding: 0;
+
+      & .MuiDataGrid-colCellTitleContainer {
+        justify-content: center;
+      }
+    }
+  }
+
   ${({ sc: { containerCSS } }) => containerCSS};
 `;
 
@@ -44,9 +60,9 @@ const DataGrid = ({
   columns,
   setFundNames,
   getFundNames,
-  containerCSS,
   onSortModelChange,
   sortingOrder,
+  containerCSS,
 }) => {
   const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
 
@@ -67,46 +83,19 @@ const DataGrid = ({
 
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
-  useEffect(() => {
-    //container doesn't exist if this isn't executed at the end of the event queue
-    setTimeout(() => {
-      const container = document.getElementsByClassName(
-        "MuiDataGrid-colCellCheckbox"
-      )[0];
-
-      container.setAttribute("aria-label", "Checkbox selection");
-
-      const input = container.getElementsByTagName("input")[0];
-
-      input.setAttribute("aria-label", "Unselect all rows checkbox");
-    });
-  }, []);
-
-  const wasSelectionCancelledBeforeDataLoadedRef = useRef(false);
-
   return isFundListShowing === true &&
     (isLargeScreen === true || isChartShowingForSmallScreens === false) ? (
     <StyledDataGrid
       sc={{ isFundListShowing, isChartShowing, containerCSS }}
       disableColumnMenu
-      checkboxSelection
       onSortModelChange={onSortModelChange}
       selectionModel={initialFundNames}
-      onSelectionModelChange={({ selectionModel }) =>
-        onSelectionModelChange({
-          selectionModel,
-          isCheckboxHeaderDisabledRef,
-          dispatch,
-          setFundNames,
-        })
-      }
       onRowSelected={({ data: { id } }) => {
         dispatch(
           onFundSelect({
             fundName: id,
-            fundNamesSelector: getFundNames,
+            getFundNames,
             setFundNames,
-            wasSelectionCancelledBeforeDataLoadedRef,
           })
         );
       }}

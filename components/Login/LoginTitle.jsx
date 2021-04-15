@@ -23,7 +23,7 @@ const LoginTitle = () => {
   const isSignUpShowing = useSelector((state) => getIsSignUpShowing(state));
 
   return (
-    <Title id={loginLabelID} variant="h3" component="h2">
+    <Title data-cy="loginLabel" id={loginLabelID} variant="h3" component="h2">
       {isSignUpShowing === true
         ? "Create an account"
         : "Sign in to view your portfolio"}

@@ -28,6 +28,7 @@ const SignInButton = () => {
 
   return (
     <StyledButton
+      data-cy="signInButton"
       onClick={() => {
         if (
           signInUsernameInputValue.length < 3 ||

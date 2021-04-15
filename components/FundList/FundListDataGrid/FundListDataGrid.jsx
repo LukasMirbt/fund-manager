@@ -29,6 +29,7 @@ const FundListDataGrid = () => {
       mostRecentDate,
     }) => ({
       id: fundName,
+      col0: fundName,
       col1: fundName,
       col2: morningstarRating,
       col3: oneDC,
@@ -39,7 +40,11 @@ const FundListDataGrid = () => {
     })
   );
 
-  const columns = getColumns(morningstarRatingSortOrderRef);
+  const columns = getColumns({
+    morningstarRatingSortOrderRef,
+    getFundNames,
+    setFundNames,
+  });
 
   return (
     <DataGrid

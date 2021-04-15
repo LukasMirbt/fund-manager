@@ -36,6 +36,7 @@ const FundNameAutocomplete = () => {
 
   return (
     <StyledAutocomplete
+    data-cy="buyFundFundNameInput"
       disableClearable
       value={selectedFundNameToBuy}
       onChange={(event, fundName) => {

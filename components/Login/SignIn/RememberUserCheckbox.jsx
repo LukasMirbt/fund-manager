@@ -13,6 +13,7 @@ const RememberUserCheckbox = () => {
     <FormControlLabel
       control={
         <Checkbox
+          data-cy="rememberUserCheckbox"
           checked={isUserRemembered}
           onChange={(event) => {
             dispatch(setIsUserRemembered(event.target.checked));

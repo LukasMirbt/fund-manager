@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "test": "jest --ci",
     "test:watch": "jest --watch",
     "cypress:open": "cypress open",
+    "cypress": "cypress run",
     "eslint": "eslint"
   },
   "dependencies": {

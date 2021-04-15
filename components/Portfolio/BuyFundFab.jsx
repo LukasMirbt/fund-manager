@@ -22,6 +22,7 @@ const BuyFundFab = () => {
 
   return (
     <StyledFab
+      data-cy="buyFundFab"
       onClick={() => {
         batch(() => {
           dispatch(setIsTemporaryDrawerOpen(true));
