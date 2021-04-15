@@ -1,5 +1,5 @@
 
-name: Deployment pipeline
+name: CI-CD
 
 on:
   push:
