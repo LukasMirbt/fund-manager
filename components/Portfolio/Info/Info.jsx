@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import TransactionHistory from "./TransactionHistory";
 import { getInfoFundName } from "../../../redux/selectors";
 import { useSelector } from "react-redux";
@@ -14,6 +14,13 @@ const Container = styled.section`
   height: 40%;
   min-height: 300px;
   width: 100%;
+
+  ${({ theme }) => css`
+    @media screen and (min-width: ${`${theme.breakpoints.values["lg"]}px`}) {
+      overflow-y: auto;
+      min-height: unset;
+    }
+  `}
 `;
 
 const InfoRow = styled.div`

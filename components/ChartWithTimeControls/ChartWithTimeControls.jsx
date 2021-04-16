@@ -38,8 +38,8 @@ const ChartWithTimeControls = ({ fundNames, containerCSS }) => {
 
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
-  return isChartShowing === true &&
-    (isLargeScreen === true || isChartShowingForSmallScreens === true) ? (
+  return (isLargeScreen === true && isChartShowing === true) ||
+    (isLargeScreen === false && isChartShowingForSmallScreens === true) ? (
     <Container
       aria-label="Chart"
       sc={{ containerCSS, isChartShowing, isFundListShowing }}

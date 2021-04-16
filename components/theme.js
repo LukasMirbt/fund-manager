@@ -16,6 +16,8 @@ let MUITheme = createMuiTheme({
   },
 });
 
+MUITheme.breakpoints.values["lg"] = 1500;
+
 MUITheme = responsiveFontSizes(MUITheme);
 
 const theme = {

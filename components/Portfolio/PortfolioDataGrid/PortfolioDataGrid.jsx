@@ -1,7 +1,7 @@
 import React from "react";
 import { css } from "styled-components";
 import DataGrid from "../../DataGrid/DataGrid";
-import columns from "./columns";
+import getColumns from "./getColumns";
 import { setPortfolioFundNames } from "../../../redux/portfolio/actionCreators";
 import { getPortfolioFundNames } from "../../../redux/selectors";
 
@@ -43,6 +43,7 @@ const PortfolioDataGrid = ({ portfolioTableDataByFundName }) => {
 
     return {
       id: fundName,
+      col0: fundName,
       col1: fundName,
       col2: shares,
       col3: acqValue,
@@ -51,6 +52,11 @@ const PortfolioDataGrid = ({ portfolioTableDataByFundName }) => {
       col6: oneDC,
       col7: oneYC,
     };
+  });
+
+  const columns = getColumns({
+    getFundNames: getPortfolioFundNames,
+    setFundNames: setPortfolioFundNames,
   });
 
   return (

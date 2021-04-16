@@ -2,8 +2,10 @@ import sortPercentStrings from "../../common/sorting/sortPercentStrings";
 import sortStrings from "../../common/sorting/sortStrings";
 import renderChangeCell from "../../DataGrid/renderChangeCell";
 import renderPortfolioFundnameCell from "./renderPortfolioFundnameCell";
+import getCheckboxColumn from "../../DataGrid/getCheckboxColumn";
 
-const columns = [
+const getColumns = ({ getFundNames, setFundNames }) => [
+  getCheckboxColumn({ getFundNames, setFundNames }),
   {
     field: "col1",
     headerName: "Fundname",
@@ -57,4 +59,4 @@ const columns = [
   },
 ];
 
-export default columns;
+export default getColumns;

@@ -21,8 +21,7 @@ const renderSelectionCell = ({ fundName, getFundNames, setFundNames }) => {
         dispatch(onFundSelect({ fundName, getFundNames, setFundNames }));
       }}
       inputProps={{
-        "aria-label":
-          isSelected === true ? "Remove fund from chart" : "Add fund to chart",
+        "aria-label": "Add fund to chart",
       }}
     />
   );
@@ -62,6 +61,7 @@ const getCheckboxColumn = ({ getFundNames, setFundNames }) => ({
   headerName: "Checkbox selection",
   width: 48,
   sortable: false,
+  filterable: false,
   renderCell: ({ value }) =>
     renderSelectionCell({ fundName: value, getFundNames, setFundNames }),
   renderHeader: () => renderSelectionheader({ getFundNames, setFundNames }),

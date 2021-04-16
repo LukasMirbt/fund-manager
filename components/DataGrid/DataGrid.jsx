@@ -68,8 +68,6 @@ const DataGrid = ({
 
   const dispatch = useDispatch();
 
-  const isCheckboxHeaderDisabledRef = useRef(false);
-
   const initialFundNames = useSelector(
     (state) => getFundNames(state),
     returnTrue

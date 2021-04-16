@@ -34,8 +34,6 @@ const GridContainer = styled.div`
   flex-direction: column;
   position: relative;
   width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
 
   ${({ theme, sc: { isChartShowing } }) => css`
     @media screen and (min-width: ${`${theme.breakpoints.values["lg"]}px`}) {
