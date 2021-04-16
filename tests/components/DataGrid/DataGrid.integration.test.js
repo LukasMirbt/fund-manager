@@ -2,7 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, fireEvent } from "@testing-library/react";
 import DataGrid from "../../../components/DataGrid/DataGrid";
-import columns from "../../../components/Portfolio/PortfolioDataGrid/columns";
+import getColumns from "../../../components/Portfolio/PortfolioDataGrid/getColumns";
 
 describe("DataGrid", () => {
   test("test", () => {
