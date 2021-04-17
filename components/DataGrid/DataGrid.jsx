@@ -9,6 +9,7 @@ import {
   getIsFundListShowing,
 } from "../../redux/selectors";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useFixToolbarAccessibility from "./useFixToolbarAccessibility";
 
 const StyledDataGrid = styled(MUIDataGrid)`
   border: unset;
@@ -80,6 +81,8 @@ const DataGrid = ({
   );
 
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+
+  useFixToolbarAccessibility();
 
   return isFundListShowing === true &&
     (isLargeScreen === true || isChartShowingForSmallScreens === false) ? (

@@ -4,7 +4,7 @@ export const getChangeCellColor = (value) => {
   if (value.slice(0, -2) === "0.00") {
     return "blue";
   } else {
-    return value[0] === "-" ? "red" : "darkgreen";
+    return value[0] === "-" ? "#E62020" : "darkgreen";
   }
 };
 

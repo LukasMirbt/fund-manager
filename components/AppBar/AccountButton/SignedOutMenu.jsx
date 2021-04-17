@@ -3,6 +3,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { useRouter } from "next/router";
 import Button from "@material-ui/core/Button";
+import { menuID } from "./AccountButton";
 
 const StyledListItem = styled(ListItem)`
   height: 40px;
@@ -26,7 +27,7 @@ const SignedOutMenu = ({ onClose }) => {
   const router = useRouter();
 
   return (
-    <Container>
+    <Container role="menu">
       <StyledListItem>
         <ListItemText primary="You are not signed in" />
       </StyledListItem>

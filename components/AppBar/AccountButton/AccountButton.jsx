@@ -54,8 +54,7 @@ const AccountButton = () => {
       <StyledIconButton
         data-cy="accountButton"
         aria-label="Open account menu"
-        aria-controls="menuPopover"
-        aria-haspopup="true"
+        aria-haspopup="menu"
         onClick={(event) => {
           setAnchorElement(event.currentTarget);
         }}
@@ -64,7 +63,6 @@ const AccountButton = () => {
       </StyledIconButton>
 
       <Popover
-        id="menuPopover"
         open={Boolean(anchorElement)}
         anchorOrigin={anchorOrigin}
         transformOrigin={transformOrigin}

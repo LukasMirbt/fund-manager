@@ -20,6 +20,7 @@ import "@fontsource/roboto/700.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import DateFnsUtils from "@date-io/date-fns";
+import Head from "next/head";
 
 config.autoAddCss = false;
 
@@ -54,6 +55,18 @@ function App({ Component, pageProps }) {
           <MUIThemeProvider theme={theme}>
             <ThemeProvider theme={theme}>
               <>
+                <Head>
+                  <meta
+                    name="viewport"
+                    content="minimum-scale=1, initial-scale=1, width=device-width"
+                  />
+                  <meta
+                    name="description"
+                    content="Fund display and management"
+                  />
+
+                  <title>Fund manager</title>
+                </Head>
                 <AppBar />
 
                 <Row>

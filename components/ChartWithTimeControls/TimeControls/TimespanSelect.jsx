@@ -21,6 +21,13 @@ const timespans = [
 
 const StyledTextField = styled(TextField)`
   width: 300px;
+
+  .MuiFormLabel-root {
+    &.Mui-focused {
+      color: ${({ theme }) => theme.palette.primary.main};
+    }
+    color: rgba(0, 0, 0, 0.75);
+  }
 `;
 
 const TimespanSelect = () => {

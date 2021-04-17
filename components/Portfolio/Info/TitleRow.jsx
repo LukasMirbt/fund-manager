@@ -9,6 +9,13 @@ import Typography from "@material-ui/core/Typography";
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 300px;
+
+  .MuiFormLabel-root {
+    &.Mui-focused {
+      color: ${({ theme }) => theme.palette.primary.main};
+    }
+    color: rgba(0, 0, 0, 0.75);
+  }
 `;
 
 const Container = styled.div`

@@ -1,4 +1,4 @@
-import Document from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import { ServerStyleSheets } from "@material-ui/styles";
 
@@ -30,5 +30,24 @@ export default class MyDocument extends Document {
     } finally {
       styledComponentsSheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <meta charSet="utf-8" />
+
+          <meta name="description" content="Fund display and management" />
+
+          <link rel="icon" href="/favicon.png" />
+        </Head>
+
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }
