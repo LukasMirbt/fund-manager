@@ -1,6 +1,6 @@
 {
   "name": "fund-manager",
-  "version": "1.0.11",
+  "version": "1.0.12  ",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -50,6 +50,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "babel-jest": "^26.6.3",
+    "babel-plugin-styled-components": "^1.8.0",
     "cypress": "^7.0.1",
     "eslint": "^7.20.0",
     "eslint-plugin-cypress": "^2.11.2",
