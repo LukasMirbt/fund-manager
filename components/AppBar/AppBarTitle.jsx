@@ -6,7 +6,7 @@ const Title = () => {
   const { pathname } = useRouter();
 
   const title =
-    pathname === "/" ? "fund list" : pathname.slice(1).replace(/-+/g, " ");
+    pathname === "/" ? "fund manager" : pathname.slice(1).replace(/-+/g, " ");
 
   return (
     <Typography variant="h6" component="h1" noWrap>

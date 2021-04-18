@@ -1,8 +1,8 @@
-import FundListComponent from "../components/FundList/FundList";
+import IntroComponent from "../components/Intro/Intro";
 import createInitialState from "../redux/createInitialState";
 
-export default function RecommendedFunds() {
-  return <FundListComponent />;
+export default function Intro() {
+  return <IntroComponent />;
 }
 
 export const getStaticProps = createInitialState;

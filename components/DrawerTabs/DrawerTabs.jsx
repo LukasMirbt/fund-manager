@@ -7,8 +7,6 @@ import { useRouter } from "next/router";
 import SettingsTabs from "./SettingsTabs";
 
 const Tabs = () => {
-  const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
-
   const { pathname } = useRouter();
 
   const credentials = useSelector((state) => getCredentials(state));
@@ -19,10 +17,8 @@ const Tabs = () => {
 
       {pathname === "/portfolio" && <PortfolioTabs />}
 
-      {(pathname !== "/fund-advisor" || isIntroShowing === false) &&
-        (pathname !== "/portfolio" || credentials.token !== undefined) && (
-          <SettingsTabs />
-        )}
+      {(pathname !== "/portfolio" || credentials.token !== undefined) &&
+        pathname !== "/" && <SettingsTabs />}
     </>
   );
 };

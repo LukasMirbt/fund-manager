@@ -13,7 +13,7 @@ const Background = styled.section`
   justify-content: center;
   flex-direction: column;
 
-  background-image: url("./laptops.jpeg");
+  background-image: url("./investments.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,6 +23,8 @@ const Container = styled(Paper)`
   flex-direction: column;
   padding: 1.5rem;
   margin: 1.5rem;
+
+  box-shadow: ${({ theme }) => theme.shadows[24]};
 `;
 
 const Login = () => {

@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 const tabs = [
   {
     text: "Fund list",
-    pathname: "/",
+    pathname: "/fund-list",
     icon: faClipboardList,
   },
   {

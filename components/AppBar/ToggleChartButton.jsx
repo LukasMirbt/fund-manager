@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getCredentials,
   getIsChartShowingForSmallScreens,
-  getIsIntroShowing,
 } from "../../redux/selectors";
 import { setIsChartShowingForSmallScreens } from "../../redux/general/actionCreators";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -48,8 +47,6 @@ const ToggleChartButton = () => {
 
   const credentials = useSelector((state) => getCredentials(state));
 
-  const isIntroShowing = useSelector((state) => getIsIntroShowing(state));
-
   const { pathname } = useRouter();
 
   const isShowing =
@@ -57,7 +54,7 @@ const ToggleChartButton = () => {
     isLargeScreen === false &&
     (pathname.includes("portfolio") === false ||
       credentials.token !== undefined) &&
-    (pathname.includes("fund-advisor") === false || isIntroShowing === false);
+    pathname !== "/";
 
   return isShowing === true ? (
     <StyledIconButton

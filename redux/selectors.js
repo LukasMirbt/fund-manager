@@ -65,4 +65,3 @@ export const getIsSellFundDialogOpen = (state) =>
 export const getRecommendedFunds = (state) =>
   state.fundAdvisor.recommendedFunds;
 export const getChartFundNames = (state) => state.fundAdvisor.chartFundNames;
-export const getIsIntroShowing = (state) => state.fundAdvisor.isIntroShowing;

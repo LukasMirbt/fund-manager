@@ -8,7 +8,7 @@ const Copyright = () => {
     <Box mt={8}>
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="">
+        <Link color="inherit" href="https://www.lukasmirbt.com">
           Lukas Mirbt
         </Link>{" "}
         {new Date().getFullYear()}
