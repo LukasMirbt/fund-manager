@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import { DataGrid as MUIDataGrid, GridToolbar } from "@material-ui/data-grid";
 import { useDispatch, useSelector } from "react-redux";

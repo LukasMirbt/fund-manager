@@ -1,9 +1,9 @@
 import sortPercentStrings from "../../common/sorting/sortPercentStrings";
 import sortStrings from "../../common/sorting/sortStrings";
 import sortMorningstarRatings from "../../common/sorting/sortMorningstarRatings";
-import renderChangeCell from "../../DataGrid/renderChangeCell";
-import renderFundnameCell from "../../DataGrid/renderFundnameCell";
-import renderMorningstarRatingCell from "../../DataGrid/renderMorningstarRatingCell";
+import ChangeCell from "../../DataGrid/Cells/ChangeCell";
+import FundnameCell from "../../DataGrid/Cells/FundnameCell";
+import MorningstarRatingCell from "../../DataGrid/Cells/MorningstarRatingCell";
 import getCheckboxColumn from "../../DataGrid/getCheckboxColumn";
 
 const getColumns = ({
@@ -18,7 +18,7 @@ const getColumns = ({
       headerName: "Fundname",
       width: 250,
       sortComparator: sortStrings,
-      renderCell: renderFundnameCell,
+      renderCell: FundnameCell,
     },
     {
       field: "col2",
@@ -26,14 +26,14 @@ const getColumns = ({
       width: 150,
       sortComparator: (a, b) =>
         sortMorningstarRatings(a, b, morningstarRatingSortOrderRef),
-      renderCell: renderMorningstarRatingCell,
+      renderCell: MorningstarRatingCell,
     },
     {
       field: "col3",
       headerName: "1-day change",
       width: 150,
       sortComparator: sortPercentStrings,
-      renderCell: renderChangeCell,
+      renderCell: ChangeCell,
       hide: true,
       type: "number",
     },
@@ -42,7 +42,7 @@ const getColumns = ({
       headerName: "1-year change",
       width: 150,
       sortComparator: sortPercentStrings,
-      renderCell: renderChangeCell,
+      renderCell: ChangeCell,
       type: "number",
     },
     {
@@ -50,7 +50,7 @@ const getColumns = ({
       headerName: "3-year change",
       width: 150,
       sortComparator: sortPercentStrings,
-      renderCell: renderChangeCell,
+      renderCell: ChangeCell,
       type: "number",
     },
     {
@@ -58,7 +58,7 @@ const getColumns = ({
       headerName: "5-year change",
       width: 150,
       sortComparator: sortPercentStrings,
-      renderCell: renderChangeCell,
+      renderCell: ChangeCell,
       type: "number",
     },
     {

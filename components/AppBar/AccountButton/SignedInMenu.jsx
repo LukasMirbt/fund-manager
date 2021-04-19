@@ -2,7 +2,6 @@ import styled from "styled-components";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import UserInfoRow from "./UserInfoRow";
-import { menuID } from "./AccountButton";
 
 const StyledListItem = styled(ListItem)`
   margin-top: 0.5rem;

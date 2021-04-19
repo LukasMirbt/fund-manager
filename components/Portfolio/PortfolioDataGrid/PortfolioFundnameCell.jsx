@@ -9,7 +9,7 @@ const TotalCell = styled(FundnameCell)`
   font-weight: bold;
 `;
 
-const renderPortfolioFundnameCell = ({ value, row }) => {
+const PortfolioFundnameCell = ({ value, row }) => {
   if (row.id === "Total") {
     return <TotalCell>{value}</TotalCell>;
   }
@@ -17,4 +17,4 @@ const renderPortfolioFundnameCell = ({ value, row }) => {
   return <FundnameCell>{value}</FundnameCell>;
 };
 
-export default renderPortfolioFundnameCell;
+export default PortfolioFundnameCell;

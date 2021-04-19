@@ -54,6 +54,7 @@
     "cypress": "^7.0.1",
     "eslint": "^7.20.0",
     "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-jest": "^24.3.5",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "identity-obj-proxy": "^3.0.0",

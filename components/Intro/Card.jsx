@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Link from "next/link";
+import CardTitle from "./CardTitle";
 
 const fadeInKeyframes = keyframes`
   from {
@@ -39,7 +40,7 @@ const Container = styled(Paper)`
 
   ${({ sc: { animationDelay } }) =>
     css`
-      animation: ${fadeInKeyframes} 750ms ease-in-out ${animationDelay}ms both;
+      animation: ${fadeInKeyframes} 500ms ease-out ${animationDelay}ms both;
     `};
 `;
 

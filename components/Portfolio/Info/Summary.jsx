@@ -37,12 +37,12 @@ const Summary = ({ portfolioTableDataByFundName, fundName }) => {
           Summary
         </RatingTitle>
 
-        <Paragraph variant="body1">{`You own a total of ${shares} shares of ${fundName} which you acquired at a cost of ${acqValue} SEK`}</Paragraph>
+        <Paragraph variant="body1">{`You own a total of ${shares} shares of ${fundName} which you acquired at a cost of ${acqValue} SEK.`}</Paragraph>
 
         <Paragraph variant="body1">
-          {`They are currently worth ${value} SEK, which is a${
+          {`They are currently worth ${value} SEK, a${
             totalChange[0] === "-" ? " decrease" : "n increase"
-          } in value of ${totalChange}`}
+          } in value of ${totalChange}.`}
         </Paragraph>
       </Rating>
     </Container>

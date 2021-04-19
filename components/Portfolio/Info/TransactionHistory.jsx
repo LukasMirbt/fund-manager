@@ -35,7 +35,7 @@ const TransactionHistory = ({ fundName }) => {
         ({ numberOfBoughtShares, buyDate }, index) => {
           return (
             <Item variant="body1" component="p" key={index}>
-              {`You bought ${numberOfBoughtShares} ${
+              {`Bought ${numberOfBoughtShares} ${
                 numberOfBoughtShares === 1 ? "share" : "shares"
               } on ${format(buyDate, "MMMM d, yyyy")}`}
             </Item>

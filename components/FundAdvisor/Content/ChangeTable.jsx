@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { getChangeCellColor } from "../../DataGrid/renderChangeCell";
+import { getChangeCellColor } from "../../DataGrid/Cells/ChangeCell";
 
 const Container = styled(TableContainer)`
   max-width: 550px;

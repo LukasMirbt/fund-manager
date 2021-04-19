@@ -1,7 +1,7 @@
 import sortPercentStrings from "../../common/sorting/sortPercentStrings";
 import sortStrings from "../../common/sorting/sortStrings";
-import renderChangeCell from "../../DataGrid/renderChangeCell";
-import renderPortfolioFundnameCell from "./renderPortfolioFundnameCell";
+import ChangeCell from "../../DataGrid/Cells/ChangeCell";
+import PortfolioFundnameCell from "./PortfolioFundnameCell";
 import getCheckboxColumn from "../../DataGrid/getCheckboxColumn";
 
 const getColumns = ({ getFundNames, setFundNames }) => [
@@ -11,7 +11,7 @@ const getColumns = ({ getFundNames, setFundNames }) => [
     headerName: "Fundname",
     width: 250,
     sortComparator: sortStrings,
-    renderCell: renderPortfolioFundnameCell,
+    renderCell: PortfolioFundnameCell,
   },
   {
     field: "col2",
@@ -36,7 +36,7 @@ const getColumns = ({ getFundNames, setFundNames }) => [
     headerName: "Total change",
     width: 150,
     sortComparator: sortPercentStrings,
-    renderCell: renderChangeCell,
+    renderCell: ChangeCell,
     type: "number",
   },
   {
@@ -44,7 +44,7 @@ const getColumns = ({ getFundNames, setFundNames }) => [
     headerName: "1-day change",
     width: 150,
     sortComparator: sortPercentStrings,
-    renderCell: renderChangeCell,
+    renderCell: ChangeCell,
     hide: true,
     type: "number",
   },
@@ -53,7 +53,7 @@ const getColumns = ({ getFundNames, setFundNames }) => [
     headerName: "1-year change",
     width: 150,
     sortComparator: sortPercentStrings,
-    renderCell: renderChangeCell,
+    renderCell: ChangeCell,
     hide: true,
     type: "number",
   },

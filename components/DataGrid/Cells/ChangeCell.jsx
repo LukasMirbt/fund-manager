@@ -8,15 +8,15 @@ export const getChangeCellColor = (value) => {
   }
 };
 
-const ChangeCell = styled.div`
+const StyledCell = styled.div`
   color: ${({ sc: { value } }) => getChangeCellColor(value)};
   display: flex;
   width: 100%;
   justify-content: flex-end;
 `;
 
-const renderChangeCell = ({ value }) => (
-  <ChangeCell sc={{ value }}>{value}</ChangeCell>
+const ChangeCell = ({ value }) => (
+  <StyledCell sc={{ value }}>{value}</StyledCell>
 );
 
-export default renderChangeCell;
+export default ChangeCell;

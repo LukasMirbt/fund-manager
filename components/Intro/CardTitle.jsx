@@ -1,17 +1,7 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const fadeInKeyframes = keyframes`
-  from {
-   opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
 
 const Title = styled(Typography)`
   font-size: 1.75rem;
