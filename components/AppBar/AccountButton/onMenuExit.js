@@ -2,7 +2,7 @@ import { batch } from "react-redux";
 import {
   setCredentials,
   setIsUserRemembered,
-} from "../../../redux/general/actionCreators";
+} from "../../../redux/login/actionCreators";
 
 const onMenuExit = ({ shouldSignOutRef, dispatch, router }) => {
   if (shouldSignOutRef.current === true) {

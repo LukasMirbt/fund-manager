@@ -1,11 +1,11 @@
 import axios from "axios";
 import { batch } from "react-redux";
+import { setAlertSettings } from "../../../redux/general/actionCreators";
 import {
-  setAlertSettings,
   setIsSignUpShowing,
   setSignUpPasswordErrorMessage,
   setSignUpUsernameErrorMessage,
-} from "../../../redux/general/actionCreators";
+} from "../../../redux/login/actionCreators";
 
 const onSignUp = async ({ username, password, dispatch }) => {
   try {

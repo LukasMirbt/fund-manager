@@ -6,7 +6,7 @@ import {
   setIsDataDownsampled,
   setIsDataInPercent,
   setArePatternsShowing,
-} from "../../redux/general/actionCreators";
+} from "../../redux/chart/actionCreators";
 import { setIsFundListShowing } from "../../redux/fundList/actionCreators";
 import {
   getArePatternsShowing,

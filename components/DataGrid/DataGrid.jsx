@@ -64,6 +64,8 @@ const DataGrid = ({
   onSortModelChange,
   sortingOrder,
   containerCSS,
+  autoHeight = false,
+  columnBuffer = 2,
 }) => {
   const isFundListShowing = useSelector((state) => getIsFundListShowing(state));
 
@@ -105,6 +107,9 @@ const DataGrid = ({
       rowsPerPageOptions={rowsPerPageOptions}
       rows={rows}
       columns={columns}
+      //autoHeight and columnBuffer are necessary for testing purposes
+      autoHeight={autoHeight}
+      columnBuffer={columnBuffer}
     />
   ) : null;
 };

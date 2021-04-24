@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   setDateParameters,
   setSelectedTimespan,
-} from "../../redux/general/actionCreators";
+} from "../../redux/chart/actionCreators";
 import { getDateParameters } from "../../redux/selectors";
 import DatePicker from "../ChartWithTimeControls/TimeControls/DatePicker";
 

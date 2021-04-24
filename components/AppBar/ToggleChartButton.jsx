@@ -11,7 +11,7 @@ import {
   getCredentials,
   getIsChartShowingForSmallScreens,
 } from "../../redux/selectors";
-import { setIsChartShowingForSmallScreens } from "../../redux/general/actionCreators";
+import { setIsChartShowingForSmallScreens } from "../../redux/chart/actionCreators";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useRouter } from "next/router";
 

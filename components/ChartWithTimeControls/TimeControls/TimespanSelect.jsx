@@ -8,7 +8,7 @@ import { getSelectedTimespan } from "../../../redux/selectors";
 import {
   setDateParameters,
   setSelectedTimespan,
-} from "../../../redux/general/actionCreators";
+} from "../../../redux/chart/actionCreators";
 import TextField from "@material-ui/core/TextField";
 
 const timespans = [

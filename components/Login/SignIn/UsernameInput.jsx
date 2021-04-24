@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { setSignInUsernameInputValue } from "../../../redux/general/actionCreators";
+import { setSignInUsernameInputValue } from "../../../redux/login/actionCreators";
 import {
   getSignInUsernameErrorMessage,
   getSignInUsernameInputValue,
@@ -19,7 +19,6 @@ const UsernameInput = () => {
 
   return (
     <TextField
-      data-cy="signInUsernameInput"
       error={signInUsernameErrorMessage !== null}
       helperText={signInUsernameErrorMessage}
       value={signInUsernameInputValue}

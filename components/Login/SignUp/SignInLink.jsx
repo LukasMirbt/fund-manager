@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setIsSignUpShowing } from "../../../redux/general/actionCreators";
+import { setIsSignUpShowing } from "../../../redux/login/actionCreators";
 import { StyledLink } from "../SignIn/SignUpLink";
 
 const SignInLink = () => {

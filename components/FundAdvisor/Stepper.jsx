@@ -31,6 +31,7 @@ const Stepper = ({ fundIndex, setFundIndex, recommendedFunds }) => {
       activeStep={fundIndex}
       nextButton={
         <Button
+          data-testid="nextButton"
           variant="contained"
           color="primary"
           size="medium"
@@ -42,7 +43,12 @@ const Stepper = ({ fundIndex, setFundIndex, recommendedFunds }) => {
         </Button>
       }
       backButton={
-        <Button size="medium" onClick={handleBack} disabled={fundIndex === 0}>
+        <Button
+          data-testid="backButton"
+          size="medium"
+          onClick={handleBack}
+          disabled={fundIndex === 0}
+        >
           <KeyboardArrowLeft />
           Back
         </Button>

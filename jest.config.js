@@ -5,6 +5,7 @@ module.exports = {
     "!**/node_modules/**",
     "!**/.next/**",
   ],
+  setupFiles: ["jest-canvas-mock"],
   setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
   testPathIgnorePatterns: ["/node_modules/", "/.next/"],
   transform: {

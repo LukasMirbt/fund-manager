@@ -40,8 +40,8 @@ describe("Fund manager", function () {
 
   it("user is remembered when the remember user checkbox is checked", function () {
     cy.visit("/portfolio");
-    cy.get("[data-cy=signInUsernameInput]").type("test");
-    cy.get("[data-cy=signInPasswordInput]").type("test");
+    cy.get("#username").type("test");
+    cy.get("#password").type("test");
     cy.get("[data-cy=rememberUserCheckbox]").click();
     cy.get("[data-cy=signInButton]").click();
 

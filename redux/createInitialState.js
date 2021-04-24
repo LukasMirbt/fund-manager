@@ -29,31 +29,12 @@ const createInitialState = async () => {
 
   const initialReduxState = {
     general: {
+      exchangeRates,
       data: initialData,
-      credentials: {},
-      signInUsernameInputValue: "",
-      signInPasswordInputValue: "",
 
-      signInUsernameErrorMessage: null,
-      signInPasswordErrorMessage: null,
+      isTemporaryDrawerOpen: false,
+      initialOpenDrawerTabIndex: null,
 
-      signUpUsernameInputValue: "",
-      signUpPasswordInputValue: "",
-
-      signUpUsernameErrorMessage: null,
-      signUpPasswordErrorMessage: null,
-
-      isUserRemembered: false,
-
-      selectedTimespan: "max",
-      dateParameters: {
-        start: null,
-        end: null,
-      },
-      isDataInPercent: true,
-      isDataDownsampled: true,
-      isChartShowing: true,
-      isChartShowingForSmallScreens: false,
       fundNamesCurrentlyBeingLoaded: [],
 
       alertSettings: {
@@ -61,14 +42,26 @@ const createInitialState = async () => {
         text: "",
         severity: "success",
       },
+    },
+    fundList: {
+      fundNames: [initialFundName],
+      tableData,
+      isFundListShowing: true,
+    },
+    chart: {
+      selectedTimespan: "max",
+      dateParameters: {
+        start: null,
+        end: null,
+      },
 
-      exchangeRates,
+      isDataInPercent: true,
+      isDataDownsampled: true,
 
-      isDrawerOpen: true,
-      isTemporaryDrawerOpen: false,
-      initialOpenDrawerTabIndex: null,
+      isChartShowing: true,
+      isChartShowingForSmallScreens: false,
 
-      areDatasetsShowing: true,
+      arePatternsShowing: true,
       patterns: [
         ["dash", "#006400"],
         ["line-vertical", "#8B0000"],
@@ -83,16 +76,26 @@ const createInitialState = async () => {
         ["diamond-box", "#c71585"],
         ["triangle", "#7f6b9e"],
       ],
-      arePatternsShowing: true,
     },
-    fundList: {
-      fundNames: [initialFundName],
-      tableData,
-      isFundListShowing: true,
+    login: {
+      credentials: {},
+      signInUsernameInputValue: "",
+      signInPasswordInputValue: "",
+
+      signInUsernameErrorMessage: null,
+      signInPasswordErrorMessage: null,
+
+      signUpUsernameInputValue: "",
+      signUpPasswordInputValue: "",
+
+      signUpUsernameErrorMessage: null,
+      signUpPasswordErrorMessage: null,
+
+      isSignUpShowing: false,
+      isUserRemembered: false,
     },
     fundAdvisor: {
       recommendedFunds,
-      isIntroShowing: true,
     },
   };
 

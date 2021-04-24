@@ -1,6 +1,6 @@
 {
   "name": "fund-manager",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -59,6 +59,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
+    "jest-canvas-mock": "^2.3.1",
     "react-test-renderer": "^17.0.1"
   }
 }

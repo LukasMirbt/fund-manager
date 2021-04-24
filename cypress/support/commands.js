@@ -27,7 +27,7 @@ import axios from "axios";
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("login", () => {
-  cy.get("[data-cy=signInUsernameInput]").type("test");
-  cy.get("[data-cy=signInPasswordInput]").type("test");
+  cy.get("#username").type("test");
+  cy.get("#password").type("test");
   cy.get("[data-cy=signInButton]").click();
 });

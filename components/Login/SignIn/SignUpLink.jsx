@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Link from "@material-ui/core/Link";
 import { useDispatch } from "react-redux";
-import { setIsSignUpShowing } from "../../../redux/general/actionCreators";
+import { setIsSignUpShowing } from "../../../redux/login/actionCreators";
 
 export const StyledLink = styled(Link)`
   display: flex;

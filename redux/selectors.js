@@ -1,48 +1,20 @@
+//fundList
 export const getTableData = (state) => state.fundList.tableData;
 export const getFundNames = (state) => state.fundList.fundNames;
 export const getIsFundListShowing = (state) => state.fundList.isFundListShowing;
 
-export const getCredentials = (state) => state.general.credentials;
+//general
 export const getData = (state) => state.general.data;
 export const getIsTemporaryDrawerOpen = (state) =>
   state.general.isTemporaryDrawerOpen;
-export const getPatterns = (state) => state.general.patterns;
 export const getInitialOpenDrawerTabIndex = (state) =>
   state.general.initialOpenDrawerTabIndex;
-export const getDateParameters = (state) => state.general.dateParameters;
-export const getIsDataInPercent = (state) => state.general.isDataInPercent;
-export const getIsDataDownsampled = (state) => state.general.isDataDownsampled;
-export const getSelectedTimespan = (state) => state.general.selectedTimespan;
-export const getIsChartShowing = (state) => state.general.isChartShowing;
 export const getFundNamesCurrentlyBeingLoaded = (state) =>
   state.general.fundNamesCurrentlyBeingLoaded;
-export const getSignInUsernameInputValue = (state) =>
-  state.general.signInUsernameInputValue;
-export const getSignInPasswordInputValue = (state) =>
-  state.general.signInPasswordInputValue;
-export const getSignUpUsernameInputValue = (state) =>
-  state.general.signUpUsernameInputValue;
-export const getSignUpPasswordInputValue = (state) =>
-  state.general.signUpPasswordInputValue;
-export const getIsSignInInvalid = (state) => state.general.isSignInInvalid;
-export const getIsSignUpInvalid = (state) => state.general.isSignUpInvalid;
-export const getIsSignUpShowing = (state) => state.general.isSignUpShowing;
 export const getExchangeRates = (state) => state.general.exchangeRates;
-export const getArePatternsShowing = (state) =>
-  state.general.arePatternsShowing;
-export const getSignInPasswordErrorMessage = (state) =>
-  state.general.signInPasswordErrorMessage;
-export const getSignUpPasswordErrorMessage = (state) =>
-  state.general.signUpPasswordErrorMessage;
-export const getSignInUsernameErrorMessage = (state) =>
-  state.general.signInUsernameErrorMessage;
-export const getSignUpUsernameErrorMessage = (state) =>
-  state.general.signUpUsernameErrorMessage;
-export const getIsUserRemembered = (state) => state.general.isUserRemembered;
-export const getIsChartShowingForSmallScreens = (state) =>
-  state.general.isChartShowingForSmallScreens;
 export const getAlertSettings = (state) => state.general.alertSettings;
 
+//portfolio
 export const getPortfolio = (state) => state.portfolio.portfolio;
 export const getBalance = (state) => state.portfolio.balance;
 export const getInfoFundName = (state) => state.portfolio.infoFundName;
@@ -62,6 +34,40 @@ export const getIsBuyFundDialogOpen = (state) =>
 export const getIsSellFundDialogOpen = (state) =>
   state.portfolio.isSellFundDialogOpen;
 
+//fundAdvisor
 export const getRecommendedFunds = (state) =>
   state.fundAdvisor.recommendedFunds;
-export const getChartFundNames = (state) => state.fundAdvisor.chartFundNames;
+
+//chart
+export const getIsChartShowingForSmallScreens = (state) =>
+  state.chart.isChartShowingForSmallScreens;
+export const getPatterns = (state) => state.chart.patterns;
+export const getDateParameters = (state) => state.chart.dateParameters;
+export const getIsDataInPercent = (state) => state.chart.isDataInPercent;
+export const getIsDataDownsampled = (state) => state.chart.isDataDownsampled;
+export const getSelectedTimespan = (state) => state.chart.selectedTimespan;
+export const getIsChartShowing = (state) => state.chart.isChartShowing;
+export const getArePatternsShowing = (state) => state.chart.arePatternsShowing;
+
+//login
+export const getIsUserRemembered = (state) => state.login.isUserRemembered;
+export const getCredentials = (state) => state.login.credentials;
+export const getSignInUsernameInputValue = (state) =>
+  state.login.signInUsernameInputValue;
+export const getSignInPasswordInputValue = (state) =>
+  state.login.signInPasswordInputValue;
+export const getSignUpUsernameInputValue = (state) =>
+  state.login.signUpUsernameInputValue;
+export const getSignUpPasswordInputValue = (state) =>
+  state.login.signUpPasswordInputValue;
+export const getIsSignInInvalid = (state) => state.login.isSignInInvalid;
+export const getIsSignUpInvalid = (state) => state.login.isSignUpInvalid;
+export const getIsSignUpShowing = (state) => state.login.isSignUpShowing;
+export const getSignInPasswordErrorMessage = (state) =>
+  state.login.signInPasswordErrorMessage;
+export const getSignUpPasswordErrorMessage = (state) =>
+  state.login.signUpPasswordErrorMessage;
+export const getSignInUsernameErrorMessage = (state) =>
+  state.login.signInUsernameErrorMessage;
+export const getSignUpUsernameErrorMessage = (state) =>
+  state.login.signUpUsernameErrorMessage;

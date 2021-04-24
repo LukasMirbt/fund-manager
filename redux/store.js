@@ -7,6 +7,8 @@ import fundList from "./fundList/reducer";
 import portfolio from "./portfolio/reducer";
 import general from "./general/reducer";
 import fundAdvisor from "./fundAdvisor/reducer";
+import chart from "./chart/reducer";
+import login from "./login/reducer";
 
 let store;
 
@@ -15,9 +17,11 @@ const reducer = combineReducers({
   fundList,
   portfolio,
   fundAdvisor,
+  chart,
+  login,
 });
 
-function initStore(preloadedState) {
+export function initStore(preloadedState) {
   return createStore(
     reducer,
     preloadedState,

@@ -1,6 +1,6 @@
 import TextField from "@material-ui/core/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { setSignInPasswordInputValue } from "../../../redux/general/actionCreators";
+import { setSignInPasswordInputValue } from "../../../redux/login/actionCreators";
 import {
   getSignInPasswordErrorMessage,
   getSignInPasswordInputValue,

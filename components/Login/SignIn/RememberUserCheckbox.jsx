@@ -3,7 +3,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsUserRemembered } from "../../../redux/selectors";
-import { setIsUserRemembered } from "../../../redux/general/actionCreators";
+import { setIsUserRemembered } from "../../../redux/login/actionCreators";
 
 const RememberUserCheckbox = () => {
   const isUserRemembered = useSelector((state) => getIsUserRemembered(state));

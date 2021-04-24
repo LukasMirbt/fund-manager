@@ -8,7 +8,7 @@ import { CircularProgress } from "@material-ui/core";
 import Lock from "./Lock";
 import { useDispatch, useSelector } from "react-redux";
 import { getIsSignUpShowing } from "../../redux/selectors";
-import { setIsSignUpShowing } from "../../redux/general/actionCreators";
+import { setIsSignUpShowing } from "../../redux/login/actionCreators";
 import signInWithToken from "./SignIn/signInWithToken";
 
 const Container = styled(MUIContainer)`

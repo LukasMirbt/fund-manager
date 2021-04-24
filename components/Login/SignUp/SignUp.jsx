@@ -5,7 +5,7 @@ import UsernameInput from "./UsernameInput";
 import SignUpButton from "./SignUpButton";
 import Links from "./SignInLink";
 import { useDispatch } from "react-redux";
-import { resetSignUpState } from "../../../redux/general/actionCreators";
+import { resetSignUpState } from "../../../redux/login/actionCreators";
 
 const Container = styled.div`
   width: 100%;

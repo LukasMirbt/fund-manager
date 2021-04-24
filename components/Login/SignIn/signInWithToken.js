@@ -1,11 +1,8 @@
 import axios from "axios";
 import createInitialPortfolioState from "../../../redux/createInitialPortfolioState";
 import { batch } from "react-redux";
-import {
-  setCredentials,
-  setData,
-  setFundData,
-} from "../../../redux/general/actionCreators";
+import { setData, setFundData } from "../../../redux/general/actionCreators";
+import { setCredentials } from "../../../redux/login/actionCreators";
 import { setInitialPortfolioState } from "../../../redux/portfolio/actionCreators";
 import getTotalPortfolioData from "../../Portfolio/getTotalPortfolioData";
 

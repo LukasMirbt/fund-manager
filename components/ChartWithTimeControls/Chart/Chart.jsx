@@ -70,6 +70,7 @@ const Chart = ({ fundNames }) => {
   return (
     <ChartContainer>
       <canvas
+        data-testid="chart"
         role="img"
         aria-label="A chart displaying selected fund courses over time"
         id={canvasID}

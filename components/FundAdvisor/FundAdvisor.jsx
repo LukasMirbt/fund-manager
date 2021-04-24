@@ -11,6 +11,7 @@ const Container = styled.section`
   display: flex;
   width: 100%;
   height: 100%;
+  justify-content: flex-end; //prevents content shift on load
 `;
 
 const FundAdvisor = () => {

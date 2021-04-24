@@ -57,6 +57,7 @@ const AdditionalInfo = ({ fundIndex }) => {
     },
   ];
 
+
   return (
     <>
       <ChangeTable fundName={recommendedFundName} row={row} />

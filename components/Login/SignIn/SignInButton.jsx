@@ -10,7 +10,7 @@ import onSignIn from "./onSignIn";
 import {
   setSignInPasswordErrorMessage,
   setSignInUsernameErrorMessage,
-} from "../../../redux/general/actionCreators";
+} from "../../../redux/login/actionCreators";
 
 const StyledButton = styled(Button)`
   margin: 1rem 0 1rem;
