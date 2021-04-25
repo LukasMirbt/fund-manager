@@ -1,5 +1,5 @@
 import getFundAcquisitionValue from "./getFundAquisitionValue";
-import adjustValueByCurrency from "../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import adjustValueByCurrency from "../Drawer/DrawerTabs/PortfolioTabs/adjustValueByCurrency";
 
 const getPortfolioTableDataByFundName = ({
   data,

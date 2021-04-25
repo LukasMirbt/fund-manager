@@ -5,18 +5,6 @@ import { renderWithProviders } from "../../test-utils";
 import Login from "../../../components/Login/Login";
 
 const initialState = {
-  general: {
-    data: {},
-    exchangeRates: {
-      USD: 10,
-      EUR: 10,
-    },
-    alertSettings: {
-      isOpen: false,
-      text: "",
-      severity: "success",
-    },
-  },
   login: {
     credentials: {},
     signInUsernameInputValue: "",
@@ -43,15 +31,13 @@ const componentToRender = (
 );
 
 describe("Login", () => {
-  let component;
-
   beforeEach(() => {
-    ({ component } = renderWithProviders(componentToRender, {
+    renderWithProviders(componentToRender, {
       initialState,
-    }));
+    });
   });
 
-  it("Shows error on invalid login attempt", async () => {
+  it("Shows error on invalid login attempt", () => {
     const signInButton = document.querySelector('[data-cy="signInButton"]');
     const usernameInputLabel = document.getElementById("username-label");
     const passwordInputLabel = document.getElementById("password-label");
@@ -63,5 +49,25 @@ describe("Login", () => {
 
     expect(document.getElementById("username-helper-text")).toBeTruthy();
     expect(document.getElementById("password-helper-text")).toBeTruthy();
+  });
+
+  it("Can navigate from sign-in to sign-up and back", () => {
+    const goToSignUpLink = document.querySelector(
+      '[data-testid="goToSignUpLink"]'
+    );
+
+    fireEvent(goToSignUpLink, new MouseEvent("click", { bubbles: true }));
+
+    expect(document.querySelector('[data-cy="signUpButton"]')).toBeTruthy();
+    expect(document.querySelector('[data-cy="signInButton"]')).toBeNull();
+
+    const goToSignInLink = document.querySelector(
+      '[data-testid="goToSignInLink"]'
+    );
+
+    fireEvent(goToSignInLink, new MouseEvent("click", { bubbles: true }));
+
+    expect(document.querySelector('[data-cy="signUpButton"]')).toBeNull();
+    expect(document.querySelector('[data-cy="signInButton"]')).toBeTruthy();
   });
 });

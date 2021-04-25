@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Chevron from "./Chevron";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import { StyledListItem } from "../DrawerTabs/MainTabs";
+import { StyledListItem } from "../Drawer/DrawerTabs/MainTabs";
 
 const Title = styled(ListItemText)`
   ${({ sc: { titleCSS } }) => titleCSS}

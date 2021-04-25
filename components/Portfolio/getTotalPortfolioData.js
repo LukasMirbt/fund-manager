@@ -1,4 +1,4 @@
-import adjustValueByCurrency from "../DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import adjustValueByCurrency from "../Drawer/DrawerTabs/PortfolioTabs/adjustValueByCurrency";
 import round from "../common/utils/round";
 import { NUMBER_OF_DECIMALS } from "../common/constants";
 import getFundAcquisitionValue from "./getFundAquisitionValue";

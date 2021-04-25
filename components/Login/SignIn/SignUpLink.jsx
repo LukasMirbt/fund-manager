@@ -15,6 +15,7 @@ const SignUpLink = () => {
 
   return (
     <StyledLink
+      data-testid="goToSignUpLink"
       onClick={() => {
         dispatch(setIsSignUpShowing(true));
       }}

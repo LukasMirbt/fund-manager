@@ -1,7 +1,7 @@
 import dbConnect from "../../../utils/dbConnect";
 import FundData from "../../../models/FundData";
 
-export default async function Handler(req, res) {
+export default async function handler(req, res) {
   await dbConnect();
 
   const { fundName } = req.query;

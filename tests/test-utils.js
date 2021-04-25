@@ -10,24 +10,47 @@ import theme from "../components/theme";
 import { ThemeProvider } from "styled-components";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { RouterContext } from "next/dist/next-server/lib/router-context";
+
+const mockRouter = {
+  basePath: "",
+  pathname: "/",
+  route: "/",
+  asPath: "/",
+  query: {},
+  push: jest.fn(),
+  replace: jest.fn(),
+  reload: jest.fn(),
+  back: jest.fn(),
+  prefetch: jest.fn(),
+  beforePopState: jest.fn(),
+  events: {
+    on: jest.fn(),
+    off: jest.fn(),
+    emit: jest.fn(),
+  },
+  isFallback: false,
+};
 
 export const renderWithProviders = (
   ui,
-  { initialState, ...renderOptions } = {}
+  { initialState, router, ...renderOptions } = {}
 ) => {
   const store = initStore(initialState);
 
   function Wrapper({ children }) {
     return (
-      <Provider store={store}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <StylesProvider injectFirst>
-            <MUIThemeProvider theme={theme}>
-              <ThemeProvider theme={theme}>{children} </ThemeProvider>
-            </MUIThemeProvider>
-          </StylesProvider>
-        </MuiPickersUtilsProvider>
-      </Provider>
+      <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+        <Provider store={store}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <StylesProvider injectFirst>
+              <MUIThemeProvider theme={theme}>
+                <ThemeProvider theme={theme}>{children} </ThemeProvider>
+              </MUIThemeProvider>
+            </StylesProvider>
+          </MuiPickersUtilsProvider>
+        </Provider>
+      </RouterContext.Provider>
     );
   }
   return {

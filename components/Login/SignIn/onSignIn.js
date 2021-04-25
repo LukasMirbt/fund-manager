@@ -24,7 +24,7 @@ const onSignIn = () => async (dispatch, getState) => {
   try {
     const {
       data: { userData, portfolioChartData },
-    } = await axios.post("/api/", {
+    } = await axios.post("/api/signIn", {
       username,
       password,
     });

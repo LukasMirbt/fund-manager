@@ -33,7 +33,7 @@ const initialState = {
 describe("FundAdvisor", () => {
   let component;
 
-  it("Displays the first recommended fund allows navigation between recommendations", () => {
+  it("Displays the first recommended fund and allows navigation between recommendations", () => {
     ({ component } = renderWithProviders(<FundAdvisor />, {
       initialState,
     }));

@@ -7,7 +7,7 @@ import { setIsTemporaryDrawerOpen } from "../../redux/general/actionCreators";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
-import Tabs from "../DrawerTabs/DrawerTabs";
+import DrawerTabs from "./DrawerTabs/DrawerTabs";
 
 const StyledDrawer = styled.nav`
   flex-direction: column;
@@ -34,6 +34,7 @@ const Drawer = () => {
       <StyledDrawer>
         <Toolbar>
           <IconButton
+            data-testid="openedMenuButton"
             color="inherit"
             aria-label={"Close navigation"}
             onClick={() => {
@@ -45,7 +46,7 @@ const Drawer = () => {
           </IconButton>
         </Toolbar>
 
-        <Tabs />
+        <DrawerTabs />
       </StyledDrawer>
     </MUITemporaryDrawer>
   );

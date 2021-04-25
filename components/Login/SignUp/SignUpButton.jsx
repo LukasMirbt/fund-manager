@@ -24,6 +24,7 @@ const SignUpButton = () => {
 
   return (
     <StyledButton
+      data-cy="signUpButton"
       onClick={() => {
         onSignUp({
           username: signUpUsernameInputValue,

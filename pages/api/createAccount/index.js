@@ -1,10 +1,14 @@
 import bcrypt from "bcrypt";
 import User from "../../../models/User";
 import dbConnect from "../../../utils/dbConnect";
+import {
+  initialPortfolio,
+  initialBalance,
+} from "../../../utils/initialUserData";
 
 const saltRounds = 12;
 
-export default async function Handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     await dbConnect();
 
@@ -36,54 +40,13 @@ export default async function Handler(req, res) {
       const user = new User({
         username,
         passwordHash,
-        portfolio: {
-          "SEB Strategi Balanserad C SEK - Lux": {
-            shares: 100,
-            buyHistory: [
-              {
-                numberOfBoughtShares: 100,
-                buyDate: 1249603200000,
-                acquisitionValue: 11332,
-              },
-            ],
-          },
-          "JOHCM Global Select B EUR": {
-            shares: 100,
-            buyHistory: [
-              {
-                numberOfBoughtShares: 100,
-                buyDate: 1273190400000,
-                acquisitionValue: 10290,
-              },
-            ],
-          },
-          "SEB Asienfond ex-Japan": {
-            shares: 100,
-            buyHistory: [
-              {
-                numberOfBoughtShares: 100,
-                buyDate: 1401148800000,
-                acquisitionValue: 1800,
-              },
-            ],
-          },
-          "MS INVF Global Opportunity A": {
-            shares: 100,
-            buyHistory: [
-              {
-                numberOfBoughtShares: 100,
-                buyDate: 1420070400000,
-                acquisitionValue: 30906,
-              },
-            ],
-          },
-        },
-        balance: 999999,
+        portfolio: initialPortfolio,
+        balance: initialBalance,
       });
 
       await user.save();
 
-      res.status(200).end();
+      return res.status(200).end();
     }
   }
 }

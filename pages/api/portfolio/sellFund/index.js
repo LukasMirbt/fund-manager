@@ -4,19 +4,31 @@ import jwt from "jsonwebtoken";
 import User from "../../../../models/User";
 import FundData from "../../../../models/FundData";
 import ExchangeRates from "../../../../models/ExchangeRates";
-import adjustValueByCurrency from "../../../../components/DrawerTabs/PortfolioTabs/adjustValueByCurrency";
+import adjustValueByCurrency from "../../../../components/Drawer/DrawerTabs/PortfolioTabs/adjustValueByCurrency";
 import roundToSetPrecision from "../../../../utils/roundToSetPrecision";
 
-export default async function Handler(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
     await dbConnect();
 
     const token = getTokenFromRequest(req);
-    const decodedToken = jwt.verify(token, process.env.SECRET);
+
+    let decodedToken;
+
+    try {
+      decodedToken = jwt.verify(token, process.env.SECRET);
+    } catch (e) {
+      return res.status(401).end();
+    }
 
     const { fundName, numberOfShares } = req.body;
 
-    if (!token || !decodedToken.id || typeof numberOfShares !== "number") {
+    if (
+      !token ||
+      !decodedToken.id ||
+      typeof numberOfShares !== "number" ||
+      numberOfShares <= 0
+    ) {
       return res.status(401).end();
     }
 
