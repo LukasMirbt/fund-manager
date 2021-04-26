@@ -1,4 +1,8 @@
 /// <reference types="cypress" />
+
+require("dotenv").config({ path: ".env.local" });
+const MongoClient = require("mongodb").MongoClient;
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -17,6 +21,21 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+  on("task", {
+    async deleteSignUpTestUser() {
+      const client = new MongoClient(process.env.MONGODB_URI);
+
+      try {
+        await client.connect();
+        return client
+          .db()
+          .collection("users")
+          .deleteOne({ username: "signUpTestUsername" });
+      } catch (e) {
+        cy.log(e);
+      } finally {
+        await client.close();
+      }
+    },
+  });
+};

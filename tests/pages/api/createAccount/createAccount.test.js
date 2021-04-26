@@ -1,8 +1,7 @@
 import { createMocks } from "node-mocks-http";
 import handler from "../../../../pages/api/createAccount/index";
 import bcrypt from "bcrypt";
-import dbConnect from "../../../../utils/dbConnect";
-import User, { mockUserData } from "../../../../models/User";
+import { mockUserData } from "../../../../models/User";
 import {
   initialBalance,
   initialPortfolio,

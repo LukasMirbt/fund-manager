@@ -11,7 +11,7 @@ const createInitialState = async () => {
     recommendedChartData,
     recommendedFunds,
     exchangeRates,
-  } = await InitialData.findOne({});
+  } = await InitialData.findOne({}).lean();
 
   const initialData = tableData.reduce((acc, data) => {
     acc[data.fundName] = {

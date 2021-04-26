@@ -1,12 +1,10 @@
 import { createMocks } from "node-mocks-http";
 import handler from "../../../../../pages/api/portfolio/buyFund/index";
-import dbConnect from "../../../../../utils/dbConnect";
-import FundData, {
+import {
   mockFundData,
   mockFundShareCost,
 } from "../../../../../models/FundData";
-import User, { mockUserData, mockToken } from "../../../../../models/User";
-import ExchangeRates from "../../../../../models/ExchangeRates";
+import { mockToken } from "../../../../../models/User";
 import {
   initialBalance,
   initialPortfolio,

@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema({
   username: String,
   passwordHash: String,
   balance: Number,
-  portfolio: Object,
+  portfolio: mongoose.Schema.Types.Mixed,
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);

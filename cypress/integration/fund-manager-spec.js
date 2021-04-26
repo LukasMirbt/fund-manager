@@ -1,3 +1,6 @@
+/* eslint-disable jest/expect-expect */
+/* eslint-disable jest/valid-expect-in-promise */
+
 describe("Fund manager", function () {
   beforeEach(function () {
     cy.visit("/");
@@ -27,6 +30,26 @@ describe("Fund manager", function () {
     cy.get("[data-cy=accountButton]").click();
     cy.get("[data-cy=goToSignInButton]").click();
     cy.get("[data-cy=loginLabel]").should("exist");
+  });
+
+  it("new account can be created and logged in to", function () {
+    cy.task("deleteSignUpTestUser").then(() => {
+      cy.visit("/portfolio");
+      cy.get("[data-testid=goToSignUpLink]").click();
+
+      cy.get("#username").type("signUpTestUsername");
+      cy.get("#password").type("signUpTestPassword");
+      cy.get("[data-cy=signUpButton]").click();
+
+      cy.get("[data-cy=snackbar]").should("exist");
+      cy.get("[data-cy=signInButton]").should("exist");
+
+      cy.get("#username").type("signUpTestUsername");
+      cy.get("#password").type("signUpTestPassword");
+      cy.get("[data-cy=signInButton]").click();
+
+      cy.get("[data-cy=buyFundFab]").should("exist");
+    });
   });
 
   it("user can log in and is not remembered when the remember user checkbox is not checked", function () {
