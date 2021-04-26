@@ -1,31 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Title = styled(Typography)`
   font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+
+  @media screen and (min-width: 1596px) {
+    font-size: 2rem;
+  }
 `;
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  padding-bottom: 0.5rem;
-`;
-
-const Icon = styled(FontAwesomeIcon)`
-  font-size: 1.5rem;
-  margin-left: 0.5rem;
-  color: rgba(0, 0, 0, 0.87);
-`;
-
-const CardTitle = ({ title, icon }) => {
-  return (
-    <Row>
-      <Title variant="h2">{title}</Title>
-      <Icon icon={icon} />
-    </Row>
-  );
+const CardTitle = ({ title }) => {
+  return <Title variant="h2">{title}</Title>;
 };
 
 export default CardTitle;
