@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
 import Headings from "./Headings";
 import Buttons from "./Buttons";
 import Copyright from "../Login/Copyright";
@@ -13,6 +12,11 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
+
+  background-image: url("./laptops.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const Scrim = styled.div`
@@ -42,14 +46,6 @@ const CopyrightContainer = styled.div`
 const Intro = () => {
   return (
     <Container>
-      <Image
-        aria-hidden
-        src="/laptops.jpeg"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-        priority
-      />
       <Scrim>
         <Headings />
 

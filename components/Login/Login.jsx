@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
 import LoginTitle, { loginLabelID } from "./LoginTitle";
 import LoginForm from "./LoginForm";
-import Image from "next/image";
 
 const Container = styled.section`
   flex-grow: 1;
@@ -14,6 +13,11 @@ const Container = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  background-image: url("./investments.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const LoginContainer = styled(Paper)`
@@ -28,15 +32,6 @@ const LoginContainer = styled(Paper)`
 const Login = () => {
   return (
     <Container aria-labelledby={loginLabelID}>
-      <Image
-        aria-hidden
-        src="/investments.jpeg"
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-        priority
-      />
-
       <LoginContainer>
         <LoginTitle />
 
