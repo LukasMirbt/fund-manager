@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { initStore } from "../redux/store";
 import {
@@ -53,8 +53,9 @@ export const renderWithProviders = (
       </RouterContext.Provider>
     );
   }
-  return {
-    component: render(ui, { wrapper: Wrapper, ...renderOptions }),
-    store,
-  };
+
+  cleanup();
+  render(ui, { wrapper: Wrapper, ...renderOptions });
+
+  return store;
 };

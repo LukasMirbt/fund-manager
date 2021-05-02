@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, waitFor, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
 import PortfolioChart from "../../../components/Portfolio/PortfolioChart";
@@ -47,21 +46,18 @@ const componentToRender = (
 );
 
 describe("Portfolio", () => {
-  let component;
-
   beforeEach(() => {
-    ({ component } = renderWithProviders(componentToRender, {
+    renderWithProviders(componentToRender, {
       initialState,
-    }));
+    });
   });
 
   it("Funds can be selected in the info section and the correct information is displayed", async () => {
-    const { container } = component;
     const autocomplete = document.getElementById("fundInfoAutocomplete");
 
     expect(autocomplete.value).toBe("JOHCM Global Select B EUR");
-    expect(container.textContent).toMatch("100 shares");
-    expect(container.textContent).toMatch("10290");
+    expect(document.body).toHaveTextContent("100 shares");
+    expect(document.body).toHaveTextContent("10290");
 
     autocomplete.focus();
 
@@ -78,8 +74,8 @@ describe("Portfolio", () => {
 
     expect(autocomplete.value).toBe("SEB Asienfond ex-Japan");
 
-    expect(container.textContent).toMatch("50 shares");
-    expect(container.textContent).toMatch("1800");
+    expect(document.body).toHaveTextContent("50 shares");
+    expect(document.body).toHaveTextContent("1800");
   });
 
   it("Chart canvas is rendered", () => {

@@ -1,14 +1,10 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, waitFor } from "@testing-library/react";
+import { fireEvent, waitFor, screen } from "@testing-library/react";
 import DataGrid from "../../../components/DataGrid/DataGrid";
 import { getPortfolioFundNames, getData } from "../../../redux/selectors";
 import { setPortfolioFundNames } from "../../../redux/portfolio/actionCreators";
 import { renderWithProviders } from "../../test-utils";
-import {
-  rows,
-  columns,
-} from "./testData";
+import { rows, columns } from "./testData";
 
 /* Some tests in this file assert on implementation details (e.g. Redux state) which makes them somewhat brittle. 
   This is because all the UI changes that are supposed to happen take place in a canvas. 
@@ -52,26 +48,25 @@ const componentToRender = (
 );
 
 describe("Portfolio", () => {
-  let component;
-  let store;
-
-  beforeEach(() => {
-    ({ component, store } = renderWithProviders(componentToRender, {
-      initialState,
-    }));
-  });
-
   it("DataGrid displays content", () => {
-    expect(component.container.textContent).toMatch("test");
-    expect(component.container.textContent).toMatch("55 %");
-    expect(component.container.textContent).toMatch("100 %");
-    expect(component.container.textContent).toMatch("150 %");
-    expect(component.container.textContent).not.toMatch("200 %");
-    expect(component.container.textContent).not.toMatch("2019-04-13");
+    renderWithProviders(componentToRender, {
+      initialState,
+    });
+
+    expect(document.body).toHaveTextContent("test");
+    expect(document.body).toHaveTextContent("55 %");
+    expect(document.body).toHaveTextContent("100 %");
+    expect(document.body).toHaveTextContent("150 %");
+    expect(document.body).not.toHaveTextContent("200 %");
+    expect(document.body).not.toHaveTextContent("2019-04-13");
   });
 
   it("Checkbox selection removes and adds funds to state correctly", () => {
-    const checkbox = component.container.querySelectorAll("input")[1];
+    const store = renderWithProviders(componentToRender, {
+      initialState,
+    });
+
+    const checkbox = document.body.querySelectorAll("input")[1];
 
     expect(checkbox.checked).toBe(false);
     expect(getPortfolioFundNames(store.getState()).includes("test")).toBe(
@@ -92,21 +87,19 @@ describe("Portfolio", () => {
   });
 
   it("Checkbox selection fetches data if necessary", async () => {
-    const modifiedInitialState = {
-      ...initialState,
-      general: {
-        ...initialState.general,
-        /* test.chartData is undefined which causes getChartData to be called 
-        when the checkbox is checked */
-        data: { test: {} },
+    const store = renderWithProviders(componentToRender, {
+      initialState: {
+        ...initialState,
+        general: {
+          ...initialState.general,
+          /* test.chartData is undefined which causes getChartData to be called 
+          when the checkbox is checked */
+          data: { test: {} },
+        },
       },
-    };
+    });
 
-    ({ component, store } = renderWithProviders(componentToRender, {
-      initialState: modifiedInitialState,
-    }));
-
-    const checkbox = component.container.querySelectorAll("input")[1];
+    const checkbox = screen.getByLabelText("Add fund to chart");
 
     expect(getData(store.getState()).test.chartData).toBeUndefined();
 

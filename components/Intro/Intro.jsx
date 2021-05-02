@@ -1,12 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "./Card";
-import {
-  faClipboardList,
-  faBriefcase,
-  faClipboardCheck,
-} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import Headings from "./Headings";
+import Buttons from "./Buttons";
+import Copyright from "../Login/Copyright";
 
 const Container = styled.div`
   display: flex;
@@ -16,25 +13,29 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
-  flex-wrap: wrap;
-  min-height: 820px;
-
-  @media screen and (min-width: 1596px) {
-    min-height: unset;
-    align-items: center;
-  }
 `;
 
-const CardContainer = styled.div`
-  display: flex;
-  margin: 0 1.5rem;
-  margin-top: 1rem;
-  flex-direction: column;
+const Scrim = styled.div`
   z-index: 1;
+  max-width: 1000px;
+  border-radius: 4px;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.66);
+`;
 
-  @media screen and (min-width: 1596px) {
-    flex-direction: row;
-    margin-top: 0;
+const CopyrightContainer = styled.div`
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  .MuiTypography-colorTextSecondary {
+    color: white;
+  }
+
+  .MuiBox-root {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.25rem;
   }
 `;
 
@@ -48,36 +49,15 @@ const Intro = () => {
         objectFit="cover"
         objectPosition="center"
       />
-      <CardContainer>
-        <Card
-          title="Fund list"
-          buttonText="Go to fund list"
-          link={"/fund-list"}
-          icon={faClipboardList}
-          text={`There are many variations of passages of Lorem Ipsum available, 
-          but the majority have suffered alteration in some form, by injected humour,
-           or randomised words which don't look even slightly believable. If you are going to use a passage.`}
-        />
-        <Card
-          title="Fund advisor"
-          buttonText="Our recommendations"
-          link={"/fund-advisor"}
-          icon={faClipboardCheck}
-          text={`It is a long established fact that a reader will 
-          be distracted by the readable content of a page when looking at its layout.
-           The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters as opposed to using.`}
-        />
-        <Card
-          title="Portfolio"
-          buttonText="Go to sign-in"
-          link={"/portfolio"}
-          icon={faBriefcase}
-          text={`Latin words, combined with a handful of model sentence structures, 
-          to generate Lorem Ipsum which looks reasonable. 
-          The generated Lorem Ipsum is therefore always free from repetition, 
-          injected humour, or randomised words.`}
-        />
-      </CardContainer>
+      <Scrim>
+        <Headings />
+
+        <Buttons />
+      </Scrim>
+
+      <CopyrightContainer>
+        <Copyright />
+      </CopyrightContainer>
     </Container>
   );
 };

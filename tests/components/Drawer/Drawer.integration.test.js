@@ -1,6 +1,5 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
 import Drawer from "../../../components/Drawer/Drawer";
 
@@ -59,9 +58,7 @@ describe("Drawer", () => {
   it("Closes when menu button is clicked", () => {
     expect(document.querySelector("nav")).toBeTruthy();
 
-    const openedMenuButton = document.querySelector(
-      '[data-testid="openedMenuButton"]'
-    );
+    const openedMenuButton = screen.getByTestId("openedMenuButton");
 
     fireEvent(openedMenuButton, new MouseEvent("click", { bubbles: true }));
 

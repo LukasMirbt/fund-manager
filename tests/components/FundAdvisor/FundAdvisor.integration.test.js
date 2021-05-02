@@ -1,5 +1,4 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
 import FundAdvisor from "../../../components/FundAdvisor/FundAdvisor";
@@ -31,42 +30,41 @@ const initialState = {
 };
 
 describe("FundAdvisor", () => {
-  let component;
+  beforeEach(() => {
+    renderWithProviders(<FundAdvisor />, {
+      initialState,
+    });
+  });
 
   it("Displays the first recommended fund and allows navigation between recommendations", () => {
-    ({ component } = renderWithProviders(<FundAdvisor />, {
-      initialState,
-    }));
-
-    const { container } = component;
-    expect(container.textContent).toMatch("Buy");
-    expect(container.textContent).toMatch("Fidelity China Focus A-Acc-USD");
+    expect(document.body).toHaveTextContent("Buy");
+    expect(document.body).toHaveTextContent("Fidelity China Focus A-Acc-USD");
 
     const nextButton = screen.getByTestId("nextButton");
     const backButton = screen.getByTestId("backButton");
 
     fireEvent(nextButton, new MouseEvent("click", { bubbles: true }));
 
-    expect(container.textContent).not.toMatch("Fidelity China Focus A-Acc-USD");
-    expect(container.textContent).toMatch("GS India Equity Base Acc USD");
+    expect(document.body).not.toHaveTextContent(
+      "Fidelity China Focus A-Acc-USD"
+    );
+    expect(document.body).toHaveTextContent("GS India Equity Base Acc USD");
 
     fireEvent(backButton, new MouseEvent("click", { bubbles: true }));
 
-    expect(container.textContent).toMatch("Fidelity China Focus A-Acc-USD");
+    expect(document.body).toHaveTextContent("Fidelity China Focus A-Acc-USD");
   });
 
-  const modifiedInitialState = {
-    ...initialState,
-    chart: {
-      ...initialState.chart,
-      isChartShowingForSmallScreens: true,
-    },
-  };
-
   it("Chart canvas is rendered", () => {
-    ({ component } = renderWithProviders(<FundAdvisor />, {
-      initialState: modifiedInitialState,
-    }));
+    renderWithProviders(<FundAdvisor />, {
+      initialState: {
+        ...initialState,
+        chart: {
+          ...initialState.chart,
+          isChartShowingForSmallScreens: true,
+        },
+      },
+    });
 
     const canvas = screen.getByTestId("chart");
 

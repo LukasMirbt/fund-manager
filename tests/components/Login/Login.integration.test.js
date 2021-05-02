@@ -1,6 +1,5 @@
 import React from "react";
-import "@testing-library/jest-dom/extend-expect";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { renderWithProviders } from "../../test-utils";
 import Login from "../../../components/Login/Login";
 
@@ -52,18 +51,14 @@ describe("Login", () => {
   });
 
   it("Can navigate from sign-in to sign-up and back", () => {
-    const goToSignUpLink = document.querySelector(
-      '[data-testid="goToSignUpLink"]'
-    );
+    const goToSignUpLink = screen.getByTestId("goToSignUpLink");
 
     fireEvent(goToSignUpLink, new MouseEvent("click", { bubbles: true }));
 
     expect(document.querySelector('[data-cy="signUpButton"]')).toBeTruthy();
     expect(document.querySelector('[data-cy="signInButton"]')).toBeNull();
 
-    const goToSignInLink = document.querySelector(
-      '[data-testid="goToSignInLink"]'
-    );
+    const goToSignInLink = screen.getByTestId("goToSignInLink");
 
     fireEvent(goToSignInLink, new MouseEvent("click", { bubbles: true }));
 

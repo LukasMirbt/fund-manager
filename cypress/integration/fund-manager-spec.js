@@ -1,16 +1,15 @@
-/* eslint-disable jest/expect-expect */
-/* eslint-disable jest/valid-expect-in-promise */
+/* eslint-disable jest/expect-expect, jest/valid-expect-in-promise */
 
 describe("Fund manager", function () {
   beforeEach(function () {
     cy.visit("/");
   });
 
-  it("front page can be opened", function () {
+  it("Front page can be opened", function () {
     cy.contains("Fund list");
   });
 
-  it("menu button opens navigation drawer and all pages can be visited", function () {
+  it("Menu button opens navigation drawer and all pages can be visited", function () {
     cy.get("[data-cy=menuButton]").click();
     cy.get("nav").should("exist");
 
@@ -26,13 +25,13 @@ describe("Fund manager", function () {
     cy.contains("Fund list");
   });
 
-  it("account menu has a button that links to sign in when not signed in", function () {
+  it("Account menu has a button that links to sign in when not signed in", function () {
     cy.get("[data-cy=accountButton]").click();
     cy.get("[data-cy=goToSignInButton]").click();
     cy.get("[data-cy=loginLabel]").should("exist");
   });
 
-  it("new account can be created and logged in to", function () {
+  it("New account can be created and logged in to", function () {
     cy.task("deleteSignUpTestUser").then(() => {
       cy.visit("/portfolio");
       cy.get("[data-testid=goToSignUpLink]").click();
@@ -52,7 +51,7 @@ describe("Fund manager", function () {
     });
   });
 
-  it("user can log in and is not remembered when the remember user checkbox is not checked", function () {
+  it("User can log in and is not remembered when the remember user checkbox is not checked", function () {
     cy.visit("/portfolio");
     cy.login();
 
@@ -61,7 +60,7 @@ describe("Fund manager", function () {
     cy.get("[data-cy=loginLabel]").should("exist");
   });
 
-  it("user is remembered when the remember user checkbox is checked", function () {
+  it("User is remembered when the remember user checkbox is checked", function () {
     cy.visit("/portfolio");
     cy.get("#username").type("test");
     cy.get("#password").type("test");
@@ -73,19 +72,19 @@ describe("Fund manager", function () {
     cy.get("[data-cy=buyFundFab]").should("exist");
   });
 
-  describe("when logged in", function () {
+  describe("When logged in", function () {
     beforeEach(function () {
       cy.visit("/portfolio");
       cy.login();
     });
 
-    it("account menu shows username and balance", function () {
+    it("Account menu shows username and balance", function () {
       cy.get("[data-cy=accountButton]").click();
       cy.contains("test", { matchCase: false });
       cy.contains("balance", { matchCase: false });
     });
 
-    it("funds can be bought", function () {
+    it("Funds can be bought", function () {
       cy.get("[data-cy=menuButton]").click();
       cy.get("[data-cy=openBuyFundDialogButton]").click();
       cy.get("[data-cy=buyFundFundNameInput]").type(
@@ -97,7 +96,7 @@ describe("Fund manager", function () {
       cy.get("[data-cy=snackbar]").should("exist");
     });
 
-    it("funds can be sold", function () {
+    it("Funds can be sold", function () {
       cy.get("[data-cy=menuButton]").click();
       cy.get("[data-cy=openSellFundDialogButton]").click();
       cy.get("[data-cy=sellFundFundNameInput]").type(
