@@ -48,6 +48,7 @@ const Intro = () => {
         layout="fill"
         objectFit="cover"
         objectPosition="center"
+        priority
       />
       <Scrim>
         <Headings />

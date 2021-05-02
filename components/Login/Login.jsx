@@ -34,6 +34,7 @@ const Login = () => {
         layout="fill"
         objectFit="cover"
         objectPosition="center"
+        priority
       />
 
       <LoginContainer>
