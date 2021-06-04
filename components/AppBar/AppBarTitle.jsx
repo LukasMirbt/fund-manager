@@ -6,9 +6,13 @@ const Title = () => {
   const { pathname } = useRouter();
 
   const title =
-    pathname === "/" ? "fund manager" : pathname.slice(1).replace(/-+/g, " ");
+    pathname === "/" ? "Fund Manager" : pathname.slice(1).replace(/-+/g, " ");
 
-  return (
+  return pathname === "/" ? (
+    <Typography variant="h6" component="span" noWrap>
+      {title}
+    </Typography>
+  ) : (
     <Typography variant="h6" component="h1" noWrap>
       {title[0].toUpperCase() + title.slice(1)}
     </Typography>

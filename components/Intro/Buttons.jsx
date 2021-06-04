@@ -37,8 +37,6 @@ const StyledButton = styled(Button)`
       margin-right: 0;
     }
   }
-
-  box-shadow: none;
 `;
 
 const Icon = styled(FontAwesomeIcon)`
@@ -49,8 +47,9 @@ const Icon = styled(FontAwesomeIcon)`
 const Buttons = () => {
   return (
     <Container>
-      <Link href={"/fund-list"}>
+      <Link passHref href="/fund-list">
         <StyledButton
+          component="a"
           color="primary"
           variant="contained"
           endIcon={<Icon icon={faClipboardList} />}
@@ -58,8 +57,9 @@ const Buttons = () => {
           Fund list
         </StyledButton>
       </Link>
-      <Link href={"/fund-advisor"}>
+      <Link passHref href="/fund-advisor">
         <StyledButton
+          component="a"
           color="primary"
           variant="contained"
           endIcon={<Icon icon={faClipboardCheck} />}
@@ -67,8 +67,9 @@ const Buttons = () => {
           Fund advisor
         </StyledButton>
       </Link>
-      <Link href={"/portfolio"}>
+      <Link passHref href="/portfolio">
         <StyledButton
+          component="a"
           color="primary"
           variant="contained"
           endIcon={<Icon icon={faBriefcase} />}

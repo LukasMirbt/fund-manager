@@ -13,7 +13,13 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  background-image: url("./laptops.jpeg");
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1)
+    ),
+    url("./laptops.jpeg");
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,7 +30,8 @@ const Scrim = styled.div`
   max-width: 1000px;
   border-radius: 4px;
   padding: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.66);
+  box-shadow: ${({ theme }) => theme.shadows[1]};
+  background-color: white;
 `;
 
 const CopyrightContainer = styled.div`
